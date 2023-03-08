@@ -11,7 +11,7 @@ export const theme = createGlobalTheme(':root', {
     white: '#fff',
   },
   fontFamilies: {
-    base: '"Lato", sans-serif',
+    base: '"Noto Sans", sans-serif',
   },
   fontSizes: {
     small: '14px',

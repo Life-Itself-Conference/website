@@ -3,6 +3,7 @@ import { queries, theme } from '../../../theme.css';
 
 export const title = style({
   margin: 0,
+  marginBottom: theme.spacing.large,
 });
 
 export const tag = styleVariants({

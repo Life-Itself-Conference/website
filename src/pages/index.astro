@@ -4,11 +4,18 @@ import { HeroSection } from '../components/organisms/HeroSection';
 import { PartnersSection } from '../components/organisms/PartnersSection';
 import { SpeakersSection } from '../components/organisms/SpeakersSection';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { contentfulClient } from '../services/contentful';
+import type { Event } from '../types';
+
+const events = await contentfulClient.getEntries<Event>({
+  content_type: 'event',
+  include: 2,
+});
 ---
 
 <BaseLayout>
-  <HeroSection />
-  <SpeakersSection />
+  <HeroSection event={events.items[0]} />
+  <SpeakersSection speakers={events.items[0].fields.speakers} />
   <PartnersSection />
-  <AboutUsSection />
+  <AboutUsSection aboutUs={events.items[0].fields.aboutUs} />
 </BaseLayout>
