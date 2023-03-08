@@ -12,16 +12,16 @@ export const Header = () => (
           <a href="#">Covid Safety</a>
         </li>
         <li>
-          <a href="#">Speakers</a>
+          <a href="#speakers">Speakers</a>
         </li>
         <li>
-          <a href="#">Location</a>
+          <a href="#location">Location</a>
         </li>
         <li>
-          <a href="#">Partners</a>
+          <a href="#partners">Partners</a>
         </li>
         <li>
-          <a href="#">About Us</a>
+          <a href="#about-us">About Us</a>
         </li>
         <li>
           <a href="#">Contact Us</a>

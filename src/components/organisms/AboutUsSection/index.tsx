@@ -8,7 +8,12 @@ import * as styles from './AboutUsSection.css';
 
 export const AboutUsSection: Component<AboutUsSectionProps> = (props) => {
   return (
-    <ContentSection class={styles.content} size="small" title="About Us">
+    <ContentSection
+      class={styles.content}
+      id="about-us"
+      size="small"
+      title="About Us"
+    >
       <p innerHTML={documentToHtmlString(props.aboutUs.fields.overview)} />
 
       <img

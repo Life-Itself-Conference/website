@@ -5,6 +5,11 @@ globalStyle('*, *:before, *:after', {
   boxSizing: 'border-box',
 });
 
+export const html = style({
+  scrollBehavior: 'smooth',
+  scrollPaddingTop: 72,
+});
+
 export const body = style({
   backgroundColor: theme.colors.black,
   color: theme.colors.white,

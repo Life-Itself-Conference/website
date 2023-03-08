@@ -6,7 +6,7 @@ import * as styles from './ContentSection.css';
 import classNames from 'classnames';
 
 export const ContentSection: ParentComponent<ContentSectionProps> = (props) => (
-  <section class={classNames(styles.section, props.class)}>
+  <section class={classNames(styles.section, props.class)} id={props.id}>
     <header>
       <Title tag="h1">{props.title}</Title>
       <Container size={props.size}>
@@ -19,6 +19,7 @@ export const ContentSection: ParentComponent<ContentSectionProps> = (props) => (
 
 export interface ContentSectionProps {
   class?: string;
+  id?: string;
   size?: ContainerProps['size'];
   subtitle?: string;
   title: string;
