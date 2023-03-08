@@ -11,6 +11,7 @@ export const button = style({
   fontSize: theme.fontSizes.medium,
   fontWeight: 'bold',
   textAlign: 'center',
+  textDecoration: 'none',
   textTransform: 'uppercase',
   whiteSpace: 'nowrap',
 });

@@ -28,7 +28,9 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
         <p>{props.event.fields.tagline}</p>
         <div class={styles.buttons}>
           <ButtonLink>Sold Out</ButtonLink>
-          <ButtonLink variant="secondary">Speakers</ButtonLink>
+          <ButtonLink href="#speakers" variant="secondary">
+            Speakers
+          </ButtonLink>
           <ButtonLink variant="secondary">Join Newsletter</ButtonLink>
         </div>
       </div>
