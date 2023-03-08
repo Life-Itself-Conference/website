@@ -5,11 +5,11 @@ export interface AboutUs {
   image: Asset;
   marc: string;
   marcTitle: string;
-  marcBio: string;
-  overview: string;
+  marcBio: EntryFields.RichText;
+  overview: EntryFields.RichText;
   sanjay: string;
   sanjayTitle: string;
-  sanjayBio: string;
+  sanjayBio: EntryFields.RichText;
   year: string;
 }
 
