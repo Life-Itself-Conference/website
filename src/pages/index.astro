@@ -15,7 +15,7 @@ const events = await contentfulClient.getEntries<Event>({
 
 <BaseLayout>
   <HeroSection event={events.items[0]} />
-  <SpeakersSection speakers={events.items[0].fields.speakers} />
+  <SpeakersSection client:load speakers={events.items[0].fields.speakers} />
   <PartnersSection />
   <AboutUsSection aboutUs={events.items[0].fields.aboutUs} />
 </BaseLayout>

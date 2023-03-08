@@ -9,7 +9,7 @@ export const SpeakersSection: Component<SpeakersSectionProps> = (props) => {
     <ContentSection
       subtitle="LIFE ITSELF features extraordinary thinkers intersecting health & medicine — from research, technology, government, entertainment & business."
       title="Speakers"
-      size="small"
+      size="medium"
     >
       <SpeakerList speakers={props.speakers} />
     </ContentSection>

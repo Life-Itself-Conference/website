@@ -11,6 +11,9 @@ export const size = styleVariants({
   small: {
     maxWidth: 768,
   },
+  medium: {
+    maxWidth: 1024,
+  },
   large: {
     maxWidth: 1200,
   },

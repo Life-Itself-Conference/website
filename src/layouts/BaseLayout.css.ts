@@ -12,3 +12,7 @@ export const body = style({
   fontSize: theme.fontSizes.large,
   margin: 0,
 });
+
+globalStyle('p', {
+  margin: `0 0 ${theme.spacing.medium}`,
+});

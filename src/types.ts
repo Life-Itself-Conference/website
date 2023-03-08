@@ -1,3 +1,4 @@
+import type { Document } from '@contentful/rich-text-types';
 import type { Asset, Entry, EntryFields } from 'contentful';
 
 export interface AboutUs {
@@ -5,11 +6,11 @@ export interface AboutUs {
   image: Asset;
   marc: string;
   marcTitle: string;
-  marcBio: EntryFields.RichText;
-  overview: EntryFields.RichText;
+  marcBio: Document;
+  overview: Document;
   sanjay: string;
   sanjayTitle: string;
-  sanjayBio: EntryFields.RichText;
+  sanjayBio: Document;
   year: string;
 }
 
