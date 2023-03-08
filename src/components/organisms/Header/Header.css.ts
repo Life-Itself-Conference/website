@@ -11,6 +11,7 @@ export const header = style({
   paddingInline: theme.spacing.large,
   position: 'sticky',
   top: 0,
+  zIndex: 998,
 });
 
 export const logo = style({
