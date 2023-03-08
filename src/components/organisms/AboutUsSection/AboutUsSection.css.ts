@@ -15,7 +15,11 @@ export const image = style({
 export const bios = style({
   display: 'grid',
   gap: theme.spacing.large,
-  gridTemplateColumns: '1fr 1fr',
+  '@media': {
+    'screen and (min-width: 1200px)': {
+      gridTemplateColumns: '1fr 1fr',
+    },
+  },
 });
 
 export const bio = style({
