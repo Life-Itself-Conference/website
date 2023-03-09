@@ -1,4 +1,5 @@
-import { createEffect, createSignal, ParentComponent } from 'solid-js';
+import type { ParentComponent } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 import * as styles from './Modal.css';
 
 export const Modal: ParentComponent<ModalProps> = (props) => {

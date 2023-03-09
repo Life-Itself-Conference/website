@@ -18,7 +18,7 @@ export const Button: ParentComponent<ButtonProps> = (props) => {
         styles.size[size],
         styles.variant[variant],
       )}
-      type={buttonProps.type}
+      type={buttonProps.type || 'button'}
     />
   );
 };
@@ -59,7 +59,6 @@ const defaultButtonProps: ButtonProps & {
   variant: keyof typeof styles.variant;
 } = {
   size: 'medium',
-  type: 'button',
   variant: 'primary',
 };
 

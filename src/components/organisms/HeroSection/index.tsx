@@ -1,8 +1,9 @@
 import type { Entry } from 'contentful';
 import type { Component } from 'solid-js';
+import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
-import { ButtonLink } from '../../atoms/Button';
+import { Button, ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
 import * as styles from './HeroSection.css';
 
@@ -27,7 +28,9 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
         </h1>
         <p>{props.event.fields.tagline}</p>
         <div class={styles.buttons}>
-          <ButtonLink>Sold Out</ButtonLink>
+          <Button onClick={() => isNewsletterModalOpen.set(true)}>
+            Sold Out
+          </Button>
           <ButtonLink href="#speakers" variant="secondary">
             Speakers
           </ButtonLink>

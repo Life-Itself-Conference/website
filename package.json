@@ -20,11 +20,13 @@
   "dependencies": {
     "@astrojs/solid-js": "^2.0.2",
     "@contentful/rich-text-html-renderer": "^16.0.2",
+    "@nanostores/solid": "^0.3.2",
     "@vanilla-extract/css": "^1.9.5",
     "astro": "^2.0.11",
     "classnames": "^2.3.2",
     "contentful": "^9.3.2",
     "eslint-config-prettier": "^8.6.0",
+    "nanostores": "^0.7.4",
     "solid-js": "^1.6.11"
   },
   "devDependencies": {

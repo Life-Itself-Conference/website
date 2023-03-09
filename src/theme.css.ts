@@ -14,6 +14,8 @@ export const theme = createGlobalTheme(':root', {
     base: '"Noto Sans", sans-serif',
   },
   fontSizes: {
+    xxsmall: '10px',
+    xsmall: '12px',
     small: '14px',
     medium: '16px',
     large: '18px',

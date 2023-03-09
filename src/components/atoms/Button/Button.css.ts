@@ -2,14 +2,17 @@ import { style, styleVariants } from '@vanilla-extract/css';
 import { theme } from '../../../theme.css';
 
 export const button = style({
+  alignItems: 'center',
   backgroundColor: 'none',
   border: 0,
   color: theme.colors.white,
   cursor: 'pointer',
-  display: 'block',
+  display: 'flex',
+  height: 48,
   fontFamily: 'inherit',
   fontSize: theme.fontSizes.medium,
   fontWeight: 'bold',
+  justifyContent: 'center',
   textAlign: 'center',
   textDecoration: 'none',
   textTransform: 'uppercase',
