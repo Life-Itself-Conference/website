@@ -49,11 +49,12 @@ export interface Partner {
 }
 
 export interface Speaker {
-  bio: string;
+  bio: Document;
   headshot: Asset[];
   id: number;
   name: string;
   title: Entry<Title>[];
+  topic: string;
   year: string;
 }
 
