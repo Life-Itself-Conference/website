@@ -7,6 +7,7 @@ export const grid = style({
   gridTemplateAreas: "'header image' 'content image'",
   gridTemplateColumns: '2fr 1fr',
   gridTemplateRows: 'auto 1fr',
+  overflow: 'auto',
   textAlign: 'left',
 });
 
