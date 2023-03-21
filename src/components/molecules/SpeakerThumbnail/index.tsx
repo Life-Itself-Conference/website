@@ -11,7 +11,7 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => (
     <img
       class={styles.image}
       src={
-        props.speaker.fields.headshot.find(
+        props.speaker.fields.headshot?.find(
           (image) => image.fields.title === '160x190',
         )?.fields.file.url
       }
@@ -21,13 +21,13 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => (
         <b>{props.speaker.fields.name}</b>
       </span>
       <div class={styles.details}>
-        {props.speaker.fields.title[0].fields.organization && (
+        {props.speaker.fields.title?.[0]?.fields.organization && (
           <b>
-            {props.speaker.fields.title[0].fields.organization}
+            {props.speaker.fields.title?.[0]?.fields.organization}
             <br />
           </b>
         )}
-        {props.speaker.fields.title[0].fields.title}
+        {props.speaker.fields.title?.[0]?.fields.title}
       </div>
     </div>
   </div>
