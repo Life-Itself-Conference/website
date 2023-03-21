@@ -9,6 +9,7 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => (
     // onClick={() => props.onClick?.(props.speaker.fields.id)}
   >
     <img
+      alt={`${props.speaker.fields.name} headshot`}
       class={styles.image}
       src={
         props.speaker.fields.headshot?.find(

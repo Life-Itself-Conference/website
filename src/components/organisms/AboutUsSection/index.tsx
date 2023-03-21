@@ -17,6 +17,7 @@ export const AboutUsSection: Component<AboutUsSectionProps> = (props) => {
       <p innerHTML={documentToHtmlString(props.aboutUs.fields.overview)} />
 
       <img
+        alt="Sanjay and Marc"
         class={styles.image}
         src={props.aboutUs.fields.image.fields.file.url}
       />

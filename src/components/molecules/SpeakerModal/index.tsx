@@ -26,6 +26,7 @@ export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
           <div innerHTML={documentToHtmlString(props.speaker.fields.bio)} />
         </section>
         <img
+          alt={`${props.speaker.fields.name} headshot`}
           class={styles.image}
           src={
             props.speaker.fields.headshot?.find(
