@@ -5,6 +5,7 @@ const transitionDuration = '300ms';
 const transitionTimingFunction = 'ease-in-out';
 
 export const container = style({
+  aspectRatio: '16/19',
   display: 'flex',
   overflow: 'hidden',
   position: 'relative',

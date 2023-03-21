@@ -27,7 +27,11 @@ export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
         </section>
         <img
           class={styles.image}
-          src={props.speaker.fields.headshot?.[0]?.fields.file.url}
+          src={
+            props.speaker.fields.headshot?.find(
+              (image) => image.fields.title === 'modal',
+            )?.fields.file.url || '/no-image.png'
+          }
         />
       </div>
     </Modal>

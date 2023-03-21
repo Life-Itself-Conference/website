@@ -6,14 +6,14 @@ import * as styles from './SpeakerThumbnail.css';
 export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => (
   <div
     class={styles.container}
-    onClick={() => props.onClick?.(props.speaker.fields.id)}
+    // onClick={() => props.onClick?.(props.speaker.fields.id)}
   >
     <img
       class={styles.image}
       src={
         props.speaker.fields.headshot?.find(
-          (image) => image.fields.title === '160x190',
-        )?.fields.file.url
+          (image) => image.fields.title === 'thumbnail',
+        )?.fields.file.url || '/no-image.png'
       }
     />
     <div class={styles.content}>
