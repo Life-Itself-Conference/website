@@ -4,12 +4,12 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 // https://astro.build/config
 export default defineConfig({
-  ...(import.meta.env.PROD
-    ? {
-        site: 'https://rightpoint.github.io',
-        base: '/life-itself-2024',
-      }
-    : {}),
+  // ...(import.meta.env.PROD
+  //   ? {
+  //       site: 'https://rightpoint.github.io',
+  //       base: '/life-itself-2024',
+  //     }
+  //   : {}),
   build: {
     assets: 'assets',
   },
