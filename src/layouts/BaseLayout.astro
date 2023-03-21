@@ -3,7 +3,7 @@ import { NewsletterModal } from '../components/molecules/NewsletterModal';
 import { Footer } from '../components/organisms/Footer';
 import { Header } from '../components/organisms/Header';
 import * as styles from './BaseLayout.css';
-const { title } = Astro.props;
+const { event, title } = Astro.props;
 ---
 
 <html class={styles.html} lang="en">
@@ -50,7 +50,7 @@ const { title } = Astro.props;
     />
   </head>
   <body class={styles.body}>
-    <Header client:load />
+    <Header client:load event={event} />
     <main>
       <slot />
     </main>

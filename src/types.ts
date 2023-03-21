@@ -23,6 +23,7 @@ export interface Event {
   speakers: Entry<Speaker>[];
   startDate: string;
   tagline: string;
+  ticketStatus: 'Coming Soon' | 'On Sale' | 'Sold Out';
   videoDetails: string;
   year: string;
 }

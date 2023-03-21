@@ -1,8 +1,11 @@
+import type { Entry } from 'contentful';
+import type { Component } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';
 import * as styles from './Header.css';
 
-export const Header = () => {
+export const Header: Component<HeaderProps> = (props) => {
   return (
     <header class={styles.header}>
       <a class={styles.logo} href="#">
@@ -36,7 +39,7 @@ export const Header = () => {
               onClick={() => isNewsletterModalOpen.set(true)}
               size="small"
             >
-              Sold Out
+              {props.event.fields.ticketStatus}
             </Button>
           </li>
         </ul>
@@ -44,3 +47,7 @@ export const Header = () => {
     </header>
   );
 };
+
+export interface HeaderProps {
+  event: Entry<Event>;
+}

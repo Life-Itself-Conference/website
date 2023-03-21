@@ -29,7 +29,7 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
         <p>{props.event.fields.tagline}</p>
         <div class={styles.buttons}>
           <Button onClick={() => isNewsletterModalOpen.set(true)}>
-            Sold Out
+            {props.event.fields.ticketStatus}
           </Button>
           <ButtonLink href="#speakers" variant="secondary">
             Speakers
