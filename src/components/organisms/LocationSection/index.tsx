@@ -16,10 +16,16 @@ export const LocationSection: Component<LocationSectionProps> = (props) => {
         <Show when={props.location.fields.video}>
           <video
             autoplay
-            loop
             class={styles.video}
-            src={props.location.fields.video.fields.file.url}
-          />
+            loop
+            poster={props.location.fields.videoPoster?.fields?.file?.url}
+            playsinline
+          >
+            <source
+              src={props.location.fields.video.fields.file.url}
+              type={props.location.fields.video.fields.file.contentType}
+            />
+          </video>
         </Show>
         <h2>
           <sub>{props.location.fields.hotelLabel}</sub>
