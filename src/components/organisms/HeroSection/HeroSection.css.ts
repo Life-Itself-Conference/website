@@ -2,6 +2,15 @@ import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
 import { button } from '../../atoms/Button/Button.css';
 
+const bounceKeyframes = keyframes({
+  '50%': {
+    transform: 'translateY(-20px)',
+  },
+  '100%': {
+    transform: 'translateY(0)',
+  },
+});
+
 const marqueeKeyframes = keyframes({
   '0%': { transform: `translateX(0)` },
   '100%': { transform: `translateX(-100%)` },
@@ -110,4 +119,16 @@ globalStyle(`${marquee} img`, {
   height: 30,
   objectFit: 'contain',
   maxWidth: 150,
+});
+
+export const arrowContainer = style({
+  textAlign: 'center',
+});
+
+export const arrow = style({
+  animation: `${bounceKeyframes} 2s ease infinite`,
+  fontSize: theme.spacing.xxlarge,
+  marginTop: 20,
+  textAlign: 'center',
+  willChange: 'transform',
 });

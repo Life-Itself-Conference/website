@@ -20,6 +20,7 @@ export const logo = style({
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   display: 'block',
+  flexShrink: 0.5,
   height: 22,
   overflow: 'hidden',
   textDecoration: 'none',

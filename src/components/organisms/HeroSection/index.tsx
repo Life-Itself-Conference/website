@@ -1,4 +1,5 @@
 import type { Entry } from 'contentful';
+import { VsChevronDown } from 'solid-icons/vs';
 import { Component, For } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
@@ -60,6 +61,9 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
             )}
           </For>
         </ul>
+      </div>
+      <div class={styles.arrowContainer}>
+        <VsChevronDown class={styles.arrow} />
       </div>
     </Container>
   </section>
