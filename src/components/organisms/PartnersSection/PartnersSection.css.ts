@@ -12,5 +12,5 @@ export const list = style({
 });
 
 export const image = style({
-  maxHeight: 60,
+  maxHeight: 40,
 });
