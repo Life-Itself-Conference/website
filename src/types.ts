@@ -19,6 +19,7 @@ export interface Event {
   endDate: string;
   hotel: Entry<Hotel>;
   id: number;
+  partners: Entry<Partner>[];
   schedule: Asset;
   speakers: Entry<Speaker>[];
   startDate: string;
@@ -46,7 +47,7 @@ export interface Partner {
   logo: Asset[];
   partner: string;
   year: string;
-  URL: string;
+  url: string;
 }
 
 export interface Speaker {

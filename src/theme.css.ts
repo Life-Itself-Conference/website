@@ -27,7 +27,8 @@ export const theme = createGlobalTheme(':root', {
     small: '8px',
     medium: '16px',
     large: '32px',
-    xlarge: '64px',
+    xlarge: '50px',
+    xxlarge: '100px',
   },
   breakpoints: {
     large: '1200px',
