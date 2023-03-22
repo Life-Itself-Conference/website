@@ -36,6 +36,7 @@ export const video = style({
 export const header = style({
   display: 'flex',
   flexDirection: 'column',
+  minHeight: 300,
   padding: theme.spacing.medium,
   position: 'relative',
   textTransform: 'uppercase',
@@ -43,7 +44,6 @@ export const header = style({
 
   '@media': {
     [queries.large]: {
-      maxWidth: 600,
       padding: 0,
       position: 'static',
     },
@@ -58,6 +58,7 @@ globalStyle(`${header} h2`, {
   lineHeight: '1em',
   margin: 0,
   marginBottom: theme.spacing.small,
+  maxWidth: 500,
 });
 
 globalStyle(`${header} h2 sub`, {
