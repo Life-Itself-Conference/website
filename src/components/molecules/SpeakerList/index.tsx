@@ -1,9 +1,8 @@
-// import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
 import { Component, createSignal, For } from 'solid-js';
 import type { Speaker } from '../../../types';
-import { SpeakerModal } from '../SpeakerModal';
 import { SpeakerThumbnail } from '../SpeakerThumbnail';
+import { SpeakerModal } from '../SpeakerModal';
 import * as styles from './SpeakerList.css';
 
 export const SpeakerList: Component<SpeakerListProps> = (props) => {

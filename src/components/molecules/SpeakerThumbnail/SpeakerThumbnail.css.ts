@@ -5,8 +5,10 @@ const transitionDuration = '300ms';
 const transitionTimingFunction = 'ease-in-out';
 
 export const container = style({
+  alignItems: 'center',
   aspectRatio: '16/19',
   display: 'flex',
+  justifyContent: 'center',
   overflow: 'hidden',
   position: 'relative',
   ':before': {
@@ -23,6 +25,11 @@ export const image = style({
   height: '100%',
   objectFit: 'cover',
   width: '100%',
+});
+
+export const placeholderImage = style({
+  height: 75,
+  width: 75,
 });
 
 export const content = style({
