@@ -3,14 +3,14 @@ import { theme } from '../../../theme.css';
 
 export const list = style({
   alignItems: 'center',
-  columnGap: theme.spacing.large,
+  columnGap: theme.spacing.xlarge,
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
   listStyle: 'none',
-  rowGap: theme.spacing.xlarge,
+  rowGap: theme.spacing.xxlarge,
 });
 
 export const image = style({
-  maxHeight: 40,
+  height: 40,
 });
