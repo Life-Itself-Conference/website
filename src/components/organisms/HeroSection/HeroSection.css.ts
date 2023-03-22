@@ -174,6 +174,7 @@ export const videoDetails = style({
   paddingBlock: theme.spacing.small,
   paddingInline: theme.spacing.medium,
   textAlign: 'center',
+  textTransform: 'uppercase',
 
   '@media': {
     [queries.large]: {
@@ -184,6 +185,10 @@ export const videoDetails = style({
 
 globalStyle(`${videoDetails} a`, {
   color: theme.colors.red,
+});
+
+globalStyle(`${videoDetails} p`, {
+  margin: 0,
 });
 
 export const arrowContainer = style({
