@@ -13,16 +13,17 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
     <Container size="large">
       <div class={styles.content}>
         <small class={styles.meta}>
-          <time
-            dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
-          >
-            <b>
+          <b>
+            <time
+              dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
+            >
               {[
                 formatDate(props.event.fields.startDate),
                 formatDate(props.event.fields.endDate),
               ].join(' - ')}
-            </b>
-          </time>
+            </time>{' '}
+            / <span>{props.event.fields.hotel.fields.location}</span>
+          </b>
         </small>
         <h1 class={styles.title}>
           <span>LIFE ITSELF</span>

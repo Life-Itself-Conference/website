@@ -54,7 +54,7 @@ const { event, title } = Astro.props;
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer event={event} />
     <NewsletterModal client:load />
   </body>
 </html>
