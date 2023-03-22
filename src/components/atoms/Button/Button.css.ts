@@ -8,7 +8,7 @@ export const button = style({
   color: theme.colors.white,
   cursor: 'pointer',
   display: 'flex',
-  height: 48,
+  height: 36,
   fontFamily: 'inherit',
   fontSize: theme.fontSizes.medium,
   fontWeight: 'bold',
