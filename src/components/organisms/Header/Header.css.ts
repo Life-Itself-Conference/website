@@ -5,11 +5,10 @@ export const header = style({
   alignItems: 'center',
   backgroundColor: theme.colors.black,
   display: 'flex',
-  fontSize: theme.fontSizes.small,
   height: theme.headerHeight,
   justifyContent: 'space-between',
   paddingBlock: theme.spacing.medium,
-  paddingInline: theme.spacing.large,
+  paddingInline: theme.spacing.medium,
   position: 'sticky',
   top: 0,
   zIndex: 998,
@@ -31,22 +30,63 @@ globalStyle(`${logo} > span`, {
   fontSize: 0,
 });
 
-export const nav = style({
-  display: 'none',
+export const trigger = style({
+  backgroundColor: 'transparent',
+  border: 'none',
+  color: 'inherit',
+  cursor: 'pointer',
+  fontSize: theme.fontSizes.xlarge,
+
   '@media': {
     [queries.large]: {
-      display: 'block',
+      display: 'none',
     },
   },
+});
+
+export const nav = style({
+  alignItems: 'flex-start',
+  backgroundColor: theme.colors.black,
+  display: 'flex',
+  fontSize: theme.fontSizes.large,
+  inset: `${theme.headerHeight} 0 0`,
+  justifyContent: 'center',
+  padding: theme.spacing.xlarge,
+  position: 'fixed',
+  transition: 'translate 300ms ease-in-out',
+  translate: '100%',
+
+  '@media': {
+    [queries.large]: {
+      backgroundColor: 'transparent',
+      display: 'block',
+      fontSize: theme.fontSizes.small,
+      inset: 'unset',
+      position: 'unset',
+      transition: 'unset',
+      translate: 'unset',
+    },
+  },
+});
+
+globalStyle(`${nav}[data-open="true"]`, {
+  translate: 0,
 });
 
 export const list = style({
   alignItems: 'center',
   display: 'flex',
+  flexDirection: 'column',
   gap: theme.spacing.large,
   listStyle: 'none',
   margin: 0,
   padding: 0,
+
+  '@media': {
+    [queries.large]: {
+      flexDirection: 'row',
+    },
+  },
 });
 
 globalStyle(`${list} a`, {
