@@ -54,7 +54,6 @@ export const nav = style({
   justifyContent: 'center',
   padding: theme.spacing.xlarge,
   position: 'fixed',
-  transition: 'translate 300ms ease-in-out',
   translate: '100%',
 
   '@media': {

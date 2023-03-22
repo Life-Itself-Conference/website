@@ -24,20 +24,92 @@ export const container = style({
 
   '@media': {
     [queries.large]: {
-      paddingTop: '20vh',
+      paddingTop: '18vh',
       textAlign: 'left',
     },
   },
 });
 
+export const grid = style({
+  display: 'flex',
+  flexDirection: 'column',
+  columnGap: theme.spacing.xlarge,
+
+  '@media': {
+    [queries.large]: {
+      alignItems: 'flex-end',
+      display: 'grid',
+      flexDirection: 'unset',
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: '1fr auto',
+    },
+  },
+});
+
 export const content = style({
+  order: 3,
   marginBottom: theme.spacing.medium,
 
   '@media': {
     [queries.large]: {
-      maxWidth: 535,
+      gridColumn: 1,
+      gridRow: 1,
+      order: 'unset',
     },
   },
+});
+
+export const image = style({
+  marginInline: 'auto',
+  maxWidth: 536,
+  order: 1,
+  width: '100%',
+
+  '@media': {
+    [queries.large]: {
+      order: 'unset',
+      gridColumn: 2,
+      gridRow: 1,
+    },
+  },
+});
+
+export const marquee = style({
+  backgroundColor: theme.colors.white,
+  color: theme.colors.black,
+  display: 'flex',
+  fontSize: theme.fontSizes.medium,
+  gridColumn: 'span 2',
+  marginBottom: theme.spacing.large,
+  paddingBlock: theme.spacing.medium,
+  order: 2,
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+
+  '@media': {
+    [queries.large]: {
+      order: 'unset',
+      gridRow: 2,
+    },
+  },
+});
+
+globalStyle(`${marquee} ul`, {
+  alignItems: 'center',
+  animation: `${marqueeKeyframes} 30s linear infinite`,
+  display: 'flex',
+  gap: theme.spacing.xxlarge,
+  listStyle: 'none',
+  margin: 0,
+  paddingLeft: theme.spacing.xxlarge,
+  willChange: 'transform',
+});
+
+globalStyle(`${marquee} img`, {
+  display: 'block',
+  height: 30,
+  objectFit: 'contain',
+  maxWidth: 150,
 });
 
 export const meta = style({
@@ -80,6 +152,7 @@ export const buttons = style({
   flexDirection: 'column',
   gap: theme.spacing.small,
   justifyContent: 'center',
+
   '@media': {
     [queries.large]: {
       flexDirection: 'row',
@@ -93,32 +166,24 @@ globalStyle(`${buttons} ${button}`, {
   width: '100%',
 });
 
-export const marquee = style({
-  backgroundColor: theme.colors.white,
-  color: theme.colors.black,
-  display: 'flex',
-  fontSize: theme.fontSizes.medium,
-  paddingBlock: theme.spacing.medium,
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
+export const videoDetails = style({
+  border: `1px solid ${theme.colors.red}`,
+  fontSize: theme.fontSizes.small,
+  marginInline: 'auto',
+  maxWidth: 350,
+  paddingBlock: theme.spacing.small,
+  paddingInline: theme.spacing.medium,
+  textAlign: 'center',
+
+  '@media': {
+    [queries.large]: {
+      maxWidth: '50%',
+    },
+  },
 });
 
-globalStyle(`${marquee} ul`, {
-  alignItems: 'center',
-  animation: `${marqueeKeyframes} 30s linear infinite`,
-  display: 'flex',
-  gap: theme.spacing.xxlarge,
-  listStyle: 'none',
-  margin: 0,
-  paddingLeft: theme.spacing.xxlarge,
-  willChange: 'transform',
-});
-
-globalStyle(`${marquee} img`, {
-  display: 'block',
-  height: 30,
-  objectFit: 'contain',
-  maxWidth: 150,
+globalStyle(`${videoDetails} a`, {
+  color: theme.colors.red,
 });
 
 export const arrowContainer = style({

@@ -17,6 +17,7 @@ export interface AboutUs {
 export interface Event {
   aboutUs: Entry<AboutUs>;
   endDate: string;
+  hero: Asset;
   hotel: Entry<Location>;
   id: number;
   invitation: string;
@@ -26,7 +27,7 @@ export interface Event {
   startDate: string;
   tagline: string;
   ticketStatus: 'Coming Soon' | 'On Sale' | 'Sold Out';
-  videoDetails: string;
+  videoDetails: Document;
   year: string;
 }
 

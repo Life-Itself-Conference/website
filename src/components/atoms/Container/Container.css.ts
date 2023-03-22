@@ -21,6 +21,6 @@ export const size = styleVariants({
     maxWidth: 1024,
   },
   large: {
-    maxWidth: 1200,
+    maxWidth: 1300,
   },
 });
