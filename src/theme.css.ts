@@ -35,4 +35,5 @@ export const theme = createGlobalTheme(':root', {
   breakpoints: {
     large: '1200px',
   },
+  headerHeight: '72px',
 });

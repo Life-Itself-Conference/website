@@ -8,13 +8,14 @@ const marqueeKeyframes = keyframes({
 });
 
 export const container = style({
-  alignItems: 'center',
+  alignItems: 'flex-start',
   display: 'flex',
-  fontSize: theme.fontSizes.xlarge,
-  height: '50vh',
+  minHeight: `calc(100vh - ${theme.headerHeight})`,
   textAlign: 'center',
+
   '@media': {
     [queries.large]: {
+      paddingTop: '20vh',
       textAlign: 'left',
     },
   },
@@ -52,6 +53,16 @@ export const title = style({
 
 globalStyle(`${title} > span`, {
   fontSize: 0,
+});
+
+export const tagline = style({
+  fontSize: theme.fontSizes.small,
+
+  '@media': {
+    [queries.large]: {
+      fontSize: theme.fontSizes.xlarge,
+    },
+  },
 });
 
 export const buttons = style({

@@ -7,7 +7,7 @@ globalStyle('*, *:before, *:after', {
 
 export const html = style({
   scrollBehavior: 'smooth',
-  scrollPaddingTop: 72,
+  scrollPaddingTop: theme.headerHeight,
 });
 
 export const body = style({

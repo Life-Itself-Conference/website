@@ -27,7 +27,7 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
         <h1 class={styles.title}>
           <span>LIFE ITSELF</span>
         </h1>
-        <p>{props.event.fields.tagline}</p>
+        <p class={styles.tagline}>{props.event.fields.tagline}</p>
         <div class={styles.buttons}>
           <Button onClick={() => isNewsletterModalOpen.set(true)}>
             {props.event.fields.ticketStatus}

@@ -6,7 +6,7 @@ export const header = style({
   backgroundColor: theme.colors.black,
   display: 'flex',
   fontSize: theme.fontSizes.small,
-  height: 72,
+  height: theme.headerHeight,
   justifyContent: 'space-between',
   paddingBlock: theme.spacing.medium,
   paddingInline: theme.spacing.large,
