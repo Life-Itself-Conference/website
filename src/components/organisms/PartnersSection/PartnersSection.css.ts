@@ -8,9 +8,11 @@ export const list = style({
   flexWrap: 'wrap',
   justifyContent: 'center',
   listStyle: 'none',
-  rowGap: theme.spacing.xxlarge,
+  rowGap: theme.spacing.xlarge,
 });
 
 export const image = style({
-  height: 40,
+  maxHeight: 60,
+  maxWidth: 300,
+  objectFit: 'contain',
 });
