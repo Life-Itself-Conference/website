@@ -10,6 +10,7 @@ export const image = style({
   display: 'block',
   marginBlock: theme.spacing.large,
   marginInline: 'auto',
+  maxWidth: '100%',
 });
 
 export const bios = style({
