@@ -24,7 +24,7 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => {
         <img
           alt={`${props.speaker.fields.name} headshot`}
           class={styles.placeholderImage}
-          src="/logo-maze.png"
+          src="/more-to-come.png"
         />
       </Show>
       <div class={styles.content}>
