@@ -1,4 +1,4 @@
-import { Component, splitProps } from 'solid-js';
+import { Component, Show, splitProps } from 'solid-js';
 import type { JSX } from 'solid-js/jsx-runtime';
 import * as styles from './TextField.css';
 
@@ -13,7 +13,9 @@ export const TextField: Component<TextFieldProps> = (props) => {
         placeholder={props.placeholder || ' '}
         type={props.type || 'text'}
       />
-      {label && <label class={styles.label}>{label}</label>}
+      <Show when={label}>
+        <label class={styles.label}>{label}</label>
+      </Show>
     </div>
   );
 };

@@ -23,15 +23,15 @@ export const title = style({
 
 export const tag = styleVariants({
   h1: {
-    fontSize: theme.fontSizes.xlarge,
+    fontSize: theme.fontSizes.xxlarge,
     '@media': {
       [queries.large]: {
-        fontSize: theme.fontSizes.xxlarge,
+        fontSize: theme.fontSizes.xxxlarge,
       },
     },
   },
   h2: {
-    fontSize: theme.fontSizes.large,
+    fontSize: theme.fontSizes.xlarge,
     '@media': {
       [queries.large]: {
         fontSize: theme.fontSizes.xxlarge,

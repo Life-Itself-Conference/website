@@ -1,4 +1,4 @@
-import type { ParentComponent } from 'solid-js';
+import { ParentComponent, Show } from 'solid-js';
 import { Container } from '../../atoms/Container';
 import type { ContainerProps } from '../../atoms/Container';
 import { Title } from '../../atoms/Title';
@@ -10,15 +10,20 @@ export const ContentSection: ParentComponent<ContentSectionProps> = (props) => (
     <header>
       <Title tag={props.isHero ? 'h1' : 'h2'}>{props.title}</Title>
       <Container size={props.size}>
-        {props.subtitle && <p>{props.subtitle}</p>}
+        <Show when={props.subtitle}>
+          <p>{props.subtitle}</p>
+        </Show>
       </Container>
     </header>
-    <Container size={props.size}>{props.children}</Container>
+    <Container class={props.contentClass} size={props.size}>
+      {props.children}
+    </Container>
   </section>
 );
 
 export interface ContentSectionProps {
   class?: string;
+  contentClass?: string;
   id?: string;
   isHero?: boolean;
   size?: ContainerProps['size'];

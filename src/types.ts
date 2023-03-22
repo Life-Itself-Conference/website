@@ -17,7 +17,7 @@ export interface AboutUs {
 export interface Event {
   aboutUs: Entry<AboutUs>;
   endDate: string;
-  hotel: Entry<Hotel>;
+  hotel: Entry<Location>;
   id: number;
   partners: Entry<Partner>[];
   schedule: Asset;
@@ -29,7 +29,7 @@ export interface Event {
   year: string;
 }
 
-export interface Hotel {
+export interface Location {
   address: string;
   altLocation: EntryFields.Location;
   id: number;
@@ -38,6 +38,7 @@ export interface Hotel {
   hotelOverview: string;
   hotelUrl: string;
   location: string;
+  video: Asset;
   videoPoster: Asset;
   year: string;
 }

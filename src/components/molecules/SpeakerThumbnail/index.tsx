@@ -1,5 +1,5 @@
 import type { Entry } from 'contentful';
-import type { Component } from 'solid-js';
+import { Component, Show } from 'solid-js';
 import type { Speaker } from '../../../types';
 import * as styles from './SpeakerThumbnail.css';
 
@@ -22,12 +22,12 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => (
         <b>{props.speaker.fields.name}</b>
       </span>
       <div class={styles.details}>
-        {props.speaker.fields.title?.[0]?.fields.organization && (
+        <Show when={props.speaker.fields.title?.[0]?.fields.organization}>
           <b>
-            {props.speaker.fields.title?.[0]?.fields.organization}
+            {props.speaker.fields.title[0].fields.organization}
             <br />
           </b>
-        )}
+        </Show>
         {props.speaker.fields.title?.[0]?.fields.title}
       </div>
     </div>

@@ -20,7 +20,9 @@ export const theme = createGlobalTheme(':root', {
     medium: '16px',
     large: '18px',
     xlarge: '24px',
-    xxlarge: '48px',
+    xxlarge: '36px',
+    xxxlarge: '48px',
+    xxxxlarge: '60px',
   },
   spacing: {
     xsmall: '4px',
