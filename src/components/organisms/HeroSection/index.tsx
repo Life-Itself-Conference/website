@@ -1,10 +1,11 @@
 import type { Entry } from 'contentful';
-import type { Component } from 'solid-js';
+import { Component, For } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
 import { Button, ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
+import { PartnerLogo } from '../../atoms/PartnerLogo';
 import * as styles from './HeroSection.css';
 
 export const HeroSection: Component<HeroSectionProps> = (props) => (
@@ -36,6 +37,28 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
           </ButtonLink>
           <ButtonLink variant="secondary">Join Newsletter</ButtonLink>
         </div>
+      </div>
+      <div class={styles.marquee}>
+        <ul>
+          <li>{props.event.fields.invitation}</li>
+          <For each={props.event.fields.partners}>
+            {(partner) => (
+              <li>
+                <PartnerLogo partner={partner} />
+              </li>
+            )}
+          </For>
+        </ul>
+        <ul>
+          <li>{props.event.fields.invitation}</li>
+          <For each={props.event.fields.partners}>
+            {(partner) => (
+              <li>
+                <PartnerLogo partner={partner} />
+              </li>
+            )}
+          </For>
+        </ul>
       </div>
     </Container>
   </section>

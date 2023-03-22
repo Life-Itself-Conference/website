@@ -1,6 +1,11 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
 import { button } from '../../atoms/Button/Button.css';
+
+const marqueeKeyframes = keyframes({
+  '0%': { transform: `translateX(0)` },
+  '100%': { transform: `translateX(-100%)` },
+});
 
 export const container = style({
   alignItems: 'center',
@@ -16,6 +21,8 @@ export const container = style({
 });
 
 export const content = style({
+  marginBottom: theme.spacing.medium,
+
   '@media': {
     [queries.large]: {
       maxWidth: 535,
@@ -64,4 +71,32 @@ export const buttons = style({
 globalStyle(`${buttons} ${button}`, {
   maxWidth: 350,
   width: '100%',
+});
+
+export const marquee = style({
+  backgroundColor: theme.colors.white,
+  color: theme.colors.black,
+  display: 'flex',
+  fontSize: theme.fontSizes.medium,
+  paddingBlock: theme.spacing.medium,
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+});
+
+globalStyle(`${marquee} ul`, {
+  alignItems: 'center',
+  animation: `${marqueeKeyframes} 30s linear infinite`,
+  display: 'flex',
+  gap: theme.spacing.xxlarge,
+  margin: 0,
+  marginLeft: theme.spacing.xxlarge,
+  listStyle: 'none',
+  padding: 0,
+});
+
+globalStyle(`${marquee} img`, {
+  display: 'block',
+  height: 30,
+  objectFit: 'contain',
+  maxWidth: 150,
 });

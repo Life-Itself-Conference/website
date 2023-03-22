@@ -19,6 +19,7 @@ export interface Event {
   endDate: string;
   hotel: Entry<Location>;
   id: number;
+  invitation: string;
   partners: Entry<Partner>[];
   schedule: Asset;
   speakers: Entry<Speaker>[];
