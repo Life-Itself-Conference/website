@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { theme } from '../../../theme.css';
+import { queries, theme } from '../../../theme.css';
 
 export const list = style({
   display: 'grid',
@@ -9,7 +9,7 @@ export const list = style({
   margin: 0,
   padding: 0,
   '@media': {
-    'screen and (min-width: 1200px)': {
+    [queries.large]: {
       gridTemplateColumns: 'repeat(5, 1fr)',
     },
   },

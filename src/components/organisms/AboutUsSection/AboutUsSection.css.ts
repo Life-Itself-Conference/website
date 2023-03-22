@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { theme } from '../../../theme.css';
+import { queries, theme } from '../../../theme.css';
 
 export const content = style({
   fontSize: theme.fontSizes.medium,
@@ -16,7 +16,7 @@ export const bios = style({
   display: 'grid',
   gap: theme.spacing.large,
   '@media': {
-    'screen and (min-width: 1200px)': {
+    [queries.large]: {
       gridTemplateColumns: '1fr 1fr',
     },
   },
