@@ -1,10 +1,16 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { theme } from '../../../theme.css';
+import { queries, theme } from '../../../theme.css';
 
 export const container = style({
   marginInline: 'auto',
-  paddingInline: theme.spacing.large,
+  paddingInline: theme.spacing.medium,
   width: '100%',
+
+  '@media': {
+    [queries.large]: {
+      paddingInline: theme.spacing.large,
+    },
+  },
 });
 
 export const size = styleVariants({
