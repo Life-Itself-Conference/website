@@ -1,6 +1,7 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const queries = {
+  medium: 'screen and (min-width: 428px)',
   large: 'screen and (min-width: 1080px)',
 };
 
@@ -31,9 +32,6 @@ export const theme = createGlobalTheme(':root', {
     large: '32px',
     xlarge: '50px',
     xxlarge: '100px',
-  },
-  breakpoints: {
-    large: '1200px',
   },
   headerHeight: '72px',
 });
