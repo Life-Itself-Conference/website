@@ -99,10 +99,10 @@ globalStyle(`${marquee} ul`, {
   animation: `${marqueeKeyframes} 30s linear infinite`,
   display: 'flex',
   gap: theme.spacing.xxlarge,
-  margin: 0,
-  marginLeft: theme.spacing.xxlarge,
   listStyle: 'none',
-  padding: 0,
+  margin: 0,
+  paddingLeft: theme.spacing.xxlarge,
+  willChange: 'transform',
 });
 
 globalStyle(`${marquee} img`, {
