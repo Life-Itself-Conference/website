@@ -18,6 +18,10 @@ export const body = style({
   margin: 0,
 });
 
+globalStyle('a', {
+  color: theme.colors.red,
+});
+
 globalStyle('p', {
   margin: `0 0 ${theme.spacing.medium}`,
 });

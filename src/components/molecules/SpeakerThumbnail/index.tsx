@@ -11,7 +11,7 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => {
   return (
     <div
       class={styles.container}
-      // onClick={() => props.onClick?.(props.speaker.fields.id)}
+      onClick={() => props.onClick?.(props.speaker.fields.id)}
     >
       <Show when={image}>
         <img

@@ -13,6 +13,7 @@ export const NewsletterModal: Component = () => {
     <Modal
       isOpen={$isNewsletterModalOpen()}
       onClose={() => isNewsletterModalOpen.set(false)}
+      size="small"
     >
       <p>Please join our newsletter to stay informed:</p>
       <form class={styles.form}>

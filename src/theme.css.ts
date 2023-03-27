@@ -34,4 +34,5 @@ export const theme = createGlobalTheme(':root', {
     xxlarge: '100px',
   },
   headerHeight: '72px',
+  inputHeight: '36px',
 });

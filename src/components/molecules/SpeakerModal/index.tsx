@@ -8,7 +8,12 @@ import * as styles from './SpeakerModal.css';
 
 export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
   return (
-    <Modal isOpen={props.isOpen} onClose={props.onClose}>
+    <Modal
+      class={styles.modal}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      variant="condensed"
+    >
       <div class={styles.grid}>
         <header class={styles.header}>
           <b>{props.speaker.fields.name}</b>
@@ -25,15 +30,16 @@ export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
           <h2>{props.speaker.fields.topic}</h2>
           <div innerHTML={documentToHtmlString(props.speaker.fields.bio)} />
         </section>
-        <img
-          alt={`${props.speaker.fields.name} headshot`}
-          class={styles.image}
-          src={
-            props.speaker.fields.headshot?.find(
-              (image) => image.fields.title === 'modal',
-            )?.fields.file.url || '/no-image.png'
-          }
-        />
+        <div class={styles.image}>
+          <img
+            alt={`${props.speaker.fields.name} headshot`}
+            src={
+              props.speaker.fields.headshot?.find(
+                (image) => image.fields.title === 'modal',
+              )?.fields.file.url || '/no-image.png'
+            }
+          />
+        </div>
       </div>
     </Modal>
   );
