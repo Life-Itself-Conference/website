@@ -22,6 +22,10 @@ globalStyle(`${body}.modal-open`, {
   overflow: 'hidden',
 });
 
+globalStyle(`${body}.preview`, {
+  display: 'none',
+});
+
 globalStyle('a', {
   color: theme.colors.red,
   fontWeight: 'bold',

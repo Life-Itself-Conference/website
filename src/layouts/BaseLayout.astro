@@ -1,17 +1,5 @@
 ---
-import { NewsletterModal } from '../components/molecules/NewsletterModal';
-import { Footer } from '../components/organisms/Footer';
-import { Header } from '../components/organisms/Header';
 import Document from '../Document.astro';
-
-const { event } = Astro.props;
 ---
 
-<Document>
-  <Header client:load event={event} />
-  <main>
-    <slot />
-  </main>
-  <Footer client:load event={event} />
-  <NewsletterModal client:load />
-</Document>
+<Document />
