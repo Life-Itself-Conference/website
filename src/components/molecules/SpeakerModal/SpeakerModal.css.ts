@@ -36,9 +36,44 @@ export const header = style({
 });
 
 export const content = style({
+  fontSize: theme.fontSizes.small,
   gridArea: 'content',
   overflowY: 'auto',
   padding: theme.spacing.large,
+});
+
+globalStyle(`${content} h2`, {
+  color: theme.colors.red,
+  fontSize: theme.fontSizes.large,
+  marginBottom: theme.spacing.medium,
+});
+
+globalStyle(`${content}::-webkit-scrollbar`, {
+  WebkitAppearance: 'none',
+});
+
+globalStyle(`${content}::-webkit-scrollbar:vertical`, {
+  width: 11,
+});
+
+globalStyle(`${content}::-webkit-scrollbar:horizontal`, {
+  height: 11,
+});
+
+globalStyle(`${content}::-webkit-scrollbar-thumb`, {
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  border: '2px solid #666',
+  borderRadius: 8,
+});
+
+globalStyle(`${content}::-webkit-scrollbar-track`, {
+  backgroundColor: '#333',
+  borderRadius: 8,
+});
+
+export const bio = style({
+  borderTop: `1px solid ${theme.colors.white}`,
+  paddingTop: theme.spacing.medium,
 });
 
 export const image = style({
