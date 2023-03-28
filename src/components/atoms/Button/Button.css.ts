@@ -3,7 +3,7 @@ import { theme } from '../../../theme.css';
 
 export const button = style({
   alignItems: 'center',
-  backgroundColor: 'none',
+  backgroundColor: 'transparent',
   border: 0,
   color: theme.colors.white,
   cursor: 'pointer',

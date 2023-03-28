@@ -17,7 +17,7 @@ export const Modal: ParentComponent<ModalProps> = (props) => {
   createEffect(() => {
     if (props.isOpen) {
       const handleClick = (e: PointerEvent) => {
-        if (e.target === dialog || dialog?.contains(e.target)) {
+        if (e.target === dialog || dialog?.contains(e.target as Node)) {
           return;
         }
 

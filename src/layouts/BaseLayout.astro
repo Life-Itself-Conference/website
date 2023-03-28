@@ -2,59 +2,16 @@
 import { NewsletterModal } from '../components/molecules/NewsletterModal';
 import { Footer } from '../components/organisms/Footer';
 import { Header } from '../components/organisms/Header';
-import * as styles from './BaseLayout.css';
-const { event, title } = Astro.props;
+import Document from '../Document.astro';
+
+const { event } = Astro.props;
 ---
 
-<html class={styles.html} lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Life Itself Medical Health Conference 2022"
-    />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Life Itself with Dr. Sanjay Gupta and Marc Hodosh"
-    />
-    <meta
-      property="og:description"
-      content="Life Itself Medical Health Conference"
-    />
-    <meta property="og:url" content="https://lifeitself.health/" />
-    <meta
-      property="og:site_name"
-      content="Life Itself with Dr. Sanjay Gupta and Marc Hodosh"
-    />
-    <meta
-      name="twitter:description"
-      content="Life Itself Medical Health Conference"
-    />
-    <meta
-      name="twitter:title"
-      content="Life Itself with Dr. Sanjay Gupta and Marc Hodosh"
-    />
-    <title>
-      {title && title + ' |'} LIFE ITSELF with Dr. Sanjay Gupta & Marc Hodosh
-    </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class={styles.body}>
-    <Header client:load event={event} />
-    <main>
-      <slot />
-    </main>
-    <Footer event={event} />
-    <NewsletterModal client:load />
-  </body>
-</html>
+<Document>
+  <Header client:load event={event} />
+  <main>
+    <slot />
+  </main>
+  <Footer event={event} />
+  <NewsletterModal client:load />
+</Document>

@@ -3,12 +3,12 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
 import { VsChevronDown } from 'solid-icons/vs';
 import { Component, For } from 'solid-js';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
 import { Button, ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
+import { setIsNewsletterModalOpen } from '../../molecules/NewsletterModal';
 import * as styles from './HeroSection.css';
 
 export const HeroSection: Component<HeroSectionProps> = (props) => (
@@ -35,7 +35,7 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
           </h1>
           <p class={styles.tagline}>{props.event.fields.tagline}</p>
           <div class={styles.buttons}>
-            <Button onClick={() => isNewsletterModalOpen.set(true)}>
+            <Button onClick={() => setIsNewsletterModalOpen(true)}>
               {props.event.fields.ticketStatus}
             </Button>
             <ButtonLink href="#speakers" variant="secondary">

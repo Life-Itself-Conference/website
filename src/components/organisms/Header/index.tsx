@@ -1,18 +1,27 @@
 import { FaSolidBars } from 'solid-icons/fa';
 import type { Entry } from 'contentful';
 import { Component, createSignal, createUniqueId } from 'solid-js';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';
+import { setIsNewsletterModalOpen } from '../../molecules/NewsletterModal';
 import * as styles from './Header.css';
 
 export const Header: Component<HeaderProps> = (props) => {
   const navId = createUniqueId();
-  const [isMobileNavOpen, setIsMobilNavOpen] = createSignal(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = createSignal(false);
+
+  const handleLinkClick = () => {
+    setIsMobileNavOpen(false);
+  };
+
+  const handleJoinNewsletter = () => {
+    handleLinkClick();
+    setIsNewsletterModalOpen(true);
+  };
 
   return (
     <header class={styles.header}>
-      <a class={styles.logo} onClick={() => setIsMobilNavOpen(false)} href="#">
+      <a class={styles.logo} onClick={handleLinkClick} href="#">
         <span>Life Itself</span>
       </a>
       <button
@@ -20,7 +29,7 @@ export const Header: Component<HeaderProps> = (props) => {
         aria-expanded={isMobileNavOpen()}
         aria-label="Toggle Mobile Navigation"
         class={styles.trigger}
-        onClick={() => setIsMobilNavOpen(!isMobileNavOpen())}
+        onClick={() => setIsMobileNavOpen(!isMobileNavOpen())}
         type="button"
       >
         <FaSolidBars />
@@ -28,32 +37,36 @@ export const Header: Component<HeaderProps> = (props) => {
       <nav class={styles.nav} data-open={isMobileNavOpen()} id={navId}>
         <ul class={styles.list}>
           <li>
-            <a onClick={() => setIsMobilNavOpen(false)} href="#">
+            <a onClick={handleLinkClick} href="#">
               Covid Safety
             </a>
           </li>
           <li>
-            <a onClick={() => setIsMobilNavOpen(false)} href="#speakers">
+            <a onClick={handleLinkClick} href="#speakers">
               Speakers
             </a>
           </li>
           <li>
-            <a onClick={() => setIsMobilNavOpen(false)} href="#location">
+            <a onClick={handleLinkClick} href="#location">
               Location
             </a>
           </li>
           <li>
-            <a onClick={() => setIsMobilNavOpen(false)} href="#partners">
+            <a onClick={handleLinkClick} href="#partners">
               Partners
             </a>
           </li>
           <li>
-            <a onClick={() => setIsMobilNavOpen(false)} href="#about-us">
+            <a onClick={handleLinkClick} href="#about-us">
               About Us
             </a>
           </li>
           <li>
-            <a onClick={() => setIsMobilNavOpen(false)} href="#">
+            <a
+              href="mailto:info@lifeitself.health?subject=Contact Us"
+              onClick={handleLinkClick}
+              target="_blank"
+            >
               Contact Us
             </a>
           </li>
@@ -61,10 +74,7 @@ export const Header: Component<HeaderProps> = (props) => {
             <ButtonLink href="#" size="small" variant="secondary">
               Schedule
             </ButtonLink>
-            <Button
-              onClick={() => isNewsletterModalOpen.set(true)}
-              size="small"
-            >
+            <Button onClick={handleJoinNewsletter} size="small">
               {props.event.fields.ticketStatus}
             </Button>
           </li>

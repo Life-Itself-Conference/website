@@ -1,26 +1,24 @@
-import { useStore } from '@nanostores/solid';
+import { createSignal } from 'solid-js';
 import type { Component } from 'solid-js';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import { Button } from '../../atoms/Button';
 import { Modal } from '../../atoms/Modal';
 import { TextField } from '../../atoms/TextField';
 import * as styles from './NewsletterModal.css';
 
-export const NewsletterModal: Component = () => {
-  const $isNewsletterModalOpen = useStore(isNewsletterModalOpen);
+export const [isNewsletterModalOpen, setIsNewsletterModalOpen] =
+  createSignal(false);
 
-  return (
-    <Modal
-      isOpen={$isNewsletterModalOpen()}
-      onClose={() => isNewsletterModalOpen.set(false)}
-      size="small"
-    >
-      <p>Please join our newsletter to stay informed:</p>
-      <form class={styles.form}>
-        <TextField label="Name" />
-        <TextField label="Email Address" type="email" />
-        <Button>Join Newsletter</Button>
-      </form>
-    </Modal>
-  );
-};
+export const NewsletterModal: Component = () => (
+  <Modal
+    isOpen={isNewsletterModalOpen()}
+    onClose={() => setIsNewsletterModalOpen(false)}
+    size="small"
+  >
+    <p>Please join our newsletter to stay informed:</p>
+    <form class={styles.form}>
+      <TextField label="Name" />
+      <TextField label="Email Address" type="email" />
+      <Button>Join Newsletter</Button>
+    </form>
+  </Modal>
+);

@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { theme } from '../theme.css';
+import { theme } from './theme.css';
 
 globalStyle('*, *:before, *:after', {
   boxSizing: 'border-box',
