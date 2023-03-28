@@ -20,13 +20,21 @@ export const button = style({
 });
 
 export const size = styleVariants({
+  xsmall: {
+    fontSize: theme.fontSizes.xxsmall,
+    height: 'unset',
+    paddingBlock: theme.spacing.xsmall,
+    paddingInline: theme.spacing.medium,
+  },
   small: {
     fontSize: theme.fontSizes.small,
+    height: 'unset',
     paddingBlock: theme.spacing.xsmall,
     paddingInline: theme.spacing.medium,
   },
   medium: {
     fontSize: theme.fontSizes.medium,
+    height: 'unset',
     paddingBlock: theme.spacing.small,
     paddingInline: theme.spacing.large,
   },

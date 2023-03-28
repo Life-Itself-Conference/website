@@ -10,8 +10,9 @@ export const container = style({
   backgroundColor: '#222',
   display: 'flex',
   justifyContent: 'center',
-  overflow: 'hidden',
+  overflow: 'clip',
   position: 'relative',
+
   ':before': {
     backgroundImage: 'linear-gradient(transparent 70%, rgba(30, 30, 30, 0.6))',
     bottom: 0,
@@ -60,6 +61,10 @@ export const name = style({
 
 export const details = style({
   backgroundColor: 'transparent',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing.small,
+  lineHeight: '1.1em',
   padding: theme.spacing.small,
   paddingTop: 0,
   transitionDuration,
@@ -67,14 +72,24 @@ export const details = style({
   transitionTimingFunction,
 });
 
-globalStyle(`${container}:hover ${content}`, {
-  translate: 0,
+export const button = style({
+  alignSelf: 'flex-end',
 });
 
-globalStyle(`${container}:hover ${name}`, {
+globalStyle(
+  `${container}:hover ${content}, ${container}:focus-within ${content}`,
+  {
+    translate: 0,
+  },
+);
+
+globalStyle(`${container}:hover ${name}, ${container}:focus-within ${name}`, {
   backgroundColor: theme.colors.red,
 });
 
-globalStyle(`${container}:hover ${details}`, {
-  backgroundColor: theme.colors.red,
-});
+globalStyle(
+  `${container}:hover ${details}, ${container}:focus-within ${details}`,
+  {
+    backgroundColor: theme.colors.red,
+  },
+);
