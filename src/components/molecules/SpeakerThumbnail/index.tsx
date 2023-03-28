@@ -14,7 +14,7 @@ export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => {
   const handleClick = () => props.onClick?.(props.speaker.fields.id);
 
   return (
-    <div class={styles.container} onClick={handleClick}>
+    <div class={styles.container}>
       <Show when={image}>
         <img
           alt={`${props.speaker.fields.name} headshot`}

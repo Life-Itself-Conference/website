@@ -8,11 +8,16 @@ export const header = style({
   display: 'flex',
   height: theme.headerHeight,
   justifyContent: 'space-between',
-  paddingBlock: theme.spacing.medium,
-  paddingInline: theme.spacing.large,
+  padding: theme.spacing.small,
   position: 'sticky',
   top: 0,
   zIndex: 998,
+
+  '@media': {
+    [queries.large]: {
+      paddingInline: theme.spacing.large,
+    },
+  },
 });
 
 export const logo = style({
