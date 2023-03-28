@@ -12,6 +12,6 @@ const { event } = Astro.props;
   <main>
     <slot />
   </main>
-  <Footer event={event} />
+  <Footer client:load event={event} />
   <NewsletterModal client:load />
 </Document>

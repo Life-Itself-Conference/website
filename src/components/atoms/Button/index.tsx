@@ -17,6 +17,7 @@ export const Button: ParentComponent<ButtonProps> = (props) => {
         styles.button,
         styles.size[size],
         styles.variant[variant],
+        props.class,
       )}
       type={buttonProps.type || 'button'}
     />
@@ -37,6 +38,7 @@ export const ButtonLink: ParentComponent<ButtonLinkProps> = (props) => {
         styles.button,
         styles.size[size],
         styles.variant[variant],
+        props.class,
       )}
     />
   );
@@ -44,12 +46,14 @@ export const ButtonLink: ParentComponent<ButtonLinkProps> = (props) => {
 
 export interface ButtonProps
   extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
+  class?: string;
   size?: keyof typeof styles.size;
   variant?: keyof typeof styles.variant;
 }
 
 export interface ButtonLinkProps
   extends JSX.AnchorHTMLAttributes<HTMLAnchorElement> {
+  class?: string;
   size?: keyof typeof styles.size;
   variant?: keyof typeof styles.variant;
 }

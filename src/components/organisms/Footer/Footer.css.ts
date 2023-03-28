@@ -7,6 +7,16 @@ export const footer = style({
   textAlign: 'center',
 });
 
+export const buttons = style({
+  display: 'grid',
+  gap: theme.spacing.small,
+  gridTemplateColumns: '1fr 1fr',
+});
+
+export const ticketButton = style({
+  gridColumn: 'span 2',
+});
+
 export const happy = style({
   alignItems: 'center',
   display: 'flex',

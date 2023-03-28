@@ -14,6 +14,9 @@ export const container = style({
 });
 
 export const size = styleVariants({
+  xsmall: {
+    maxWidth: 456,
+  },
   small: {
     maxWidth: 768,
   },

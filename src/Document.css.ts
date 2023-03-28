@@ -29,3 +29,8 @@ globalStyle('a', {
 globalStyle('p', {
   margin: `0 0 ${theme.spacing.medium}`,
 });
+
+globalStyle('hr', {
+  borderColor: theme.colors.red,
+  marginBlock: theme.spacing.xlarge,
+});
