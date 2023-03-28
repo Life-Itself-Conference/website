@@ -3,8 +3,8 @@ import type { Entry } from 'contentful';
 import { Component, createSignal, createUniqueId } from 'solid-js';
 import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';
-import { setIsNewsletterModalOpen } from '../../molecules/NewsletterModal';
 import * as styles from './Header.css';
+import { isNewsletterModalOpen } from '../../../stores/newsletter';
 
 export const Header: Component<HeaderProps> = (props) => {
   const navId = createUniqueId();
@@ -16,7 +16,7 @@ export const Header: Component<HeaderProps> = (props) => {
 
   const handleJoinNewsletter = () => {
     handleLinkClick();
-    setIsNewsletterModalOpen(true);
+    isNewsletterModalOpen.set(true);
   };
 
   return (
