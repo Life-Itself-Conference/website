@@ -16,8 +16,8 @@ export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
     >
       <div class={styles.grid}>
         <header class={styles.header}>
-          <b>{props.speaker.fields.name}</b>
-          <For each={props.speaker.fields.title}>
+          <b>{props.speaker?.fields.name}</b>
+          <For each={props.speaker?.fields.title}>
             {(item) => (
               <>
                 <b>{item.fields.organization}</b>
@@ -27,14 +27,18 @@ export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
           </For>
         </header>
         <section class={styles.content}>
-          <h2>{props.speaker.fields.topic}</h2>
-          <div innerHTML={documentToHtmlString(props.speaker.fields.bio)} />
+          <h2>{props.speaker?.fields.topic}</h2>
+          <div
+            innerHTML={
+              props.speaker && documentToHtmlString(props.speaker.fields.bio)
+            }
+          />
         </section>
         <div class={styles.image}>
           <img
-            alt={`${props.speaker.fields.name} headshot`}
+            alt={`${props.speaker?.fields.name} headshot`}
             src={
-              props.speaker.fields.headshot?.find(
+              props.speaker?.fields.headshot?.find(
                 (image) => image.fields.title === 'modal',
               )?.fields.file.url || '/no-image.png'
             }
@@ -46,5 +50,5 @@ export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
 };
 
 export interface SpeakerModalProps extends ModalProps {
-  speaker: Entry<Speaker>;
+  speaker?: Entry<Speaker>;
 }

@@ -1,17 +1,34 @@
 import classNames from 'classnames';
 import { FaSolidX } from 'solid-icons/fa';
-import { createEffect, onCleanup, ParentComponent } from 'solid-js';
+import {
+  createEffect,
+  createUniqueId,
+  onCleanup,
+  ParentComponent,
+} from 'solid-js';
 import * as styles from './Modal.css';
+
+const modals = new Set();
 
 export const Modal: ParentComponent<ModalProps> = (props) => {
   let dialog: HTMLDialogElement | undefined = undefined;
+  let id = createUniqueId();
 
   createEffect(() => {
     if (props.isOpen) {
       dialog?.showModal();
+      modals.add(id);
     } else {
       dialog?.close();
+      modals.delete(id);
     }
+
+    document.body.classList.toggle('modal-open', modals.size > 0);
+
+    onCleanup(() => {
+      modals.delete(id);
+      document.body.classList.toggle('modal-open', modals.size > 0);
+    });
   });
 
   createEffect(() => {

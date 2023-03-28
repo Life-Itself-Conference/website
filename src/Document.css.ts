@@ -18,6 +18,10 @@ export const body = style({
   margin: 0,
 });
 
+globalStyle(`${body}.modal-open`, {
+  overflow: 'hidden',
+});
+
 globalStyle('a', {
   color: theme.colors.red,
 });
