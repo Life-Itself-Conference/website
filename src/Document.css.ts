@@ -24,6 +24,8 @@ globalStyle(`${body}.modal-open`, {
 
 globalStyle('a', {
   color: theme.colors.red,
+  fontWeight: 'bold',
+  textDecoration: 'none',
 });
 
 globalStyle('p', {

@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
+import { button } from '../../atoms/Button/Button.css';
 
 export const header = style({
   alignItems: 'center',
@@ -90,8 +91,9 @@ export const list = style({
   },
 });
 
-globalStyle(`${list} a`, {
+globalStyle(`${list} a:not(${button})`, {
   color: 'inherit',
+  fontWeight: 'normal',
   textDecoration: 'none',
   textTransform: 'uppercase',
   whiteSpace: 'nowrap',
