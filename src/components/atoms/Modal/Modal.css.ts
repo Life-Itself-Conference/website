@@ -35,6 +35,13 @@ export const size = styleVariants({
       },
     },
   },
+  large: {
+    '@media': {
+      [queries.large]: {
+        width: 768,
+      },
+    },
+  },
 });
 
 export const variant = styleVariants({

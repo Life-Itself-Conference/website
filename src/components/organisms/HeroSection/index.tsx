@@ -6,9 +6,10 @@ import { Component, For } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
-import { Button, ButtonLink } from '../../atoms/Button';
+import { ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
+import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './HeroSection.css';
 
 export const HeroSection: Component<HeroSectionProps> = (props) => (
@@ -35,9 +36,7 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
           </h1>
           <p class={styles.tagline}>{props.event.fields.tagline}</p>
           <div class={styles.buttons}>
-            <Button onClick={() => isNewsletterModalOpen.set(true)}>
-              {props.event.fields.ticketStatus}
-            </Button>
+            <RegistrationButton event={props.event} />
             <ButtonLink href="#speakers" variant="secondary">
               Speakers
             </ButtonLink>

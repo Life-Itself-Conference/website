@@ -22,8 +22,16 @@ globalStyle(`${body}.modal-open`, {
   overflow: 'hidden',
 });
 
-globalStyle(`${body}.preview`, {
-  display: 'none',
+globalStyle(`${body}.preview:before`, {
+  alignItems: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  backdropFilter: 'blur(4px)',
+  content: 'Loading Preview Content...',
+  display: 'flex',
+  inset: 0,
+  justifyContent: 'center',
+  position: 'fixed',
+  zIndex: 1000,
 });
 
 globalStyle('a', {
@@ -37,6 +45,8 @@ globalStyle('p', {
 });
 
 globalStyle('hr', {
-  borderColor: theme.colors.red,
+  backgroundColor: theme.colors.red,
+  border: 'none',
   marginBlock: theme.spacing.xlarge,
+  height: 1,
 });

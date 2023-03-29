@@ -2,9 +2,9 @@ import { FaSolidBars } from 'solid-icons/fa';
 import type { Entry } from 'contentful';
 import { Component, createSignal, createUniqueId } from 'solid-js';
 import type { Event } from '../../../types';
-import { Button, ButtonLink } from '../../atoms/Button';
 import * as styles from './Header.css';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import { RegistrationButton } from '../../molecules/RegistrationButton';
+import { ScheduleButton } from '../../molecules/ScheduleButton';
 
 export const Header: Component<HeaderProps> = (props) => {
   const navId = createUniqueId();
@@ -12,11 +12,6 @@ export const Header: Component<HeaderProps> = (props) => {
 
   const handleLinkClick = () => {
     setIsMobileNavOpen(false);
-  };
-
-  const handleJoinNewsletter = () => {
-    handleLinkClick();
-    isNewsletterModalOpen.set(true);
   };
 
   return (
@@ -65,18 +60,19 @@ export const Header: Component<HeaderProps> = (props) => {
             <a
               href="mailto:info@lifeitself.health?subject=Contact Us"
               onClick={handleLinkClick}
+              rel="nofollow noreferrer noopener"
               target="_blank"
             >
               Contact Us
             </a>
           </li>
           <li class={styles.buttons}>
-            <ButtonLink href="#" size="small" variant="secondary">
-              Schedule
-            </ButtonLink>
-            <Button onClick={handleJoinNewsletter} size="small">
-              {props.event.fields.ticketStatus}
-            </Button>
+            <ScheduleButton
+              event={props.event}
+              size="small"
+              variant="secondary"
+            />
+            <RegistrationButton event={props.event} size="small" />
           </li>
         </ul>
       </nav>

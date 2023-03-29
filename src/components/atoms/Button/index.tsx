@@ -15,8 +15,8 @@ export const Button: ParentComponent<ButtonProps> = (props) => {
       {...buttonProps}
       class={classNames(
         styles.button,
-        styles.size[size],
-        styles.variant[variant],
+        size && styles.size[size],
+        variant && styles.variant[variant],
         props.class,
       )}
       type={buttonProps.type || 'button'}
@@ -36,40 +36,37 @@ export const ButtonLink: ParentComponent<ButtonLinkProps> = (props) => {
       {...linkProps}
       class={classNames(
         styles.button,
-        styles.size[size],
-        styles.variant[variant],
+        size && styles.size[size],
+        variant && styles.variant[variant],
         props.class,
       )}
     />
   );
 };
 
+export interface ButtonCommonProps {
+  size: keyof typeof styles.size;
+  variant: keyof typeof styles.variant;
+}
+
 export interface ButtonProps
-  extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends JSX.ButtonHTMLAttributes<HTMLButtonElement>,
+    Partial<ButtonCommonProps> {
   class?: string;
-  size?: keyof typeof styles.size;
-  variant?: keyof typeof styles.variant;
 }
 
 export interface ButtonLinkProps
-  extends JSX.AnchorHTMLAttributes<HTMLAnchorElement> {
+  extends JSX.AnchorHTMLAttributes<HTMLAnchorElement>,
+    Partial<ButtonCommonProps> {
   class?: string;
-  size?: keyof typeof styles.size;
-  variant?: keyof typeof styles.variant;
 }
 
-const defaultButtonProps: ButtonProps & {
-  size: keyof typeof styles.size;
-  variant: keyof typeof styles.variant;
-} = {
+const defaultButtonProps: ButtonProps = {
   size: 'medium',
   variant: 'primary',
 };
 
-const defaultButtonLinkProps: ButtonLinkProps & {
-  size: keyof typeof styles.size;
-  variant: keyof typeof styles.variant;
-} = {
+const defaultButtonLinkProps: ButtonLinkProps = {
   size: 'medium',
   variant: 'primary',
 };

@@ -5,6 +5,7 @@ import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
 import { Button } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
+import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './Footer.css';
 
 export const Footer: Component<FooterProps> = (props) => (
@@ -23,13 +24,11 @@ export const Footer: Component<FooterProps> = (props) => (
         <Button size="small" variant="secondary">
           Add to Calendar
         </Button>
-        <Button
-          onClick={() => isNewsletterModalOpen.set(true)}
-          size="small"
+        <RegistrationButton
           class={styles.ticketButton}
-        >
-          Sold Out
-        </Button>
+          event={props.event}
+          size="small"
+        />
       </div>
     </Container>
 

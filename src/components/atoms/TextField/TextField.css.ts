@@ -36,6 +36,16 @@ export const label = style({
   transitionTimingFunction: 'ease-in-out',
 });
 
+export const required = style({
+  color: theme.colors.red,
+  fontSize: theme.fontSizes.xxsmall,
+  pointerEvents: 'none',
+  position: 'absolute',
+  right: theme.spacing.xsmall,
+  textTransform: 'uppercase',
+  top: theme.spacing.xsmall,
+});
+
 globalStyle(
   `${input}:not(:placeholder-shown) ~ ${label}, ${input}:focus ~ ${label}`,
   {

@@ -22,6 +22,10 @@ export interface Event {
   id: number;
   invitation: string;
   partners: Entry<Partner>[];
+  registrationClosedText: Document;
+  registrationConfirmationText: Document;
+  registrationPaymentText: Document;
+  registrationRefundText: Document;
   schedule: Asset;
   speakers: Entry<Speaker>[];
   startDate: string;
