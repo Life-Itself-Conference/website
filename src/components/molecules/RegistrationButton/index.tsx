@@ -13,16 +13,19 @@ export const RegistrationButton: Component<RegistrationButtonProps> = (
   const registrationProps = createMemo(() => {
     switch (props.event.fields.ticketStatus) {
       case 'Coming Soon':
-        return { onClick: () => alert('Coming Soon!'), text: 'Coming Soon!' };
+        return {
+          onClick: () => isNewsletterModalOpen.set(true),
+          text: 'Coming Soon',
+        };
       case 'On Sale':
         return {
           onClick: () => isRegistrationModalOpen.set(true),
-          text: 'On Sale!',
+          text: 'On Sale',
         };
       case 'Sold Out':
         return {
           onClick: () => isNewsletterModalOpen.set(true),
-          text: 'Sold Out!',
+          text: 'Sold Out',
         };
       default:
         return { onClick: () => {}, text: '' };
