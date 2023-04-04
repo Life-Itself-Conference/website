@@ -182,6 +182,7 @@ export const buttons = style({
 globalStyle(`${buttons} ${button}`, {
   maxWidth: 350,
   width: '100%',
+  whiteSpace: 'nowrap',
 });
 
 export const videoDetails = style({

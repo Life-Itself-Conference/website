@@ -7,7 +7,7 @@ export const button = style({
   border: 0,
   color: theme.colors.white,
   cursor: 'pointer',
-  display: 'flex',
+  display: 'inline-flex',
   height: theme.inputHeight,
   fontFamily: 'inherit',
   fontSize: theme.fontSizes.medium,
@@ -16,7 +16,6 @@ export const button = style({
   textAlign: 'center',
   textDecoration: 'none',
   textTransform: 'uppercase',
-  whiteSpace: 'nowrap',
 });
 
 export const size = styleVariants({

@@ -2,19 +2,40 @@ import { style } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
 
 export const list = style({
-  display: 'grid',
-  gap: theme.spacing.small,
-  gridTemplateColumns: 'repeat(2, 1fr)',
+  display: 'flex',
+  flexWrap: 'wrap',
   listStyle: 'none',
   margin: 0,
+  marginInline: `calc(${theme.spacing.xsmall} * -1)`,
   padding: 0,
+});
+
+export const item = style({
+  border: `${theme.spacing.xsmall} solid ${theme.colors.black}`,
+  width: '50%',
 
   '@media': {
     [queries.medium]: {
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      width: 'calc(100% / 3)',
     },
     [queries.large]: {
-      gridTemplateColumns: 'repeat(5, 1fr)',
+      width: '20%',
     },
   },
+});
+
+export const last = style({
+  alignItems: 'center',
+  aspectRatio: '3 / 1',
+  backgroundColor: '#222',
+  backgroundImage: 'url(/more-to-come.png)',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 140,
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+  gap: theme.spacing.medium,
+  justifyContent: 'center',
+  padding: theme.spacing.small,
 });

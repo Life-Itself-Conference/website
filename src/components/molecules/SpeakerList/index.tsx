@@ -4,6 +4,8 @@ import type { Speaker } from '../../../types';
 import { SpeakerThumbnail } from '../SpeakerThumbnail';
 import { SpeakerModal } from '../SpeakerModal';
 import * as styles from './SpeakerList.css';
+import { Button } from '../../atoms/Button';
+import classNames from 'classnames';
 
 export const SpeakerList: Component<SpeakerListProps> = (props) => {
   const [activeSpeakerId, setActiveSpeakerId] = createSignal();
@@ -15,18 +17,23 @@ export const SpeakerList: Component<SpeakerListProps> = (props) => {
     <ul class={styles.list}>
       <For each={props.speakers}>
         {(item) => (
-          <li>
+          <li class={styles.item}>
             <SpeakerThumbnail onClick={setActiveSpeakerId} speaker={item} />
           </li>
         )}
       </For>
       <Show when={activeSpeaker()}>
         <SpeakerModal
-          isOpen
           onClose={() => setActiveSpeakerId()}
           speaker={activeSpeaker()}
         />
       </Show>
+      <li class={classNames(styles.item, styles.last)}>
+        <b>More Speakers to Come!</b>
+        <Button size="small" variant="secondary">
+          Join Newsletter to Stay Informed
+        </Button>
+      </li>
     </ul>
   );
 };

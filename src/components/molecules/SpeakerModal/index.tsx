@@ -8,12 +8,7 @@ import * as styles from './SpeakerModal.css';
 
 export const SpeakerModal: Component<SpeakerModalProps> = (props) => {
   return (
-    <Modal
-      class={styles.modal}
-      isOpen={props.isOpen}
-      onClose={props.onClose}
-      variant="condensed"
-    >
+    <Modal class={styles.modal} onClose={props.onClose} variant="condensed">
       <div class={styles.grid}>
         <header class={styles.header}>
           <b>{props.speaker?.fields.name}</b>

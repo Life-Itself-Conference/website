@@ -1,12 +1,18 @@
 import { style } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
 
+export const container = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing.xlarge,
+});
+
 export const list = style({
   alignItems: 'center',
   display: 'flex',
   flexDirection: 'column',
+  gap: 60,
   justifyContent: 'center',
-  gap: theme.spacing.xlarge,
   listStyle: 'none',
   margin: 0,
   padding: 0,
@@ -19,11 +25,20 @@ export const list = style({
   },
 });
 
+export const link = style({
+  display: 'inline-flex',
+});
+
 export const image = style({
-  height: 60,
-  maxWidth: 250,
+  maxHeight: 60,
+  maxWidth: 280,
   objectFit: 'contain',
+
   '@media': {
     [queries.large]: {},
   },
+});
+
+export const button = style({
+  alignSelf: 'center',
 });
