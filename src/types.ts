@@ -29,6 +29,7 @@ export interface Event {
   id: number;
   invitation: string;
   partners: Entry<Partner>[];
+  partnershipLogo: Asset;
   registrationClosedText: Document;
   registrationConfirmationText: Document;
   registrationPaymentText: Document;

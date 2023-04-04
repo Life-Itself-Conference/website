@@ -2,7 +2,7 @@
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
 import { VsChevronDown } from 'solid-icons/vs';
-import { Component, For } from 'solid-js';
+import { Component, For, Show } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
@@ -52,27 +52,36 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
           class={styles.image}
           src={props.event.fields.hero?.fields.file.url}
         />
-        <div class={styles.marquee}>
-          <ul>
-            <li>{props.event.fields.invitation}</li>
-            <For each={props.event.fields.partners}>
-              {(partner) => (
-                <li>
-                  <PartnerLogo partner={partner} />
-                </li>
-              )}
-            </For>
-          </ul>
-          <ul>
-            <li>{props.event.fields.invitation}</li>
-            <For each={props.event.fields.partners}>
-              {(partner) => (
-                <li>
-                  <PartnerLogo partner={partner} />
-                </li>
-              )}
-            </For>
-          </ul>
+        <div class={styles.bottom}>
+          <div class={styles.marquee}>
+            <ul>
+              <li>{props.event.fields.invitation}</li>
+              <For each={props.event.fields.partners}>
+                {(partner) => (
+                  <li>
+                    <PartnerLogo partner={partner} />
+                  </li>
+                )}
+              </For>
+            </ul>
+            <ul>
+              <li>{props.event.fields.invitation}</li>
+              <For each={props.event.fields.partners}>
+                {(partner) => (
+                  <li>
+                    <PartnerLogo partner={partner} />
+                  </li>
+                )}
+              </For>
+            </ul>
+          </div>
+          <Show when={!!props.event.fields.partnershipLogo}>
+            <img
+              alt="In Partnership With CNN"
+              class={styles.partnership}
+              src={props.event.fields.partnershipLogo.fields.file.url}
+            />
+          </Show>
         </div>
       </div>
 

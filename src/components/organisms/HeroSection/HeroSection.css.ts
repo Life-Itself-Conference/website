@@ -74,15 +74,22 @@ export const image = style({
   },
 });
 
+export const bottom = style({
+  alignItems: 'flex-end',
+  display: 'flex',
+  height: theme.spacing.xlarge,
+  gap: theme.spacing.xsmall,
+  gridColumn: 'span 2',
+  marginBottom: theme.spacing.large,
+  order: 2,
+});
+
 export const marquee = style({
   backgroundColor: theme.colors.white,
   color: theme.colors.black,
   display: 'flex',
   fontSize: theme.fontSizes.medium,
-  gridColumn: 'span 2',
-  marginBottom: theme.spacing.large,
-  paddingBlock: theme.spacing.medium,
-  order: 2,
+  height: '100%',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
 
@@ -110,6 +117,17 @@ globalStyle(`${marquee} img`, {
   height: 30,
   objectFit: 'contain',
   maxWidth: 150,
+});
+
+export const partnership = style({
+  float: 'right',
+  height: '133%',
+
+  '@media': {
+    [queries.large]: {
+      height: '200%',
+    },
+  },
 });
 
 export const meta = style({
