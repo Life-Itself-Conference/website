@@ -26,7 +26,7 @@ export const item = style({
 
 export const last = style({
   alignItems: 'center',
-  aspectRatio: '3 / 1',
+  aspectRatio: '2 / 1',
   backgroundColor: '#222',
   backgroundImage: 'url(/more-to-come.png)',
   backgroundPosition: 'center',
@@ -36,6 +36,16 @@ export const last = style({
   flexDirection: 'column',
   flexGrow: 1,
   gap: theme.spacing.medium,
+  minHeight: 150,
   justifyContent: 'center',
   padding: theme.spacing.small,
+
+  '@media': {
+    [queries.medium]: {
+      aspectRatio: '3 / 1',
+    },
+    [queries.medium]: {
+      aspectRatio: '5 / 1',
+    },
+  },
 });
