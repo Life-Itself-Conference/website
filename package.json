@@ -26,6 +26,7 @@
     "classnames": "^2.3.2",
     "contentful": "^9.3.5",
     "eslint-config-prettier": "^8.6.0",
+    "focus-trap": "^7.4.0",
     "nanostores": "^0.7.4",
     "solid-icons": "^1.0.4",
     "solid-js": "^1.6.11"

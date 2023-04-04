@@ -6,7 +6,7 @@ import { Component, For } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { formatDate } from '../../../utils/format';
-import { ButtonLink } from '../../atoms/Button';
+import { Button, ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
@@ -40,12 +40,12 @@ export const HeroSection: Component<HeroSectionProps> = (props) => (
             <ButtonLink href="#speakers" variant="secondary">
               Speakers
             </ButtonLink>
-            <ButtonLink
+            <Button
               onClick={() => isNewsletterModalOpen.set(true)}
               variant="secondary"
             >
               Join Newsletter
-            </ButtonLink>
+            </Button>
           </div>
         </div>
         <img

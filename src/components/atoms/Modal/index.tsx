@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import * as focusTrap from 'focus-trap';
 import { FaSolidX } from 'solid-icons/fa';
 import { createUniqueId, onCleanup, onMount, ParentComponent } from 'solid-js';
 import * as styles from './Modal.css';
@@ -8,6 +9,18 @@ const modals = new Set();
 export const Modal: ParentComponent<ModalProps> = (props) => {
   const id = createUniqueId();
   let dialog: HTMLDialogElement | undefined = undefined;
+
+  onMount(() => {
+    if (dialog) {
+      const trap = focusTrap.createFocusTrap(dialog);
+
+      trap.activate();
+
+      onCleanup(() => {
+        trap.deactivate();
+      });
+    }
+  });
 
   onMount(() => {
     modals.add(id);
