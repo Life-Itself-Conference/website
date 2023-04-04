@@ -6,6 +6,7 @@ import { SpeakerModal } from '../SpeakerModal';
 import * as styles from './SpeakerList.css';
 import { Button } from '../../atoms/Button';
 import classNames from 'classnames';
+import { isNewsletterModalOpen } from '../../../stores/newsletter';
 
 export const SpeakerList: Component<SpeakerListProps> = (props) => {
   const [activeSpeakerId, setActiveSpeakerId] = createSignal();
@@ -31,7 +32,11 @@ export const SpeakerList: Component<SpeakerListProps> = (props) => {
       <Show when={props.moreSpeakersComing}>
         <li class={classNames(styles.item, styles.last)}>
           <b>More Speakers to Come!</b>
-          <Button size="small" variant="secondary">
+          <Button
+            onClick={() => isNewsletterModalOpen.set(true)}
+            size="small"
+            variant="secondary"
+          >
             Join Newsletter to Stay Informed
           </Button>
         </li>
