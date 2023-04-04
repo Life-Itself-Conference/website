@@ -28,16 +28,19 @@ export const SpeakerList: Component<SpeakerListProps> = (props) => {
           speaker={activeSpeaker()}
         />
       </Show>
-      <li class={classNames(styles.item, styles.last)}>
-        <b>More Speakers to Come!</b>
-        <Button size="small" variant="secondary">
-          Join Newsletter to Stay Informed
-        </Button>
-      </li>
+      <Show when={props.moreSpeakersComing}>
+        <li class={classNames(styles.item, styles.last)}>
+          <b>More Speakers to Come!</b>
+          <Button size="small" variant="secondary">
+            Join Newsletter to Stay Informed
+          </Button>
+        </li>
+      </Show>
     </ul>
   );
 };
 
 export interface SpeakerListProps {
+  moreSpeakersComing?: boolean;
   speakers: Entry<Speaker>[];
 }

@@ -30,7 +30,10 @@ export const Layout: Component<LayoutProps> = (props) => {
       <Header event={event()} />
       <main>
         <HeroSection event={event()} />
-        <SpeakersSection speakers={event().fields.speakers} />
+        <SpeakersSection
+          moreSpeakersComing={event().fields.moreSpeakersComing}
+          speakers={event().fields.speakers}
+        />
         <LocationSection location={event().fields.hotel} />
         <PartnersSection partners={event().fields.partners} />
         <AboutUsSection aboutUs={event().fields.aboutUs} />

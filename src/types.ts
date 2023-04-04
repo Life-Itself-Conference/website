@@ -28,6 +28,7 @@ export interface Event {
   hotel: Entry<Location>;
   id: number;
   invitation: string;
+  moreSpeakersComing: boolean;
   partners: Entry<Partner>[];
   partnershipLogo: Asset;
   registrationClosedText: Document;

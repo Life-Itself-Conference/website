@@ -12,11 +12,15 @@ export const SpeakersSection: Component<SpeakersSectionProps> = (props) => {
       size="medium"
       title="Speakers"
     >
-      <SpeakerList speakers={props.speakers} />
+      <SpeakerList
+        moreSpeakersComing={props.moreSpeakersComing}
+        speakers={props.speakers}
+      />
     </ContentSection>
   );
 };
 
 export interface SpeakersSectionProps {
+  moreSpeakersComing?: boolean;
   speakers: Entry<Speaker>[];
 }
