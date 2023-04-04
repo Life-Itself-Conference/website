@@ -1,4 +1,4 @@
-import { Component, onCleanup, onMount } from 'solid-js';
+import { Component, onCleanup, onMount, Show } from 'solid-js';
 import { Button } from '../../atoms/Button';
 import { Modal } from '../../atoms/Modal';
 import { TextField } from '../../atoms/TextField';
@@ -29,17 +29,15 @@ export const NewsletterModal: Component = () => {
   });
 
   return (
-    <Modal
-      isOpen={$isNewsletterModalOpen()}
-      onClose={() => isNewsletterModalOpen.set(false)}
-      size="small"
-    >
-      <p>Please join our newsletter to stay informed:</p>
-      <form class={styles.form}>
-        <TextField label="Name" />
-        <TextField label="Email Address" type="email" />
-        <Button>Join Newsletter</Button>
-      </form>
-    </Modal>
+    <Show when={$isNewsletterModalOpen()}>
+      <Modal onClose={() => isNewsletterModalOpen.set(false)} size="small">
+        <p>Please join our newsletter to stay informed:</p>
+        <form class={styles.form}>
+          <TextField label="Name" />
+          <TextField label="Email Address" type="email" />
+          <Button>Join Newsletter</Button>
+        </form>
+      </Modal>
+    </Show>
   );
 };

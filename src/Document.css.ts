@@ -22,7 +22,7 @@ globalStyle(`${body}.modal-open`, {
   overflow: 'hidden',
 });
 
-globalStyle(`${body}.preview:before`, {
+globalStyle(`${body}.preview:after`, {
   alignItems: 'center',
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
   backdropFilter: 'blur(4px)',

@@ -1,5 +1,12 @@
+/* eslint-disable no-unused-vars */
 import type { Document } from '@contentful/rich-text-types';
 import type { Asset, Entry, EntryFields } from 'contentful';
+
+export enum TicketStatus {
+  ComingSoon = 'Coming Soon',
+  OnSale = 'On Sale',
+  SoldOut = 'Sold Out',
+}
 
 export interface AboutUs {
   id: number;
@@ -30,7 +37,7 @@ export interface Event {
   speakers: Entry<Speaker>[];
   startDate: string;
   tagline: string;
-  ticketStatus: 'Coming Soon' | 'On Sale' | 'Sold Out';
+  ticketStatus: TicketStatus;
   videoDetails: Document;
   year: string;
 }

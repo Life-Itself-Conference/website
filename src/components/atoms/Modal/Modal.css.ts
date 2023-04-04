@@ -1,10 +1,21 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
 
+export const wrapper = style({
+  backgroundColor: 'rgba(50, 50, 50, 0.9)',
+  height: '100%',
+  inset: 0,
+  padding: 0,
+  position: 'fixed',
+  width: '100%',
+  zIndex: 999,
+});
+
 export const dialog = style({
   backgroundColor: theme.colors.black,
   border: 0,
   color: theme.colors.white,
+  display: 'grid',
   gridTemplateRows: 'auto 1fr',
   height: '100%',
   margin: 0,
@@ -19,6 +30,8 @@ export const dialog = style({
   '@media': {
     [queries.large]: {
       left: '50%',
+      maxHeight: `calc(100% - (${theme.spacing.large} * 2))`,
+      maxWidth: `calc(100% - (${theme.spacing.large} * 2))`,
       height: 'fit-content',
       top: '50%',
       translate: '-50% -50%',

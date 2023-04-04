@@ -2,10 +2,10 @@
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { useStore } from '@nanostores/solid';
 import type { Entry } from 'contentful';
-import { Component, createSignal, Show } from 'solid-js';
+import { Component, createEffect, createSignal, onMount, Show } from 'solid-js';
 import { createStore, SetStoreFunction } from 'solid-js/store';
 import { isRegistrationModalOpen } from '../../../stores/registration';
-import type { Event } from '../../../types';
+import { Event, TicketStatus } from '../../../types';
 import { Button } from '../../atoms/Button';
 import { Modal } from '../../atoms/Modal';
 import { TextField } from '../../atoms/TextField';
@@ -15,13 +15,20 @@ export const RegistrationModal: Component<RegistrationModalProps> = (props) => {
   const $isRegistrationModalOpen = useStore(isRegistrationModalOpen);
   const [step, setStep] = createSignal(0);
 
-  // createEffect(() => {
-  //   if (props.event.fields.ticketStatus === 'Sold Out') {
-  //     setStep(0);
-  //   } else {
-  //     setStep(1);
-  //   }
-  // });
+  onMount(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('register')) {
+      isRegistrationModalOpen.set(true);
+    }
+  });
+
+  createEffect(() => {
+    if (props.event.fields.ticketStatus === TicketStatus.SoldOut) {
+      setStep(0);
+    } else {
+      setStep(1);
+    }
+  });
 
   const [registration, setRegistration] = createStore({
     firstName: '',
@@ -46,42 +53,46 @@ export const RegistrationModal: Component<RegistrationModalProps> = (props) => {
   });
 
   return (
-    <Modal
-      class={styles.modal}
-      isOpen={$isRegistrationModalOpen()}
-      onClose={() => isRegistrationModalOpen.set(false)}
-      size={step() === 1 ? 'small' : 'large'}
-    >
-      <header class={styles.header}>
-        <img src="/life-itself.png" />
-        <span>Registration</span>
-      </header>
+    <Show when={$isRegistrationModalOpen()}>
+      <Modal
+        class={styles.modal}
+        onClose={() => isRegistrationModalOpen.set(false)}
+        size={step() === 1 ? 'small' : 'large'}
+      >
+        <header class={styles.header}>
+          <img src="/life-itself.png" />
+          <span>Registration</span>
+        </header>
 
-      <Show when={step() === 0}>
-        <RegistrationClosed event={props.event} onComplete={() => setStep(1)} />
-      </Show>
+        <Show when={step() === 0}>
+          <RegistrationClosed
+            event={props.event}
+            onComplete={() => setStep(1)}
+          />
+        </Show>
 
-      <Show when={step() === 1}>
-        <RegistrationDetails
-          onComplete={() => setStep(2)}
-          registration={registration}
-          setRegistration={setRegistration}
-        />
-      </Show>
+        <Show when={step() === 1}>
+          <RegistrationDetails
+            onComplete={() => setStep(2)}
+            registration={registration}
+            setRegistration={setRegistration}
+          />
+        </Show>
 
-      <Show when={step() === 2}>
-        <RegistrationPayment
-          event={props.event}
-          onComplete={() => setStep(3)}
-          payment={payment}
-          setPayment={setPayment}
-        />
-      </Show>
+        <Show when={step() === 2}>
+          <RegistrationPayment
+            event={props.event}
+            onComplete={() => setStep(3)}
+            payment={payment}
+            setPayment={setPayment}
+          />
+        </Show>
 
-      <Show when={step() === 3}>
-        <RegistrationConfirmation event={props.event} />
-      </Show>
-    </Modal>
+        <Show when={step() === 3}>
+          <RegistrationConfirmation event={props.event} />
+        </Show>
+      </Modal>
+    </Show>
   );
 };
 

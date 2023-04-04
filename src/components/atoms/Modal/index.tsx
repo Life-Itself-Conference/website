@@ -1,28 +1,16 @@
 import classNames from 'classnames';
 import { FaSolidX } from 'solid-icons/fa';
-import {
-  createEffect,
-  createUniqueId,
-  onCleanup,
-  ParentComponent,
-} from 'solid-js';
+import { createUniqueId, onCleanup, onMount, ParentComponent } from 'solid-js';
 import * as styles from './Modal.css';
 
 const modals = new Set();
 
 export const Modal: ParentComponent<ModalProps> = (props) => {
+  const id = createUniqueId();
   let dialog: HTMLDialogElement | undefined = undefined;
-  let id = createUniqueId();
 
-  createEffect(() => {
-    if (props.isOpen) {
-      dialog?.showModal();
-      modals.add(id);
-    } else {
-      dialog?.close();
-      modals.delete(id);
-    }
-
+  onMount(() => {
+    modals.add(id);
     document.body.classList.toggle('modal-open', modals.size > 0);
 
     onCleanup(() => {
@@ -31,50 +19,49 @@ export const Modal: ParentComponent<ModalProps> = (props) => {
     });
   });
 
-  createEffect(() => {
-    if (props.isOpen) {
-      const handleClick = (e: PointerEvent) => {
-        if (e.target === dialog || dialog?.contains(e.target as Node)) {
-          return;
-        }
+  onMount(() => {
+    const handleClick = (e: PointerEvent) => {
+      if (e.target === dialog || dialog?.contains(e.target as Node)) {
+        return;
+      }
 
-        props.onClose?.();
-      };
+      props.onClose?.();
+    };
 
-      document.addEventListener('pointerdown', handleClick);
-      onCleanup(() => document.removeEventListener('pointerdown', handleClick));
-    }
+    document.addEventListener('pointerdown', handleClick);
+    onCleanup(() => document.removeEventListener('pointerdown', handleClick));
   });
 
   return (
-    <dialog
-      class={classNames(
-        styles.dialog,
-        props.size && styles.size[props.size],
-        props.variant && styles.variant[props.variant],
-        props.class,
-      )}
-      ref={dialog}
-    >
-      <header class={styles.header}>
-        <img class={styles.logo} src="/life-itself.png" />
-        <button
-          aria-label="Close"
-          class={styles.close}
-          onClick={() => props.onClose?.()}
-          type="button"
-        >
-          <FaSolidX />
-        </button>
-      </header>
-      <div class={styles.content}>{props.children}</div>
+    <dialog class={styles.wrapper} open>
+      <div
+        class={classNames(
+          styles.dialog,
+          props.size && styles.size[props.size],
+          props.variant && styles.variant[props.variant],
+          props.class,
+        )}
+        ref={dialog}
+      >
+        <header class={styles.header}>
+          <img class={styles.logo} src="/life-itself.png" />
+          <button
+            aria-label="Close"
+            class={styles.close}
+            onClick={() => props.onClose?.()}
+            type="button"
+          >
+            <FaSolidX />
+          </button>
+        </header>
+        <div class={styles.content}>{props.children}</div>
+      </div>
     </dialog>
   );
 };
 
 export interface ModalProps {
   class?: string;
-  isOpen?: boolean;
   onClose?: () => void;
   size?: keyof typeof styles.size;
   variant?: keyof typeof styles.variant;
