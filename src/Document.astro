@@ -1,8 +1,6 @@
 ---
-import classNames from 'classnames';
 import * as styles from './Document.css';
 const { title } = Astro.props;
-const isPreview = !!Astro.url.searchParams.get('preview')!;
 ---
 
 <html class={styles.html} lang="en">
@@ -48,7 +46,7 @@ const isPreview = !!Astro.url.searchParams.get('preview')!;
       rel="stylesheet"
     />
   </head>
-  <body class={classNames(styles.body, { preview: isPreview })}>
+  <body class={styles.body}>
     <slot />
   </body>
 </html>

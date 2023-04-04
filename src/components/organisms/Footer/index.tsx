@@ -2,16 +2,15 @@ import type { Entry } from 'contentful';
 import type { Component } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
-import { formatDate } from '../../../utils/format';
 import { Button } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
+import { EventMetadata } from '../../molecules/EventMetadata';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './Footer.css';
 
 export const Footer: Component<FooterProps> = (props) => (
   <footer class={styles.footer}>
     <hr />
-
     <Container size="xsmall">
       <div class={styles.buttons}>
         <Button
@@ -38,19 +37,7 @@ export const Footer: Component<FooterProps> = (props) => (
       <div class={styles.happy}>
         <img class={styles.logo} src="/logo-maze.png" />
         <div class={styles.content}>
-          <small>
-            <b>
-              <time
-                dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
-              >
-                {[
-                  formatDate(props.event.fields.startDate),
-                  formatDate(props.event.fields.endDate),
-                ].join(' - ')}
-              </time>{' '}
-              / <span>{props.event.fields.hotel.fields.location}</span>
-            </b>
-          </small>
+          <EventMetadata class={styles.meta} event={props.event} />
           <strong>Happy. Healthy. Human.</strong>
         </div>
       </div>

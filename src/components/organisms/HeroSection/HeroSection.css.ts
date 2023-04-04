@@ -132,6 +132,7 @@ export const partnership = style({
 
 export const meta = style({
   fontSize: theme.fontSizes.medium,
+  fontWeight: 'bold',
 });
 
 export const title = style({

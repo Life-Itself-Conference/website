@@ -17,6 +17,10 @@ export const ticketButton = style({
   gridColumn: 'span 2',
 });
 
+export const meta = style({
+  fontWeight: 'bold',
+});
+
 export const happy = style({
   alignItems: 'center',
   display: 'flex',
