@@ -1,4 +1,3 @@
-// import * as calendarLink from '@barinbritva/add-to-calendar'
 import * as ics from 'ics';
 import type { Entry } from 'contentful';
 import type { Event } from '../types';
