@@ -96,8 +96,13 @@ export const list = style({
   },
 });
 
-globalStyle(`${list} a:not(${button})`, {
+export const healthAndSafety = style({});
+
+globalStyle(`${list} a:where(:not(${button}, ${healthAndSafety}))`, {
   color: 'inherit',
+});
+
+globalStyle(`${list} a:where(:not(${button}))`, {
   fontWeight: 'normal',
   textDecoration: 'none',
   textTransform: 'uppercase',

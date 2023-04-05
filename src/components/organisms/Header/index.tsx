@@ -40,7 +40,11 @@ export const Header = (props: HeaderProps) => {
         <ul className={styles.list}>
           {props.event.fields.healthAndSafetyStatus && (
             <li>
-              <a onClick={handleHealthAndSafetyLinkClick} href="#">
+              <a
+                className={styles.healthAndSafety}
+                onClick={handleHealthAndSafetyLinkClick}
+                href="#"
+              >
                 {props.event.fields.healthAndSafetyLabel}
               </a>
             </li>
