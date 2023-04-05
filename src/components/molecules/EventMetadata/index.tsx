@@ -25,6 +25,7 @@ export const EventMetadata = (props: EventMetadataProps) => {
   return (
     <time
       className={props.className}
+      key={`${dateText}${separatorText}${locationText}`}
       dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
     >
       <GlowingCharacters text={dateText} />

@@ -31,7 +31,7 @@ export const GlowingCharacters = (props: GlowingCharactersProps) => {
   }, [text]);
 
   return (
-    <Tag className={className} {...attributes}>
+    <Tag className={className} key={text} {...attributes}>
       {characters}
     </Tag>
   );

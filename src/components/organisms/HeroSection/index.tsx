@@ -1,6 +1,6 @@
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
-import { FaChevronDown } from 'react-icons/fa/index.js';
+import { FaChevronDown } from 'react-icons/fa';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';

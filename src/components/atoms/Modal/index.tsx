@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import * as focusTrap from 'focus-trap';
 import { PropsWithChildren, useEffect, useId, useRef } from 'react';
-import { FaTimes } from 'react-icons/fa/index.js';
+import { FaTimes } from 'react-icons/fa';
 import * as styles from './Modal.css';
 
 const modals = new Set();

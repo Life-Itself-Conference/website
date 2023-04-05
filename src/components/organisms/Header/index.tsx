@@ -1,4 +1,4 @@
-import { FaBars } from 'react-icons/fa/index.js';
+import { FaBars } from 'react-icons/fa';
 import type { Entry } from 'contentful';
 import type { Event } from '../../../types';
 import * as styles from './Header.css';
