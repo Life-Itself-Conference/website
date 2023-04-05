@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { queries, theme } from '../../../theme.css';
 
 export const content = style({
@@ -21,6 +21,24 @@ export const bios = style({
       gridTemplateColumns: '1fr 1fr',
     },
   },
+});
+
+globalStyle(`${bios} > div:first-child`, {
+  textAlign: 'right',
+});
+
+globalStyle(`${bios} h3`, {
+  margin: 0,
+});
+
+export const title = style({
+  alignItems: 'center',
+  display: 'inline-flex',
+  gap: theme.spacing.small,
+});
+globalStyle(`${title} img`, {
+  display: 'inline-flex',
+  height: '1em',
 });
 
 export const bio = style({

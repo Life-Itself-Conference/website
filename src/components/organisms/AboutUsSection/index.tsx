@@ -26,10 +26,10 @@ export const AboutUsSection = (props: AboutUsSectionProps) => {
 
       <div className={styles.bios}>
         <div>
-          <p>
-            <b>{props.aboutUs.fields.sanjay}</b>
-            <br />
-            {props.aboutUs.fields.sanjayTitle}
+          <h3>{props.aboutUs.fields.sanjay}</h3>
+          <p className={styles.title}>
+            <span> {props.aboutUs.fields.sanjayTitle},</span>
+            <img src="/life-itself.png" />
           </p>
           <div
             className={styles.bio}
@@ -40,10 +40,10 @@ export const AboutUsSection = (props: AboutUsSectionProps) => {
         </div>
 
         <div>
-          <p>
-            <b>{props.aboutUs.fields.marc}</b>
-            <br />
-            {props.aboutUs.fields.marcTitle}
+          <h3>{props.aboutUs.fields.marc}</h3>
+          <p className={styles.title}>
+            <span>{props.aboutUs.fields.marcTitle},</span>
+            <img src="/life-itself.png" />
           </p>
           <div
             className={styles.bio}
