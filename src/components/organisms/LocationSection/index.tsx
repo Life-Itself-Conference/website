@@ -1,10 +1,9 @@
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-
 import type { Entry } from 'contentful';
 import type { Event } from '../../../types';
 import { createAndDownloadICalendarEvent } from '../../../utils/calendar';
 import { formatDate } from '../../../utils/format';
 import { Button, ButtonLink } from '../../atoms/Button';
+import { RichText } from '../../atoms/RichText';
 import { ContentSection } from '../../molecules/ContentSection';
 import * as styles from './LocationSection.css';
 
@@ -50,13 +49,7 @@ export const LocationSection = (props: LocationSectionProps) => {
       </header>
       <aside className={styles.aside}>
         <div className={styles.overview}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: documentToHtmlString(
-                props.event.fields.hotel.fields.hotelOverview,
-              ),
-            }}
-          />
+          <RichText field={props.event.fields.hotel.fields.hotelOverview} />
           <span>
             <a href="#">
               <time

@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react';
 import { useEffect } from 'react';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import { isNewsletterModalOpen } from '../../../stores';
 import { Button } from '../../atoms/Button';
 import { Modal } from '../../atoms/Modal';
 import { TextField } from '../../atoms/TextField';

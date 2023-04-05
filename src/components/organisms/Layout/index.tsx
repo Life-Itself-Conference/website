@@ -2,6 +2,7 @@ import type { Entry } from 'contentful';
 import { useEffect, useState } from 'react';
 import { getEvent } from '../../../services/contentful';
 import type { Event } from '../../../types';
+import { HealthAndSafetyModal } from '../../molecules/HealthAndSafetyModal';
 import { NewsletterModal } from '../../molecules/NewsletterModal';
 import { RegistrationModal } from '../../molecules/RegistrationModal';
 import { AboutUsSection } from '../AboutUsSection';
@@ -41,6 +42,7 @@ export const Layout = (props: LayoutProps) => {
         <AboutUsSection aboutUs={event.fields.aboutUs} />
       </main>
       <Footer event={event} />
+      <HealthAndSafetyModal event={event} />
       <NewsletterModal />
       <RegistrationModal event={event} />
     </>

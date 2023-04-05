@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { useStore } from '@nanostores/react';
 import type { Entry } from 'contentful';
 import { useEffect, useState } from 'react';
-import { isRegistrationModalOpen } from '../../../stores/registration';
+import { isRegistrationModalOpen } from '../../../stores';
 import { Event, TicketStatus } from '../../../types';
 import { Button } from '../../atoms/Button';
 import { Modal } from '../../atoms/Modal';
+import { RichText } from '../../atoms/RichText';
 import { TextField } from '../../atoms/TextField';
 import * as styles from './RegistrationModal.css';
 
@@ -103,21 +103,9 @@ export const RegistrationClosed = (props: RegistrationClosedProps) => {
 
   return (
     <>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(
-            props.event.fields.registrationClosedText,
-          ),
-        }}
-      />
+      <RichText field={props.event.fields.registrationClosedText} />
       <Button onClick={handleClick}>Register</Button>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(
-            props.event.fields.registrationRefundText,
-          ),
-        }}
-      />
+      <RichText field={props.event.fields.registrationRefundText} />
     </>
   );
 };
@@ -243,13 +231,7 @@ export const RegistrationPayment = (props: RegistrationPaymentProps) => {
 
   return (
     <>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(
-            props.event.fields.registrationPaymentText,
-          ),
-        }}
-      />
+      <RichText field={props.event.fields.registrationPaymentText} />
       <form className={styles.form} onSubmit={handleSubmit}>
         <TextField
           label="Card Number"
@@ -274,15 +256,7 @@ export const RegistrationPayment = (props: RegistrationPaymentProps) => {
 export const RegistrationConfirmation = (
   props: RegistrationConfirmationProps,
 ) => {
-  return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: documentToHtmlString(
-          props.event.fields.registrationConfirmationText,
-        ),
-      }}
-    />
-  );
+  return <RichText field={props.event.fields.registrationConfirmationText} />;
 };
 
 interface Payment {

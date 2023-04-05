@@ -1,5 +1,5 @@
 import type { Entry } from 'contentful';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import { isNewsletterModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
 import { Button, ButtonCommonProps, ButtonLink } from '../../atoms/Button';
 

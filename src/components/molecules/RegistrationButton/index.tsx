@@ -1,6 +1,8 @@
 import type { Entry } from 'contentful';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
-import { isRegistrationModalOpen } from '../../../stores/registration';
+import {
+  isNewsletterModalOpen,
+  isRegistrationModalOpen,
+} from '../../../stores';
 import { Event, TicketStatus } from '../../../types';
 import { Button, ButtonProps } from '../../atoms/Button';
 import { useMemo } from 'react';

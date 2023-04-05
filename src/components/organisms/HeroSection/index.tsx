@@ -1,11 +1,11 @@
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
 import { FaChevronDown } from 'react-icons/fa/index.js';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import { isNewsletterModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
+import { RichText } from '../../atoms/RichText';
 import { EventMetadata } from '../../molecules/EventMetadata';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './HeroSection.css';
@@ -68,11 +68,9 @@ export const HeroSection = (props: HeroSectionProps) => {
           </div>
         </div>
 
-        <div
+        <RichText
           className={styles.videoDetails}
-          dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(props.event.fields.videoDetails),
-          }}
+          field={props.event.fields.videoDetails}
         />
 
         <div className={styles.arrowContainer}>

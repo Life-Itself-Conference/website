@@ -4,7 +4,8 @@ import type { Event } from '../../../types';
 import * as styles from './Header.css';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import { ScheduleButton } from '../../molecules/ScheduleButton';
-import { useId, useState } from 'react';
+import { MouseEvent, useId, useState } from 'react';
+import { isHealthAndSafetyModalOpen } from '../../../stores';
 
 export const Header = (props: HeaderProps) => {
   const navId = useId();
@@ -12,6 +13,12 @@ export const Header = (props: HeaderProps) => {
 
   const handleLinkClick = () => {
     setIsMobileNavOpen(false);
+  };
+
+  const handleHealthAndSafetyLinkClick = (e: MouseEvent) => {
+    e.preventDefault();
+    handleLinkClick();
+    isHealthAndSafetyModalOpen.set(true);
   };
 
   return (
@@ -31,11 +38,13 @@ export const Header = (props: HeaderProps) => {
       </button>
       <nav className={styles.nav} data-open={isMobileNavOpen} id={navId}>
         <ul className={styles.list}>
-          <li>
-            <a onClick={handleLinkClick} href="#">
-              Covid Safety
-            </a>
-          </li>
+          {props.event.fields.healthAndSafetyStatus && (
+            <li>
+              <a onClick={handleHealthAndSafetyLinkClick} href="#">
+                {props.event.fields.healthAndSafetyLabel}
+              </a>
+            </li>
+          )}
           <li>
             <a onClick={handleLinkClick} href="#speakers">
               Speakers

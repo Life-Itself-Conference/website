@@ -1,8 +1,8 @@
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
 import { Fragment } from 'react';
 import type { Speaker } from '../../../types';
 import { Modal, ModalProps } from '../../atoms/Modal';
+import { RichText } from '../../atoms/RichText';
 import * as styles from './SpeakerModal.css';
 
 export const SpeakerModal = (props: SpeakerModalProps) => {
@@ -24,12 +24,7 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
             <h2>{props.speaker?.fields.topic}</h2>
           )}
           {props.speaker?.fields.bio && (
-            <div
-              className={styles.bio}
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(props.speaker.fields.bio),
-              }}
-            />
+            <RichText className={styles.bio} field={props.speaker.fields.bio} />
           )}
         </section>
 

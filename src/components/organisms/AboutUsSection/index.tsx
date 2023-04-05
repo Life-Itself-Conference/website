@@ -1,6 +1,6 @@
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
 import type { AboutUs } from '../../../types';
+import { RichText } from '../../atoms/RichText';
 import { ContentSection } from '../../molecules/ContentSection';
 import * as styles from './AboutUsSection.css';
 
@@ -12,11 +12,7 @@ export const AboutUsSection = (props: AboutUsSectionProps) => {
       size="small"
       title="About Us"
     >
-      <div
-        dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(props.aboutUs.fields.overview),
-        }}
-      />
+      <RichText field={props.aboutUs.fields.overview} />
 
       <img
         alt="Sanjay and Marc"
@@ -31,11 +27,9 @@ export const AboutUsSection = (props: AboutUsSectionProps) => {
             <span> {props.aboutUs.fields.sanjayTitle},</span>
             <img src="/life-itself.png" />
           </p>
-          <div
+          <RichText
             className={styles.bio}
-            dangerouslySetInnerHTML={{
-              __html: documentToHtmlString(props.aboutUs.fields.sanjayBio),
-            }}
+            field={props.aboutUs.fields.sanjayBio}
           />
         </div>
 
@@ -45,11 +39,9 @@ export const AboutUsSection = (props: AboutUsSectionProps) => {
             <span>{props.aboutUs.fields.marcTitle},</span>
             <img src="/life-itself.png" />
           </p>
-          <div
+          <RichText
             className={styles.bio}
-            dangerouslySetInnerHTML={{
-              __html: documentToHtmlString(props.aboutUs.fields.marcBio),
-            }}
+            field={props.aboutUs.fields.marcBio}
           />
         </div>
       </div>

@@ -24,6 +24,9 @@ export interface AboutUs {
 export interface Event {
   aboutUs: Entry<AboutUs>;
   endDate: string;
+  healthAndSafetyStatus: boolean;
+  healthAndSafetyLabel: string;
+  healthAndSafetyDescription: Document;
   hero: Asset;
   hotel: Entry<Location>;
   id: number;

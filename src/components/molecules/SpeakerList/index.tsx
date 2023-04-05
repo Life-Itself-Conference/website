@@ -5,7 +5,7 @@ import { SpeakerModal } from '../SpeakerModal';
 import * as styles from './SpeakerList.css';
 import { Button } from '../../atoms/Button';
 import classNames from 'classnames';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import { isNewsletterModalOpen } from '../../../stores';
 import { useMemo, useState } from 'react';
 
 export const SpeakerList = (props: SpeakerListProps) => {
