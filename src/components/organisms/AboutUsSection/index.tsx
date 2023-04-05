@@ -12,7 +12,7 @@ export const AboutUsSection = (props: AboutUsSectionProps) => {
       size="small"
       title="About Us"
     >
-      <p
+      <div
         dangerouslySetInnerHTML={{
           __html: documentToHtmlString(props.aboutUs.fields.overview),
         }}
