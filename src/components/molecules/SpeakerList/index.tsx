@@ -1,5 +1,4 @@
 import type { Entry } from 'contentful';
-import { Component, createMemo, createSignal, For, Show } from 'solid-js';
 import type { Speaker } from '../../../types';
 import { SpeakerThumbnail } from '../SpeakerThumbnail';
 import { SpeakerModal } from '../SpeakerModal';
@@ -7,30 +6,31 @@ import * as styles from './SpeakerList.css';
 import { Button } from '../../atoms/Button';
 import classNames from 'classnames';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
+import { useMemo, useState } from 'react';
 
-export const SpeakerList: Component<SpeakerListProps> = (props) => {
-  const [activeSpeakerId, setActiveSpeakerId] = createSignal();
-  const activeSpeaker = createMemo(() =>
-    props.speakers.find((speaker) => speaker.fields.id === activeSpeakerId()),
+export const SpeakerList = (props: SpeakerListProps) => {
+  const [activeSpeakerId, setActiveSpeakerId] = useState<number | undefined>();
+  const activeSpeaker = useMemo(
+    () =>
+      props.speakers.find((speaker) => speaker.fields.id === activeSpeakerId),
+    [activeSpeakerId, props.speakers],
   );
 
   return (
-    <ul class={styles.list}>
-      <For each={props.speakers}>
-        {(item) => (
-          <li class={styles.item}>
-            <SpeakerThumbnail onClick={setActiveSpeakerId} speaker={item} />
-          </li>
-        )}
-      </For>
-      <Show when={activeSpeaker()}>
+    <ul className={styles.list}>
+      {props.speakers.map((item) => (
+        <li className={styles.item} key={item.fields.id}>
+          <SpeakerThumbnail onClick={setActiveSpeakerId} speaker={item} />
+        </li>
+      ))}
+      {activeSpeaker && (
         <SpeakerModal
-          onClose={() => setActiveSpeakerId()}
-          speaker={activeSpeaker()}
+          onClose={() => setActiveSpeakerId(undefined)}
+          speaker={activeSpeaker}
         />
-      </Show>
-      <Show when={props.moreSpeakersComing}>
-        <li class={classNames(styles.item, styles.last)}>
+      )}
+      {props.moreSpeakersComing && (
+        <li className={classNames(styles.item, styles.last)}>
           <b>More Speakers to Come!</b>
           <Button
             onClick={() => isNewsletterModalOpen.set(true)}
@@ -40,7 +40,7 @@ export const SpeakerList: Component<SpeakerListProps> = (props) => {
             Join Newsletter to Stay Informed
           </Button>
         </li>
-      </Show>
+      )}
     </ul>
   );
 };

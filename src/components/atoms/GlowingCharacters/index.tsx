@@ -1,51 +1,45 @@
-import type { Component } from 'solid-js';
-import { For, mergeProps, splitProps } from 'solid-js';
-import { Dynamic } from 'solid-js/web';
+import { useMemo } from 'react';
 import * as styles from './GlowingCharacters.css';
 
-export const GlowingCharacters: Component<GlowingCharactersProps> = (props) => {
-  const defaultedProps = mergeProps({ characterDelay: 0 }, props);
-  const [textProps, attributes] = splitProps(defaultedProps, [
-    'children',
-    'characterDelay',
-    'class',
-    'tag',
-    'text',
-  ]);
+export const GlowingCharacters = (props: GlowingCharactersProps) => {
+  const {
+    characterDelay = 0,
+    className,
+    tag: Tag = 'span',
+    text,
+    ...attributes
+  } = props;
 
-  let count = 0;
+  const characters = useMemo(() => {
+    let count = 0;
+
+    return text.split('').map((character, index) => (
+      <span
+        className={styles.character}
+        key={`${character}.${index}`}
+        style={
+          character !== ' '
+            ? {
+                animationDelay: `calc(${(characterDelay + count++) * 10}ms)`,
+              }
+            : {}
+        }
+      >
+        {character}
+      </span>
+    ));
+  }, [text]);
 
   return (
-    <Dynamic
-      class={textProps.class}
-      component={textProps.tag || 'span'}
-      {...attributes}
-    >
-      <For each={textProps.text.split('')}>
-        {(character) => (
-          <span
-            class={styles.character}
-            style={
-              character !== ' '
-                ? {
-                    'animation-delay': `calc(${
-                      (defaultedProps.characterDelay + count++) * 10
-                    }ms)`,
-                  }
-                : {}
-            }
-          >
-            {character}
-          </span>
-        )}
-      </For>
-    </Dynamic>
+    <Tag className={className} {...attributes}>
+      {characters}
+    </Tag>
   );
 };
 
 export interface GlowingCharactersProps extends Record<string, any> {
   characterDelay?: number;
-  class?: string;
-  tag?: string;
+  className?: string;
+  tag?: any;
   text: string;
 }

@@ -1,13 +1,13 @@
 import classNames from 'classnames';
-import type { ParentComponent } from 'solid-js';
+import type { PropsWithChildren } from 'react';
 import * as styles from './Container.css';
 
-export const Container: ParentComponent<ContainerProps> = (props) => (
+export const Container = (props: PropsWithChildren<ContainerProps>) => (
   <div
-    class={classNames(
+    className={classNames(
       styles.container,
       props.size && styles.size[props.size],
-      props.class,
+      props.className,
     )}
   >
     {props.children}
@@ -15,6 +15,6 @@ export const Container: ParentComponent<ContainerProps> = (props) => (
 );
 
 export interface ContainerProps {
-  class?: string;
+  className?: string;
   size?: keyof typeof styles.size;
 }

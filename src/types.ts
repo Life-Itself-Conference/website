@@ -50,7 +50,7 @@ export interface Location {
   id: number;
   hotel: string;
   hotelLabel: string;
-  hotelOverview: string;
+  hotelOverview: Document;
   hotelUrl: string;
   location: string;
   video: Asset;

@@ -67,14 +67,49 @@ globalStyle(`${header} h2 sub`, {
   lineHeight: '1em',
 });
 
-export const footer = style({
+export const aside = style({
   backgroundColor: 'rgba(0, 0, 0, 0.75)',
   fontSize: theme.fontSizes.small,
   padding: theme.spacing.medium,
 
   '@media': {
     [queries.large]: {
-      maxWidth: 600,
+      maxWidth: 700,
+    },
+  },
+});
+
+export const overview = style({});
+globalStyle(`${overview} p`, {
+  display: 'inline-block',
+  margin: 0,
+});
+
+export const footer = style({
+  textAlign: 'center',
+});
+
+export const buttons = style({
+  display: 'flex',
+  gap: theme.spacing.small,
+  justifyContent: 'center',
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
+});
+
+export const address = style({
+  bottom: theme.spacing.medium,
+  fontSize: theme.fontSizes.xxsmall,
+  margin: 0,
+  position: 'absolute',
+  right: theme.spacing.medium,
+  textAlign: 'right',
+  textTransform: 'initial',
+
+  '@media': {
+    [queries.large]: {
+      display: 'none',
     },
   },
 });

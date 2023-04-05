@@ -1,17 +1,14 @@
 import type { Entry } from 'contentful';
-import { Component, createMemo, splitProps } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import { isRegistrationModalOpen } from '../../../stores/registration';
 import { Event, TicketStatus } from '../../../types';
-import { Button } from '../../atoms/Button';
-import type { ButtonCommonProps } from '../../atoms/Button';
+import { Button, ButtonProps } from '../../atoms/Button';
+import { useMemo } from 'react';
 
-export const RegistrationButton: Component<RegistrationButtonProps> = (
-  props,
-) => {
-  const [, buttonProps] = splitProps(props, ['event']);
-  const registrationProps = createMemo(() => {
-    switch (props.event.fields.ticketStatus) {
+export const RegistrationButton = (props: RegistrationButtonProps) => {
+  const { event, ...buttonProps } = props;
+  const registrationProps = useMemo(() => {
+    switch (event.fields.ticketStatus) {
       case TicketStatus.ComingSoon:
         return {
           onClick: () => isNewsletterModalOpen.set(true),
@@ -33,16 +30,15 @@ export const RegistrationButton: Component<RegistrationButtonProps> = (
           text: '',
         };
     }
-  });
+  }, [event]);
 
   return (
-    <Button {...buttonProps} onClick={registrationProps().onClick}>
-      {registrationProps().text}
+    <Button {...buttonProps} onClick={registrationProps.onClick}>
+      {registrationProps.text}
     </Button>
   );
 };
 
-export interface RegistrationButtonProps extends Partial<ButtonCommonProps> {
-  class?: string;
+export interface RegistrationButtonProps extends Partial<ButtonProps> {
   event: Entry<Event>;
 }

@@ -1,18 +1,14 @@
 import classNames from 'classnames';
-import { mergeProps, ParentComponent } from 'solid-js';
-import { Dynamic } from 'solid-js/web';
+import type { PropsWithChildren } from 'react';
 import * as styles from './Title.css';
 
-export const Title: ParentComponent<TitleProps> = (props) => {
-  const defaultedProps = mergeProps({ tag: 'h1' } satisfies TitleProps, props);
+export const Title = (props: PropsWithChildren<TitleProps>) => {
+  const { tag: Tag = 'h1' } = props;
 
   return (
-    <Dynamic
-      class={classNames(styles.title, styles.tag[defaultedProps.tag])}
-      component={defaultedProps.tag}
-    >
+    <Tag className={classNames(styles.title, styles.tag[Tag])}>
       <span>{props.children}</span>
-    </Dynamic>
+    </Tag>
   );
 };
 

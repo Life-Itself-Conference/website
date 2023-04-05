@@ -6,7 +6,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:astro/recommended',
-    'plugin:solid/typescript',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'prettier',
   ],
   overrides: [
@@ -20,5 +21,4 @@ module.exports = {
     },
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['solid'],
 };

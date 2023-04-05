@@ -1,17 +1,16 @@
 import type { Entry } from 'contentful';
-import { Component, Show } from 'solid-js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { Button, ButtonCommonProps, ButtonLink } from '../../atoms/Button';
 
-export const ScheduleButton: Component<ScheduleButtonProps> = (props) => {
+export const ScheduleButton = (props: ScheduleButtonProps) => {
   const handleOpenNewsletterModal = () => {
     isNewsletterModalOpen.set(true);
   };
 
   return (
     <>
-      <Show when={props.event.fields.schedule}>
+      {props.event.fields.schedule && (
         <ButtonLink
           {...props}
           href={props.event.fields.schedule.fields.file.url}
@@ -20,12 +19,12 @@ export const ScheduleButton: Component<ScheduleButtonProps> = (props) => {
         >
           Schedule
         </ButtonLink>
-      </Show>
-      <Show when={!props.event.fields.schedule}>
+      )}
+      {!props.event.fields.schedule && (
         <Button {...props} onClick={handleOpenNewsletterModal}>
           Join Newsletter
         </Button>
-      </Show>
+      )}
     </>
   );
 };

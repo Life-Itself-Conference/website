@@ -1,15 +1,15 @@
-import { Component, onCleanup, onMount, Show } from 'solid-js';
+import { useStore } from '@nanostores/react';
+import { useEffect } from 'react';
+import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import { Button } from '../../atoms/Button';
 import { Modal } from '../../atoms/Modal';
 import { TextField } from '../../atoms/TextField';
 import * as styles from './NewsletterModal.css';
-import { useStore } from '@nanostores/solid';
-import { isNewsletterModalOpen } from '../../../stores/newsletter';
 
-export const NewsletterModal: Component = () => {
+export const NewsletterModal = () => {
   const $isNewsletterModalOpen = useStore(isNewsletterModalOpen);
 
-  onMount(() => {
+  useEffect(() => {
     const links = document.querySelectorAll('a[href*="modal=newsletter"]');
 
     const handleClick = (e: Event) => {
@@ -21,23 +21,23 @@ export const NewsletterModal: Component = () => {
       link?.addEventListener('click', handleClick);
     }
 
-    onCleanup(() => {
+    return () => {
       for (const link of Array.from(links)) {
         link?.removeEventListener('click', handleClick);
       }
-    });
-  });
+    };
+  }, [$isNewsletterModalOpen]);
+
+  if (!$isNewsletterModalOpen) return null;
 
   return (
-    <Show when={$isNewsletterModalOpen()}>
-      <Modal onClose={() => isNewsletterModalOpen.set(false)} size="small">
-        <p>Please join our newsletter to stay informed:</p>
-        <form class={styles.form}>
-          <TextField label="Name" />
-          <TextField label="Email Address" type="email" />
-          <Button>Join Newsletter</Button>
-        </form>
-      </Modal>
-    </Show>
+    <Modal onClose={() => isNewsletterModalOpen.set(false)} size="small">
+      <p>Please join our newsletter to stay informed:</p>
+      <form className={styles.form}>
+        <TextField label="Name" />
+        <TextField label="Email Address" type="email" />
+        <Button>Join Newsletter</Button>
+      </form>
+    </Modal>
   );
 };

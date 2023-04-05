@@ -1,56 +1,56 @@
 import type { Entry } from 'contentful';
-import { Component, createMemo, For, Show } from 'solid-js';
+import { useMemo } from 'react';
 import type { Speaker } from '../../../types';
 import { Button } from '../../atoms/Button';
 import * as styles from './SpeakerThumbnail.css';
 
-export const SpeakerThumbnail: Component<SpeakerThumbnailProps> = (props) => {
-  const image = createMemo(() =>
-    props.speaker.fields.headshot?.find(
-      (image) => image.fields.title === 'thumbnail',
-    ),
+export const SpeakerThumbnail = (props: SpeakerThumbnailProps) => {
+  const image = useMemo(
+    () =>
+      props.speaker.fields.headshot?.find(
+        (image) => image.fields.title === 'thumbnail',
+      ),
+    [props.speaker],
   );
 
   const handleClick = () => props.onClick?.(props.speaker.fields.id);
 
   return (
-    <div class={styles.container}>
-      <Show when={image}>
+    <div className={styles.container}>
+      {image ? (
         <img
           alt={`${props.speaker.fields.name} headshot`}
-          class={styles.image}
-          src={image()?.fields.file.url}
+          className={styles.image}
+          src={image.fields.file.url}
         />
-      </Show>
-
-      <Show when={!image}>
+      ) : (
         <img
           alt={`${props.speaker.fields.name} headshot`}
-          class={styles.placeholderImage}
+          className={styles.placeholderImage}
           src="/more-to-come.png"
         />
-      </Show>
+      )}
 
-      <div class={styles.content}>
-        <span class={styles.name}>
+      <div className={styles.content}>
+        <span className={styles.name}>
           <b>{props.speaker.fields.name}</b>
         </span>
-        <div class={styles.details}>
-          <For each={props.speaker.fields.title}>
-            {(title) => (
-              <div>
-                <Show when={title.fields.organization}>
+        <div className={styles.details}>
+          {props.speaker.fields.title.map((title, index) => (
+            <div key={title.fields.id || index}>
+              {title.fields.organization && (
+                <>
                   <small>
                     <b>{title.fields.organization}</b>
                   </small>
                   <br />
-                </Show>
-                <span>{title.fields.title}</span>
-              </div>
-            )}
-          </For>
+                </>
+              )}
+              <span>{title.fields.title}</span>
+            </div>
+          ))}
           <Button
-            class={styles.button}
+            className={styles.button}
             onClick={handleClick}
             size="xsmall"
             variant="secondary"

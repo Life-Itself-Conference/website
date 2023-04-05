@@ -1,35 +1,31 @@
-import { Component, createUniqueId, Show, splitProps } from 'solid-js';
-import type { JSX } from 'solid-js/jsx-runtime';
+import { InputHTMLAttributes, useId } from 'react';
 import * as styles from './TextField.css';
 
-export const TextField: Component<TextFieldProps> = (props) => {
-  const id = createUniqueId();
-  const [{ label }, inputProps] = splitProps(props, ['label']);
+export const TextField = (props: TextFieldProps) => {
+  const { label, ...inputProps } = props;
+  const id = useId();
 
   return (
-    <div class={styles.container}>
+    <div className={styles.container}>
       <input
         {...inputProps}
-        class={styles.input}
+        className={styles.input}
         id={props.id || id}
         placeholder={props.placeholder || ' '}
         type={props.type || 'text'}
       />
 
-      <Show when={label}>
-        <label class={styles.label} for={props.id || id}>
+      {label && (
+        <label className={styles.label} htmlFor={props.id || id}>
           {label}
         </label>
-      </Show>
+      )}
 
-      <Show when={props.required}>
-        <span class={styles.required}>Required</span>
-      </Show>
+      {inputProps.required && <span className={styles.required}>Required</span>}
     </div>
   );
 };
 
-export interface TextFieldProps
-  extends JSX.InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }

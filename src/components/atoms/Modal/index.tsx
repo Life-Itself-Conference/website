@@ -1,40 +1,45 @@
 import classNames from 'classnames';
 import * as focusTrap from 'focus-trap';
-import { FaSolidX } from 'solid-icons/fa';
-import { createUniqueId, onCleanup, onMount, ParentComponent } from 'solid-js';
+import { PropsWithChildren, useEffect, useId, useRef } from 'react';
+import { FaTimes } from 'react-icons/fa/index.js';
 import * as styles from './Modal.css';
 
 const modals = new Set();
 
-export const Modal: ParentComponent<ModalProps> = (props) => {
-  const id = createUniqueId();
-  let dialog: HTMLDialogElement | undefined = undefined;
+export const Modal = (props: PropsWithChildren<ModalProps>) => {
+  const id = useId();
+  let modalRef = useRef<HTMLDivElement>(null);
 
-  onMount(() => {
-    if (dialog) {
-      const trap = focusTrap.createFocusTrap(dialog);
+  useEffect(() => {
+    const { current: modal } = modalRef;
+
+    if (modal) {
+      const trap = focusTrap.createFocusTrap(modal);
 
       trap.activate();
 
-      onCleanup(() => {
+      return () => {
         trap.deactivate();
-      });
+      };
     }
-  });
+  }, []);
 
-  onMount(() => {
+  useEffect(() => {
     modals.add(id);
     document.body.classList.toggle('modal-open', modals.size > 0);
 
-    onCleanup(() => {
+    return () => {
       modals.delete(id);
       document.body.classList.toggle('modal-open', modals.size > 0);
-    });
-  });
+    };
+  }, [id]);
 
-  onMount(() => {
-    const handleClick = (e: PointerEvent) => {
-      if (e.target === dialog || dialog?.contains(e.target as Node)) {
+  useEffect(() => {
+    const handleClick = (e: any) => {
+      if (
+        e.target === modalRef ||
+        modalRef.current?.contains(e.target as Node)
+      ) {
         return;
       }
 
@@ -42,39 +47,41 @@ export const Modal: ParentComponent<ModalProps> = (props) => {
     };
 
     document.addEventListener('pointerdown', handleClick);
-    onCleanup(() => document.removeEventListener('pointerdown', handleClick));
+    return () => {
+      document.removeEventListener('pointerdown', handleClick);
+    };
   });
 
   return (
-    <dialog class={styles.wrapper} open>
+    <dialog className={styles.wrapper} open>
       <div
-        class={classNames(
+        className={classNames(
           styles.dialog,
           props.size && styles.size[props.size],
           props.variant && styles.variant[props.variant],
-          props.class,
+          props.className,
         )}
-        ref={dialog}
+        ref={modalRef}
       >
-        <header class={styles.header}>
-          <img class={styles.logo} src="/life-itself.png" />
+        <header className={styles.header}>
+          <img className={styles.logo} src="/life-itself.png" />
           <button
             aria-label="Close"
-            class={styles.close}
+            className={styles.close}
             onClick={() => props.onClose?.()}
             type="button"
           >
-            <FaSolidX />
+            <FaTimes />
           </button>
         </header>
-        <div class={styles.content}>{props.children}</div>
+        <div className={styles.content}>{props.children}</div>
       </div>
     </dialog>
   );
 };
 
 export interface ModalProps {
-  class?: string;
+  className?: string;
   onClose?: () => void;
   size?: keyof typeof styles.size;
   variant?: keyof typeof styles.variant;

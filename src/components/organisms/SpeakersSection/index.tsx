@@ -1,10 +1,9 @@
 import type { Entry } from 'contentful';
-import type { Component } from 'solid-js';
 import type { Speaker } from '../../../types';
 import { ContentSection } from '../../molecules/ContentSection';
 import { SpeakerList } from '../../molecules/SpeakerList';
 
-export const SpeakersSection: Component<SpeakersSectionProps> = (props) => {
+export const SpeakersSection = (props: SpeakersSectionProps) => {
   return (
     <ContentSection
       id="speakers"

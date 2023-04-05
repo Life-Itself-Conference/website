@@ -1,35 +1,34 @@
 import type { Entry } from 'contentful';
-import { Component, mergeProps, Show } from 'solid-js';
 import type { Partner } from '../../../types';
 
-export const PartnerLogo: Component<PartnerLogoProps> = (props) => {
-  const defaultedProps = mergeProps({ variant: 'dark' }, props);
+export const PartnerLogo = (props: PartnerLogoProps) => {
+  const { variant = 'dark' } = props;
 
-  const darkVersion = defaultedProps.partner.fields.logo.find(
+  const darkVersion = props.partner.fields.logo.find(
     (item) => item.fields.title === 'dark',
   );
-  const lightVersion = defaultedProps.partner.fields.logo.find(
+  const lightVersion = props.partner.fields.logo.find(
     (item) => item.fields.title === 'light',
   );
 
   const logo =
-    defaultedProps.variant === 'dark'
+    variant === 'dark'
       ? darkVersion || lightVersion
       : lightVersion || darkVersion;
 
+  if (!logo) return null;
+
   return (
-    <Show when={logo}>
-      <img
-        alt={`${defaultedProps.partner.fields.partner} logo`}
-        class={defaultedProps.class}
-        src={logo?.fields?.file?.url}
-      />
-    </Show>
+    <img
+      alt={`${props.partner.fields.partner} logo`}
+      className={props.className}
+      src={logo?.fields?.file?.url}
+    />
   );
 };
 
 export interface PartnerLogoProps {
-  class?: string;
+  className?: string;
   partner: Entry<Partner>;
   variant?: 'dark' | 'light';
 }

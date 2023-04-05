@@ -1,28 +1,30 @@
-/* eslint-disable solid/no-innerhtml */
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
-import type { Component } from 'solid-js';
 import type { AboutUs } from '../../../types';
 import { ContentSection } from '../../molecules/ContentSection';
 import * as styles from './AboutUsSection.css';
 
-export const AboutUsSection: Component<AboutUsSectionProps> = (props) => {
+export const AboutUsSection = (props: AboutUsSectionProps) => {
   return (
     <ContentSection
-      class={styles.content}
+      className={styles.content}
       id="about-us"
       size="small"
       title="About Us"
     >
-      <p innerHTML={documentToHtmlString(props.aboutUs.fields.overview)} />
+      <p
+        dangerouslySetInnerHTML={{
+          __html: documentToHtmlString(props.aboutUs.fields.overview),
+        }}
+      />
 
       <img
         alt="Sanjay and Marc"
-        class={styles.image}
+        className={styles.image}
         src={props.aboutUs.fields.image.fields.file.url}
       />
 
-      <div class={styles.bios}>
+      <div className={styles.bios}>
         <div>
           <p>
             <b>{props.aboutUs.fields.sanjay}</b>
@@ -30,8 +32,10 @@ export const AboutUsSection: Component<AboutUsSectionProps> = (props) => {
             {props.aboutUs.fields.sanjayTitle}
           </p>
           <div
-            class={styles.bio}
-            innerHTML={documentToHtmlString(props.aboutUs.fields.sanjayBio)}
+            className={styles.bio}
+            dangerouslySetInnerHTML={{
+              __html: documentToHtmlString(props.aboutUs.fields.sanjayBio),
+            }}
           />
         </div>
 
@@ -42,8 +46,10 @@ export const AboutUsSection: Component<AboutUsSectionProps> = (props) => {
             {props.aboutUs.fields.marcTitle}
           </p>
           <div
-            class={styles.bio}
-            innerHTML={documentToHtmlString(props.aboutUs.fields.marcBio)}
+            className={styles.bio}
+            dangerouslySetInnerHTML={{
+              __html: documentToHtmlString(props.aboutUs.fields.marcBio),
+            }}
           />
         </div>
       </div>

@@ -1,9 +1,8 @@
-/* eslint-disable solid/no-innerhtml */
+/* eslint-disable no-unused-vars */
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { useStore } from '@nanostores/solid';
+import { useStore } from '@nanostores/react';
 import type { Entry } from 'contentful';
-import { Component, createEffect, createSignal, onMount, Show } from 'solid-js';
-import { createStore, SetStoreFunction } from 'solid-js/store';
+import { useEffect, useState } from 'react';
 import { isRegistrationModalOpen } from '../../../stores/registration';
 import { Event, TicketStatus } from '../../../types';
 import { Button } from '../../atoms/Button';
@@ -11,26 +10,26 @@ import { Modal } from '../../atoms/Modal';
 import { TextField } from '../../atoms/TextField';
 import * as styles from './RegistrationModal.css';
 
-export const RegistrationModal: Component<RegistrationModalProps> = (props) => {
+export const RegistrationModal = (props: RegistrationModalProps) => {
+  const [step, setStep] = useState(0);
   const $isRegistrationModalOpen = useStore(isRegistrationModalOpen);
-  const [step, setStep] = createSignal(0);
 
-  onMount(() => {
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.has('register')) {
       isRegistrationModalOpen.set(true);
     }
-  });
+  }, [$isRegistrationModalOpen]);
 
-  createEffect(() => {
+  useEffect(() => {
     if (props.event.fields.ticketStatus === TicketStatus.SoldOut) {
       setStep(0);
     } else {
       setStep(1);
     }
-  });
+  }, [props.event]);
 
-  const [registration, setRegistration] = createStore({
+  const [registration, setRegistration] = useState<Registration>({
     firstName: '',
     lastName: '',
     email: '',
@@ -47,80 +46,83 @@ export const RegistrationModal: Component<RegistrationModalProps> = (props) => {
     groupCode: '',
   });
 
-  const [payment, setPayment] = createStore<Payment>({
+  const [payment, setPayment] = useState<Payment>({
     cardNumber: '',
     cardExp: '',
   });
 
+  const handleRegistrationChange = (changed: Partial<Registration>) => {
+    setRegistration((previous) => ({ ...previous, ...changed }));
+  };
+
+  const handlePaymentChange = (changed: Partial<Payment>) => {
+    setPayment((previous) => ({ ...previous, ...changed }));
+  };
+
+  if (!$isRegistrationModalOpen) return null;
+
   return (
-    <Show when={$isRegistrationModalOpen()}>
-      <Modal
-        class={styles.modal}
-        onClose={() => isRegistrationModalOpen.set(false)}
-        size={step() === 1 ? 'small' : 'large'}
-      >
-        <header class={styles.header}>
-          <img src="/life-itself.png" />
-          <span>Registration</span>
-        </header>
+    <Modal
+      className={styles.modal}
+      onClose={() => isRegistrationModalOpen.set(false)}
+      size={step === 1 ? 'small' : 'large'}
+    >
+      <header className={styles.header}>
+        <img src="/life-itself.png" />
+        <span>Registration</span>
+      </header>
 
-        <Show when={step() === 0}>
-          <RegistrationClosed
-            event={props.event}
-            onComplete={() => setStep(1)}
-          />
-        </Show>
+      {step === 0 && (
+        <RegistrationClosed event={props.event} onComplete={() => setStep(1)} />
+      )}
 
-        <Show when={step() === 1}>
-          <RegistrationDetails
-            onComplete={() => setStep(2)}
-            registration={registration}
-            setRegistration={setRegistration}
-          />
-        </Show>
+      {step === 1 && (
+        <RegistrationDetails
+          onComplete={() => setStep(2)}
+          registration={registration}
+          setRegistration={handleRegistrationChange}
+        />
+      )}
 
-        <Show when={step() === 2}>
-          <RegistrationPayment
-            event={props.event}
-            onComplete={() => setStep(3)}
-            payment={payment}
-            setPayment={setPayment}
-          />
-        </Show>
+      {step === 2 && (
+        <RegistrationPayment
+          event={props.event}
+          onComplete={() => setStep(3)}
+          payment={payment}
+          setPayment={handlePaymentChange}
+        />
+      )}
 
-        <Show when={step() === 3}>
-          <RegistrationConfirmation event={props.event} />
-        </Show>
-      </Modal>
-    </Show>
+      {step === 3 && <RegistrationConfirmation event={props.event} />}
+    </Modal>
   );
 };
 
-export const RegistrationClosed: Component<RegistrationClosedProps> = (
-  props,
-) => {
+export const RegistrationClosed = (props: RegistrationClosedProps) => {
   const handleClick = () => props.onComplete();
 
   return (
     <>
       <div
-        innerHTML={documentToHtmlString(
-          props.event.fields.registrationClosedText,
-        )}
+        dangerouslySetInnerHTML={{
+          __html: documentToHtmlString(
+            props.event.fields.registrationClosedText,
+          ),
+        }}
       />
       <Button onClick={handleClick}>Register</Button>
       <div
-        innerHTML={documentToHtmlString(
-          props.event.fields.registrationRefundText,
-        )}
+        dangerouslySetInnerHTML={{
+          __html: documentToHtmlString(
+            props.event.fields.registrationRefundText,
+          ),
+        }}
       />
     </>
   );
 };
 
-export const RegistrationDetails: Component<RegistrationDetailsProps> = (
-  props,
-) => {
+export const RegistrationDetails = (props: RegistrationDetailsProps) => {
   const handleChange = (e: any) => {
     props.setRegistration({ [e.name]: e.currentTarget.value });
   };
@@ -131,7 +133,7 @@ export const RegistrationDetails: Component<RegistrationDetailsProps> = (
   };
 
   return (
-    <form class={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <TextField
         label="First Name"
         name="firstName"
@@ -229,9 +231,7 @@ export const RegistrationDetails: Component<RegistrationDetailsProps> = (
   );
 };
 
-export const RegistrationPayment: Component<RegistrationPaymentProps> = (
-  props,
-) => {
+export const RegistrationPayment = (props: RegistrationPaymentProps) => {
   const handleChange = (e: any) => {
     props.setPayment({ [e.name]: e.currentTarget.value });
   };
@@ -244,11 +244,13 @@ export const RegistrationPayment: Component<RegistrationPaymentProps> = (
   return (
     <>
       <div
-        innerHTML={documentToHtmlString(
-          props.event.fields.registrationPaymentText,
-        )}
+        dangerouslySetInnerHTML={{
+          __html: documentToHtmlString(
+            props.event.fields.registrationPaymentText,
+          ),
+        }}
       />
-      <form class={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <TextField
           label="Card Number"
           name="cardNumber"
@@ -269,14 +271,16 @@ export const RegistrationPayment: Component<RegistrationPaymentProps> = (
   );
 };
 
-export const RegistrationConfirmation: Component<
-  RegistrationConfirmationProps
-> = (props) => {
+export const RegistrationConfirmation = (
+  props: RegistrationConfirmationProps,
+) => {
   return (
     <div
-      innerHTML={documentToHtmlString(
-        props.event.fields.registrationConfirmationText,
-      )}
+      dangerouslySetInnerHTML={{
+        __html: documentToHtmlString(
+          props.event.fields.registrationConfirmationText,
+        ),
+      }}
     />
   );
 };
@@ -315,14 +319,14 @@ export interface RegistrationClosedProps {
 export interface RegistrationDetailsProps {
   onComplete: () => void;
   registration: Registration;
-  setRegistration: SetStoreFunction<Registration>;
+  setRegistration: (changed: Partial<Registration>) => void;
 }
 
 export interface RegistrationPaymentProps {
   event: Entry<Event>;
   onComplete: () => void;
   payment: Payment;
-  setPayment: SetStoreFunction<Payment>;
+  setPayment: (changed: Partial<Payment>) => void;
 }
 
 export interface RegistrationConfirmationProps {

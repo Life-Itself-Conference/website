@@ -1,36 +1,36 @@
-import { FaSolidBars } from 'solid-icons/fa';
+import { FaBars } from 'react-icons/fa/index.js';
 import type { Entry } from 'contentful';
-import { Component, createSignal, createUniqueId } from 'solid-js';
 import type { Event } from '../../../types';
 import * as styles from './Header.css';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import { ScheduleButton } from '../../molecules/ScheduleButton';
+import { useId, useState } from 'react';
 
-export const Header: Component<HeaderProps> = (props) => {
-  const navId = createUniqueId();
-  const [isMobileNavOpen, setIsMobileNavOpen] = createSignal(false);
+export const Header = (props: HeaderProps) => {
+  const navId = useId();
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const handleLinkClick = () => {
     setIsMobileNavOpen(false);
   };
 
   return (
-    <header class={styles.header}>
-      <a class={styles.logo} onClick={handleLinkClick} href="#">
+    <header className={styles.header}>
+      <a className={styles.logo} onClick={handleLinkClick} href="#">
         <span>Life Itself</span>
       </a>
       <button
         aria-controls={navId}
-        aria-expanded={isMobileNavOpen()}
+        aria-expanded={isMobileNavOpen}
         aria-label="Toggle Mobile Navigation"
-        class={styles.trigger}
-        onClick={() => setIsMobileNavOpen(!isMobileNavOpen())}
+        className={styles.trigger}
+        onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
         type="button"
       >
-        <FaSolidBars />
+        <FaBars />
       </button>
-      <nav class={styles.nav} data-open={isMobileNavOpen()} id={navId}>
-        <ul class={styles.list}>
+      <nav className={styles.nav} data-open={isMobileNavOpen} id={navId}>
+        <ul className={styles.list}>
           <li>
             <a onClick={handleLinkClick} href="#">
               Covid Safety
@@ -66,7 +66,7 @@ export const Header: Component<HeaderProps> = (props) => {
               Contact Us
             </a>
           </li>
-          <li class={styles.buttons}>
+          <li className={styles.buttons}>
             <ScheduleButton
               event={props.event}
               size="small"

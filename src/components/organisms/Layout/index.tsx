@@ -1,5 +1,5 @@
 import type { Entry } from 'contentful';
-import { Component, createMemo, createSignal, onMount } from 'solid-js';
+import { useEffect, useState } from 'react';
 import { getEvent } from '../../../services/contentful';
 import type { Event } from '../../../types';
 import { NewsletterModal } from '../../molecules/NewsletterModal';
@@ -12,35 +12,37 @@ import { LocationSection } from '../LocationSection';
 import { PartnersSection } from '../PartnersSection';
 import { SpeakersSection } from '../SpeakersSection';
 
-export const Layout: Component<LayoutProps> = (props) => {
-  const [previewEvent, setPreviewEvent] = createSignal<Entry<Event>>();
-  const event = createMemo(() => previewEvent() || props.event);
+export const Layout = (props: LayoutProps) => {
+  const [previewEvent, setPreviewEvent] = useState<Entry<Event>>();
+  const event = previewEvent || props.event;
 
-  onMount(async () => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('preview')) {
-      document.body.classList.add('preview');
-      setPreviewEvent(await getEvent(true));
-      document.body.classList.remove('preview');
-    }
-  });
+  useEffect(() => {
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('preview')) {
+        document.body.classList.add('preview');
+        setPreviewEvent(await getEvent(true));
+        document.body.classList.remove('preview');
+      }
+    })();
+  }, []);
 
   return (
     <>
-      <Header event={event()} />
+      <Header event={event} />
       <main>
-        <HeroSection event={event()} />
+        <HeroSection event={event} />
         <SpeakersSection
-          moreSpeakersComing={event().fields.moreSpeakersComing}
-          speakers={event().fields.speakers}
+          moreSpeakersComing={event.fields.moreSpeakersComing}
+          speakers={event.fields.speakers}
         />
-        <LocationSection location={event().fields.hotel} />
-        <PartnersSection partners={event().fields.partners} />
-        <AboutUsSection aboutUs={event().fields.aboutUs} />
+        <LocationSection event={event} />
+        <PartnersSection partners={event.fields.partners} />
+        <AboutUsSection aboutUs={event.fields.aboutUs} />
       </main>
-      <Footer event={event()} />
+      <Footer event={event} />
       <NewsletterModal />
-      <RegistrationModal event={event()} />
+      <RegistrationModal event={event} />
     </>
   );
 };

@@ -1,9 +1,6 @@
-/* eslint-disable solid/no-innerhtml */
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import type { Entry } from 'contentful';
-import { VsChevronDown } from 'solid-icons/vs';
-import type { Component } from 'solid-js';
-import { For, Show } from 'solid-js';
+import { FaChevronDown } from 'react-icons/fa/index.js';
 import { isNewsletterModalOpen } from '../../../stores/newsletter';
 import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';
@@ -13,19 +10,19 @@ import { EventMetadata } from '../../molecules/EventMetadata';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './HeroSection.css';
 
-export const HeroSection: Component<HeroSectionProps> = (props) => {
+export const HeroSection = (props: HeroSectionProps) => {
   return (
-    <section class={styles.container}>
+    <section className={styles.container}>
       <Container size="large">
         {/* Columns */}
-        <div class={styles.grid}>
-          <div class={styles.content}>
-            <EventMetadata class={styles.meta} event={props.event} />
-            <h1 class={styles.title}>
+        <div className={styles.grid}>
+          <div className={styles.content}>
+            <EventMetadata className={styles.meta} event={props.event} />
+            <h1 className={styles.title}>
               <span>LIFE ITSELF</span>
             </h1>
-            <p class={styles.tagline}>{props.event.fields.tagline}</p>
-            <div class={styles.buttons}>
+            <p className={styles.tagline}>{props.event.fields.tagline}</p>
+            <div className={styles.buttons}>
               <RegistrationButton event={props.event} />
               <ButtonLink href="#speakers" variant="secondary">
                 Speakers
@@ -39,49 +36,47 @@ export const HeroSection: Component<HeroSectionProps> = (props) => {
             </div>
           </div>
           <img
-            class={styles.image}
+            className={styles.image}
             src={props.event.fields.hero?.fields.file.url}
           />
-          <div class={styles.bottom}>
-            <div class={styles.marquee}>
+          <div className={styles.bottom}>
+            <div className={styles.marquee}>
               <ul>
                 <li>{props.event.fields.invitation}</li>
-                <For each={props.event.fields.partners}>
-                  {(partner) => (
-                    <li>
-                      <PartnerLogo partner={partner} />
-                    </li>
-                  )}
-                </For>
+                {props.event.fields.partners.map((partner) => (
+                  <li key={partner.fields.id}>
+                    <PartnerLogo partner={partner} />
+                  </li>
+                ))}
               </ul>
               <ul>
                 <li>{props.event.fields.invitation}</li>
-                <For each={props.event.fields.partners}>
-                  {(partner) => (
-                    <li>
-                      <PartnerLogo partner={partner} />
-                    </li>
-                  )}
-                </For>
+                {props.event.fields.partners.map((partner) => (
+                  <li key={partner.fields.id}>
+                    <PartnerLogo partner={partner} />
+                  </li>
+                ))}
               </ul>
             </div>
-            <Show when={!!props.event.fields.partnershipLogo}>
+            {!!props.event.fields.partnershipLogo && (
               <img
                 alt="In Partnership With CNN"
-                class={styles.partnership}
+                className={styles.partnership}
                 src={props.event.fields.partnershipLogo.fields.file.url}
               />
-            </Show>
+            )}
           </div>
         </div>
 
         <div
-          class={styles.videoDetails}
-          innerHTML={documentToHtmlString(props.event.fields.videoDetails)}
+          className={styles.videoDetails}
+          dangerouslySetInnerHTML={{
+            __html: documentToHtmlString(props.event.fields.videoDetails),
+          }}
         />
 
-        <div class={styles.arrowContainer}>
-          <VsChevronDown class={styles.arrow} />
+        <div className={styles.arrowContainer}>
+          <FaChevronDown className={styles.arrow} />
         </div>
       </Container>
     </section>

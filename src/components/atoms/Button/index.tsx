@@ -1,44 +1,39 @@
 import classNames from 'classnames';
-import { mergeProps, ParentComponent, splitProps } from 'solid-js';
-import type { JSX } from 'solid-js/jsx-runtime';
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  PropsWithChildren,
+} from 'react';
 import * as styles from './Button.css';
 
-export const Button: ParentComponent<ButtonProps> = (props) => {
-  const mergedProps = mergeProps(defaultButtonProps, props);
-  const [{ size, variant }, buttonProps] = splitProps(mergedProps, [
-    'size',
-    'variant',
-  ]);
+export const Button = (props: PropsWithChildren<ButtonProps>) => {
+  const { size = 'medium', variant = 'primary', ...buttonProps } = props;
 
   return (
     <button
       {...buttonProps}
-      class={classNames(
+      className={classNames(
         styles.button,
         size && styles.size[size],
         variant && styles.variant[variant],
-        props.class,
+        props.className,
       )}
       type={buttonProps.type || 'button'}
     />
   );
 };
 
-export const ButtonLink: ParentComponent<ButtonLinkProps> = (props) => {
-  const mergedProps = mergeProps(defaultButtonLinkProps, props);
-  const [{ size, variant }, linkProps] = splitProps(mergedProps, [
-    'size',
-    'variant',
-  ]);
+export const ButtonLink = (props: PropsWithChildren<ButtonLinkProps>) => {
+  const { size = 'medium', variant = 'primary', ...linkProps } = props;
 
   return (
     <a
       {...linkProps}
-      class={classNames(
+      className={classNames(
         styles.button,
         size && styles.size[size],
         variant && styles.variant[variant],
-        props.class,
+        props.className,
       )}
     />
   );
@@ -50,23 +45,13 @@ export interface ButtonCommonProps {
 }
 
 export interface ButtonProps
-  extends JSX.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     Partial<ButtonCommonProps> {
-  class?: string;
+  className?: string;
 }
 
 export interface ButtonLinkProps
-  extends JSX.AnchorHTMLAttributes<HTMLAnchorElement>,
+  extends AnchorHTMLAttributes<HTMLAnchorElement>,
     Partial<ButtonCommonProps> {
-  class?: string;
+  className?: string;
 }
-
-const defaultButtonProps: ButtonProps = {
-  size: 'medium',
-  variant: 'primary',
-};
-
-const defaultButtonLinkProps: ButtonLinkProps = {
-  size: 'medium',
-  variant: 'primary',
-};
