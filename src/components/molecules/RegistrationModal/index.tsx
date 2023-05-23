@@ -174,9 +174,7 @@ export const RegistrationDetails = (props: RegistrationDetailsProps) => {
         )}
       </form.Field>
       <form.Field name="address2">
-        {(field) => (
-          <TextField label="Address 2" {...field.getInputProps()} required />
-        )}
+        {(field) => <TextField label="Address 2" {...field.getInputProps()} />}
       </form.Field>
       <form.Field name="city">
         {(field) => (
@@ -199,18 +197,17 @@ export const RegistrationDetails = (props: RegistrationDetailsProps) => {
         )}
       </form.Field>
       <form.Field name="company">
-        {(field) => (
-          <TextField label="Company" {...field.getInputProps()} required />
-        )}
+        {(field) => <TextField label="Company" {...field.getInputProps()} />}
       </form.Field>
       <form.Field name="jobTitle">
-        {(field) => (
-          <TextField label="Job Title" {...field.getInputProps()} required />
-        )}
+        {(field) => <TextField label="Job Title" {...field.getInputProps()} />}
       </form.Field>
       <form.Field name="info">
         {(field) => (
-          <TextField label="Info" {...field.getInputProps()} required />
+          <TextField
+            label="Info about yourself or interests"
+            {...field.getInputProps()}
+          />
         )}
       </form.Field>
       <form.Field name="groupCode">
