@@ -40,6 +40,7 @@ export interface Event {
   registrationRefundText: Document;
   schedule: Asset;
   speakers: Entry<Speaker>[];
+  speakersSubtitle: Document;
   startDate: string;
   tagline: string;
   ticketStatus: TicketStatus;

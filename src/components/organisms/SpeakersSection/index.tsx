@@ -1,3 +1,4 @@
+import type { Document } from '@contentful/rich-text-types';
 import type { Entry } from 'contentful';
 import type { Speaker } from '../../../types';
 import { ContentSection } from '../../molecules/ContentSection';
@@ -7,7 +8,7 @@ export const SpeakersSection = (props: SpeakersSectionProps) => {
   return (
     <ContentSection
       id="speakers"
-      subtitle="LIFE ITSELF features extraordinary thinkers intersecting health & medicine — from research, technology, government, entertainment & business."
+      subtitle={props.subtitle}
       size="medium"
       title="Speakers"
     >
@@ -22,4 +23,5 @@ export const SpeakersSection = (props: SpeakersSectionProps) => {
 export interface SpeakersSectionProps {
   moreSpeakersComing?: boolean;
   speakers: Entry<Speaker>[];
+  subtitle: Document;
 }

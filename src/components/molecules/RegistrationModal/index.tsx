@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useStore } from '@nanostores/react';
+import { useForm } from '@tanstack/react-form';
 import type { Entry } from 'contentful';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { isRegistrationModalOpen } from '../../../stores';
 import { Event, TicketStatus } from '../../../types';
 import { Button } from '../../atoms/Button';
@@ -11,6 +12,7 @@ import { TextField } from '../../atoms/TextField';
 import * as styles from './RegistrationModal.css';
 
 export const RegistrationModal = (props: RegistrationModalProps) => {
+  const { event } = props;
   const [step, setStep] = useState(0);
   const $isRegistrationModalOpen = useStore(isRegistrationModalOpen);
 
@@ -22,12 +24,12 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
   }, [$isRegistrationModalOpen]);
 
   useEffect(() => {
-    if (props.event.fields.ticketStatus === TicketStatus.SoldOut) {
+    if (event.fields.ticketStatus === TicketStatus.SoldOut) {
       setStep(0);
     } else {
       setStep(1);
     }
-  }, [props.event]);
+  }, [event]);
 
   const [registration, setRegistration] = useState<Registration>({
     firstName: '',
@@ -73,7 +75,7 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
       </header>
 
       {step === 0 && (
-        <RegistrationClosed event={props.event} onComplete={() => setStep(1)} />
+        <RegistrationClosed event={event} onComplete={() => setStep(1)} />
       )}
 
       {step === 1 && (
@@ -86,169 +88,178 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
 
       {step === 2 && (
         <RegistrationPayment
-          event={props.event}
+          event={event}
           onComplete={() => setStep(3)}
           payment={payment}
           setPayment={handlePaymentChange}
         />
       )}
 
-      {step === 3 && <RegistrationConfirmation event={props.event} />}
+      {step === 3 && <RegistrationConfirmation event={event} />}
     </Modal>
   );
 };
 
 export const RegistrationClosed = (props: RegistrationClosedProps) => {
+  const { event } = props;
+
   const handleClick = () => props.onComplete();
 
   return (
     <>
-      <RichText field={props.event.fields.registrationClosedText} />
+      <RichText field={event.fields.registrationClosedText} />
       <Button onClick={handleClick}>Register</Button>
-      <RichText field={props.event.fields.registrationRefundText} />
+      <RichText field={event.fields.registrationRefundText} />
     </>
   );
 };
 
 export const RegistrationDetails = (props: RegistrationDetailsProps) => {
-  const handleChange = (e: any) => {
-    props.setRegistration({ [e.name]: e.currentTarget.value });
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    props.onComplete();
-  };
+  const form = useForm({
+    defaultValues: useMemo(
+      () => ({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        address1: '',
+        address2: '',
+        city: '',
+        country: '',
+        state: '',
+        zip: '',
+        company: '',
+        jobTitle: '',
+        info: '',
+        groupCode: '',
+      }),
+      [],
+    ),
+    onSubmit: (values) => {
+      console.log('[RegistrationModal]', 'details', values);
+      props.onComplete();
+    },
+  });
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <TextField
-        label="First Name"
-        name="firstName"
-        onChange={handleChange}
-        required
-        value={props.registration.firstName}
-      />
-      <TextField
-        label="Last Name"
-        name="lastName"
-        onChange={handleChange}
-        required
-        value={props.registration.lastName}
-      />
-      <TextField
-        label="Email"
-        name="email"
-        onChange={handleChange}
-        type="email"
-        required
-        value={props.registration.email}
-      />
-      <TextField
-        label="Phone"
-        name="phone"
-        onChange={handleChange}
-        required
-        value={props.registration.phone}
-      />
-      <TextField
-        label="Address 1"
-        name="address1"
-        onChange={handleChange}
-        required
-        value={props.registration.address1}
-      />
-      <TextField
-        label="Address 2"
-        name="address2"
-        onChange={handleChange}
-        value={props.registration.address2}
-      />
-      <TextField
-        label="City"
-        name="city"
-        onChange={handleChange}
-        value={props.registration.city}
-      />
-      <TextField
-        label="Country"
-        name="country"
-        onChange={handleChange}
-        value={props.registration.country}
-      />
-      <TextField
-        label="State"
-        name="state"
-        onChange={handleChange}
-        required
-        value={props.registration.state}
-      />
-      <TextField
-        label="Zip"
-        name="zip"
-        onChange={handleChange}
-        required
-        value={props.registration.zip}
-      />
-      <TextField
-        label="Company"
-        name="company"
-        onChange={handleChange}
-        value={props.registration.company}
-      />
-      <TextField
-        label="Job Title"
-        name="jobTitle"
-        onChange={handleChange}
-        value={props.registration.jobTitle}
-      />
-      <TextField
-        label="Info"
-        name="info"
-        onChange={handleChange}
-        value={props.registration.info}
-      />
-      <TextField
-        label="Group Code"
-        name="groupCode"
-        onChange={handleChange}
-        value={props.registration.groupCode}
-      />
+    <form.Form className={styles.form}>
+      <form.Field name="firstName">
+        {(field) => (
+          <TextField label="First Name" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="lastName">
+        {(field) => (
+          <TextField label="Last Name" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="email">
+        {(field) => (
+          <TextField
+            label="Email"
+            {...field.getInputProps()}
+            required
+            type="email"
+          />
+        )}
+      </form.Field>
+      <form.Field name="phone">
+        {(field) => (
+          <TextField label="Phone" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="address1">
+        {(field) => (
+          <TextField label="Address 1" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="address2">
+        {(field) => (
+          <TextField label="Address 2" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="city">
+        {(field) => (
+          <TextField label="City" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="country">
+        {(field) => (
+          <TextField label="Country" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="state">
+        {(field) => (
+          <TextField label="State" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="zip">
+        {(field) => (
+          <TextField label="Zip" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="company">
+        {(field) => (
+          <TextField label="Company" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="jobTitle">
+        {(field) => (
+          <TextField label="Job Title" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="info">
+        {(field) => (
+          <TextField label="Info" {...field.getInputProps()} required />
+        )}
+      </form.Field>
+      <form.Field name="groupCode">
+        {(field) => (
+          <TextField label="Group Code" {...field.getInputProps()} required />
+        )}
+      </form.Field>
       <Button type="submit">Next Step</Button>
-    </form>
+    </form.Form>
   );
 };
 
 export const RegistrationPayment = (props: RegistrationPaymentProps) => {
-  const handleChange = (e: any) => {
-    props.setPayment({ [e.name]: e.currentTarget.value });
-  };
+  const { event, onComplete } = props;
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    props.onComplete();
-  };
+  const form = useForm({
+    defaultValues: useMemo(
+      () => ({
+        cardNumber: '',
+        cardExp: '',
+      }),
+      [],
+    ),
+    onSubmit: (values) => {
+      console.log('[RegistrationModal]', 'payment', values);
+      onComplete();
+    },
+  });
 
   return (
     <>
-      <RichText field={props.event.fields.registrationPaymentText} />
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <TextField
-          label="Card Number"
-          name="cardNumber"
-          onChange={handleChange}
-          required
-          value={props.payment.cardNumber}
-        />
-        <TextField
-          label="MM / YY"
-          name="cardExp"
-          onChange={handleChange}
-          required
-          value={props.payment.cardExp}
-        />
+      <RichText field={event.fields.registrationPaymentText} />
+      <form.Form className={styles.form}>
+        <form.Field name="cardNumber">
+          {(field) => (
+            <TextField
+              label="Card Number"
+              {...field.getInputProps()}
+              required
+            />
+          )}
+        </form.Field>
+        <form.Field name="cardExp">
+          {(field) => (
+            <TextField label="MM / YY" {...field.getInputProps()} required />
+          )}
+        </form.Field>
         <Button type="submit">Submit</Button>
-      </form>
+      </form.Form>
     </>
   );
 };
@@ -256,7 +267,9 @@ export const RegistrationPayment = (props: RegistrationPaymentProps) => {
 export const RegistrationConfirmation = (
   props: RegistrationConfirmationProps,
 ) => {
-  return <RichText field={props.event.fields.registrationConfirmationText} />;
+  const { event } = props;
+
+  return <RichText field={event.fields.registrationConfirmationText} />;
 };
 
 interface Payment {

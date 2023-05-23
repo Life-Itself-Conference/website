@@ -36,6 +36,7 @@ export const Layout = (props: LayoutProps) => {
         <SpeakersSection
           moreSpeakersComing={event.fields.moreSpeakersComing}
           speakers={event.fields.speakers}
+          subtitle={event.fields.speakersSubtitle}
         />
         <LocationSection event={event} />
         <PartnersSection partners={event.fields.partners} />

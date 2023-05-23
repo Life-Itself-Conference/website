@@ -1,9 +1,11 @@
-import { Container } from '../../atoms/Container';
-import type { ContainerProps } from '../../atoms/Container';
-import { Title } from '../../atoms/Title';
-import * as styles from './ContentSection.css';
+import type { Document } from '@contentful/rich-text-types';
 import classNames from 'classnames';
 import type { PropsWithChildren } from 'react';
+import { Container } from '../../atoms/Container';
+import type { ContainerProps } from '../../atoms/Container';
+import { RichText } from '../../atoms/RichText';
+import { Title } from '../../atoms/Title';
+import * as styles from './ContentSection.css';
 
 export const ContentSection = (
   props: PropsWithChildren<ContentSectionProps>,
@@ -15,7 +17,12 @@ export const ContentSection = (
     <header>
       <Title tag={props.isHero ? 'h1' : 'h2'}>{props.title}</Title>
       <Container size={props.size}>
-        {props.subtitle && <p>{props.subtitle}</p>}
+        {props.subtitle &&
+          (typeof props.subtitle === 'string' ? (
+            <p>{props.subtitle}</p>
+          ) : (
+            <RichText field={props.subtitle} />
+          ))}
       </Container>
     </header>
     <Container className={props.contentClassName} size={props.size}>
@@ -30,6 +37,6 @@ export interface ContentSectionProps {
   id?: string;
   isHero?: boolean;
   size?: ContainerProps['size'];
-  subtitle?: string;
+  subtitle?: Document | string;
   title: string;
 }
