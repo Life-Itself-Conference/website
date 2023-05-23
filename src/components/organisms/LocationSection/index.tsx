@@ -50,7 +50,13 @@ export const LocationSection = (props: LocationSectionProps) => {
       <aside className={styles.aside}>
         <div className={styles.overview}>
           <RichText field={props.event.fields.hotel.fields.hotelOverview} />
-          <span>
+        </div>
+        <footer className={styles.footer}>
+          <p>
+            <b>{props.event.fields.hotel.fields.hotel}</b>
+            <br />
+            {props.event.fields.hotel.fields.address}
+            <br />
             <a href="#">
               <time
                 dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
@@ -59,13 +65,6 @@ export const LocationSection = (props: LocationSectionProps) => {
                 {formatDate(props.event.fields.endDate)}
               </time>
             </a>
-          </span>
-        </div>
-        <footer className={styles.footer}>
-          <p>
-            <b>{props.event.fields.hotel.fields.hotel}</b>
-            <br />
-            {props.event.fields.hotel.fields.address}
           </p>
           <ul className={styles.buttons}>
             <li>
