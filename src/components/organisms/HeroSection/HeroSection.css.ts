@@ -217,8 +217,8 @@ export const arrowContainer = style({
 
 export const arrow = style({
   animation: `${bounceKeyframes} 2s ease infinite`,
-  fontSize: theme.spacing.xxlarge,
-  marginTop: 20,
+  fontSize: theme.spacing.xlarge,
+  marginTop: theme.spacing.large,
   textAlign: 'center',
   willChange: 'transform',
 });

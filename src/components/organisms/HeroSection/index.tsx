@@ -1,5 +1,5 @@
 import type { Entry } from 'contentful';
-import { FaChevronDown } from 'react-icons/fa/index.js';
+import { BsChevronDown } from 'react-icons/bs/index.js';
 import { isNewsletterModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
 import { Button, ButtonLink } from '../../atoms/Button';
@@ -74,7 +74,7 @@ export const HeroSection = (props: HeroSectionProps) => {
         />
 
         <div className={styles.arrowContainer}>
-          <FaChevronDown className={styles.arrow} />
+          <BsChevronDown className={styles.arrow} />
         </div>
       </Container>
     </section>
