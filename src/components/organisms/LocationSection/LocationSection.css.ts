@@ -69,7 +69,10 @@ globalStyle(`${header} h2 sub`, {
 
 export const aside = style({
   backgroundColor: 'rgba(0, 0, 0, 0.75)',
+  display: 'flex',
+  flexDirection: 'column',
   fontSize: theme.fontSizes.small,
+  gap: theme.spacing.medium,
   padding: theme.spacing.medium,
 
   '@media': {
