@@ -1,11 +1,11 @@
 import type { Entry } from 'contentful';
 import { BsChevronDown } from 'react-icons/bs/index.js';
-import { isNewsletterModalOpen } from '../../../stores';
+// import { isNewsletterModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
-import { Button, ButtonLink } from '../../atoms/Button';
+import { ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
-import { RichText } from '../../atoms/RichText';
+// import { RichText } from '../../atoms/RichText';
 import { EventMetadata } from '../../molecules/EventMetadata';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './HeroSection.css';
@@ -27,12 +27,12 @@ export const HeroSection = (props: HeroSectionProps) => {
               <ButtonLink href="#speakers" variant="secondary">
                 Speakers
               </ButtonLink>
-              <Button
+              {/* <Button
                 onClick={() => isNewsletterModalOpen.set(true)}
                 variant="secondary"
               >
                 Join Newsletter
-              </Button>
+              </Button> */}
             </div>
           </div>
           <img
@@ -68,10 +68,10 @@ export const HeroSection = (props: HeroSectionProps) => {
           </div>
         </div>
 
-        <RichText
+        {/* <RichText
           className={styles.videoDetails}
           field={props.event.fields.videoDetails}
-        />
+        /> */}
 
         <div className={styles.arrowContainer}>
           <BsChevronDown className={styles.arrow} />

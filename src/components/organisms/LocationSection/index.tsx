@@ -88,7 +88,12 @@ export const LocationSection = (props: LocationSectionProps) => {
               </ButtonLink>
             </li>
             <li>
-              <ButtonLink href="#" size="xsmall" variant="secondary">
+              <ButtonLink
+                href="https://g.page/DelCoronado?share"
+                target="hotel_directions"
+                size="xsmall"
+                variant="secondary"
+              >
                 Get Directions
               </ButtonLink>
             </li>

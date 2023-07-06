@@ -50,6 +50,11 @@ export const Header = (props: HeaderProps) => {
             </li>
           )}
           <li>
+            <a href="https://cnn.com/lifeitself" target="videos">
+              Videos
+            </a>
+          </li>
+          <li>
             <a onClick={handleLinkClick} href="#speakers">
               Speakers
             </a>

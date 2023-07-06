@@ -19,7 +19,7 @@ export const RegistrationButton = (props: RegistrationButtonProps) => {
       case TicketStatus.OnSale:
         return {
           onClick: () => isRegistrationModalOpen.set(true),
-          text: 'On Sale',
+          text: 'Register Now',
         };
       case TicketStatus.SoldOut:
         return {
