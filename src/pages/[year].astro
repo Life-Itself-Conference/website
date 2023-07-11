@@ -1,0 +1,17 @@
+---
+import Document from '../Document.astro';
+import { Layout } from '../components/organisms/Layout';
+import { getEvent, getEvents } from '../services/contentful';
+
+export async function getStaticPaths() {
+  const events = await getEvents();
+  return events.map((event) => ({ params: { year: event.fields.year } }));
+}
+
+const { year } = Astro.params;
+const event = await getEvent({ isPreview: false, year: year as string });
+---
+
+<Document>
+  <Layout client:load event={event} />
+</Document>

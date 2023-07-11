@@ -12,13 +12,13 @@ export const SpeakerList = (props: SpeakerListProps) => {
   const [activeSpeakerId, setActiveSpeakerId] = useState<number | undefined>();
   const activeSpeaker = useMemo(
     () =>
-      props.speakers.find((speaker) => speaker.fields.id === activeSpeakerId),
+      props.speakers?.find((speaker) => speaker.fields.id === activeSpeakerId),
     [activeSpeakerId, props.speakers],
   );
 
   return (
     <ul className={styles.list}>
-      {props.speakers.map((item) => (
+      {props.speakers?.map((item) => (
         <li className={styles.item} key={item.fields.id}>
           <SpeakerThumbnail onClick={setActiveSpeakerId} speaker={item} />
         </li>

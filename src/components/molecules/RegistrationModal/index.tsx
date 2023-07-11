@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { isRegistrationModalOpen } from '../../../stores';
 import { Event, TicketStatus } from '../../../types';
 import { Button } from '../../atoms/Button';
-import { Modal } from '../../atoms/Modal';
+import { GenericModal } from '../../atoms/GenericModal';
 import { RichText } from '../../atoms/RichText';
 import { TextField } from '../../atoms/TextField';
 import * as styles from './RegistrationModal.css';
@@ -64,7 +64,7 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
   if (!$isRegistrationModalOpen) return null;
 
   return (
-    <Modal
+    <GenericModal
       className={styles.modal}
       onClose={() => isRegistrationModalOpen.set(false)}
       size={step === 1 ? 'small' : 'large'}
@@ -96,7 +96,7 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
       )}
 
       {step === 3 && <RegistrationConfirmation event={event} />}
-    </Modal>
+    </GenericModal>
   );
 };
 

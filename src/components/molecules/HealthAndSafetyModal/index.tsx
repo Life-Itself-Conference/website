@@ -2,7 +2,7 @@ import { useStore } from '@nanostores/react';
 import type { Entry } from 'contentful';
 import { isHealthAndSafetyModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
-import { Modal } from '../../atoms/Modal';
+import { GenericModal } from '../../atoms/GenericModal';
 import { RichText } from '../../atoms/RichText';
 
 export const HealthAndSafetyModal = (props: HealthAndSafeytModalProps) => {
@@ -11,9 +11,9 @@ export const HealthAndSafetyModal = (props: HealthAndSafeytModalProps) => {
   if (!$isHealthAndSafetyModalOpen) return null;
 
   return (
-    <Modal onClose={() => isHealthAndSafetyModalOpen.set(false)}>
+    <GenericModal onClose={() => isHealthAndSafetyModalOpen.set(false)}>
       <RichText field={props.event.fields.healthAndSafetyDescription} />
-    </Modal>
+    </GenericModal>
   );
 };
 

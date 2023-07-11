@@ -1,6 +1,5 @@
-import type { Document } from '@contentful/rich-text-types';
 import type { Entry } from 'contentful';
-import type { Speaker } from '../../../types';
+import type { Event } from '../../../types';
 import { ContentSection } from '../../molecules/ContentSection';
 import { SpeakerList } from '../../molecules/SpeakerList';
 
@@ -8,20 +7,21 @@ export const SpeakersSection = (props: SpeakersSectionProps) => {
   return (
     <ContentSection
       id="speakers"
-      subtitle={props.subtitle}
+      subtitle={props.event.fields.speakersSubtitle}
       size="medium"
-      title="Speakers"
+      title={
+        props.isPastEvent ? `${props.event.fields.year} Speakers` : 'Speakers'
+      }
     >
       <SpeakerList
-        moreSpeakersComing={props.moreSpeakersComing}
-        speakers={props.speakers}
+        moreSpeakersComing={props.event.fields.moreSpeakersComing}
+        speakers={props.event.fields.speakers}
       />
     </ContentSection>
   );
 };
 
 export interface SpeakersSectionProps {
-  moreSpeakersComing?: boolean;
-  speakers: Entry<Speaker>[];
-  subtitle: Document;
+  event: Entry<Event>;
+  isPastEvent?: boolean;
 }

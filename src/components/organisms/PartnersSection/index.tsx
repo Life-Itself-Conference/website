@@ -1,5 +1,5 @@
 import type { Entry } from 'contentful';
-import type { Partner } from '../../../types';
+import type { Event } from '../../../types';
 import { ButtonLink } from '../../atoms/Button';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
 import { ContentSection } from '../../molecules/ContentSection';
@@ -13,7 +13,7 @@ export const PartnersSection = (props: PartnersSectionProps) => (
     size="medium"
   >
     <ul className={styles.list}>
-      {props.partners.map((partner) => (
+      {props.event.fields.partners.map((partner) => (
         <li key={partner.fields.id}>
           <a
             aria-label={partner.fields.partner}
@@ -44,5 +44,5 @@ export const PartnersSection = (props: PartnersSectionProps) => (
 );
 
 export interface PartnersSectionProps {
-  partners: Entry<Partner>[];
+  event: Entry<Event>;
 }

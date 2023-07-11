@@ -49,11 +49,11 @@ export const Header = (props: HeaderProps) => {
               </a>
             </li>
           )}
-          <li>
+          {/* <li>
             <a href="https://cnn.com/lifeitself" target="videos">
               Videos
             </a>
-          </li>
+          </li> */}
           <li>
             <a onClick={handleLinkClick} href="#speakers">
               Speakers

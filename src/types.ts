@@ -21,8 +21,13 @@ export interface AboutUs {
   year: string;
 }
 
+export interface App {
+  currentEvent: Entry<Event>;
+}
+
 export interface Event {
   aboutUs: Entry<AboutUs>;
+  announcementModal?: Entry<Modal>;
   endDate: string;
   healthAndSafetyStatus: boolean;
   healthAndSafetyLabel: string;
@@ -60,6 +65,12 @@ export interface Location {
   video: Asset;
   videoPoster: Asset;
   year: string;
+}
+
+export interface Modal {
+  description: Document;
+  image: Asset;
+  title: string;
 }
 
 export interface Partner {

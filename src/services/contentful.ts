@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 import type { CreateClientParams, ContentfulClientApi } from 'contentful';
-import type { Event } from '../types';
+import type { App, Event } from '../types';
 
 const CONTENTFUL_ACCESS_TOKEN = import.meta.env.PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 const CONTENTFUL_PREVIEW_ACCESS_TOKEN = import.meta.env
@@ -40,11 +40,40 @@ export const getContentfulClient = (isPreview = false) => {
   });
 };
 
-export const getEvent = async (isPreview = false) => {
+export const getEvent = async ({
+  isPreview,
+  year,
+}: {
+  isPreview?: boolean;
+  year?: string;
+} = {}) => {
+  const client = getContentfulClient(isPreview);
+
+  if (year) {
+    const data = await client.getEntries<Event>({
+      content_type: 'event',
+      include: 2,
+      'fields.year': year,
+    });
+
+    return data.items[0];
+  }
+
+  const data = await client.getEntries<App>({
+    content_type: 'app',
+    include: 3,
+  });
+
+  return data.items[0].fields.currentEvent;
+};
+
+export const getEvents = async ({
+  isPreview,
+}: { isPreview?: boolean } = {}) => {
   const data = await getContentfulClient(isPreview).getEntries<Event>({
     content_type: 'event',
     include: 2,
   });
 
-  return data.items?.[0];
+  return data.items;
 };

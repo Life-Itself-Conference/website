@@ -2,7 +2,7 @@ import { useStore } from '@nanostores/react';
 import { useEffect } from 'react';
 import { isNewsletterModalOpen } from '../../../stores';
 import { Button } from '../../atoms/Button';
-import { Modal } from '../../atoms/Modal';
+import { GenericModal } from '../../atoms/GenericModal';
 import { TextField } from '../../atoms/TextField';
 import * as styles from './NewsletterModal.css';
 
@@ -31,13 +31,13 @@ export const NewsletterModal = () => {
   if (!$isNewsletterModalOpen) return null;
 
   return (
-    <Modal onClose={() => isNewsletterModalOpen.set(false)} size="small">
+    <GenericModal onClose={() => isNewsletterModalOpen.set(false)} size="small">
       <p>Please join our newsletter to stay informed:</p>
       <form className={styles.form}>
         <TextField label="Name" />
         <TextField label="Email Address" type="email" />
         <Button>Join Newsletter</Button>
       </form>
-    </Modal>
+    </GenericModal>
   );
 };

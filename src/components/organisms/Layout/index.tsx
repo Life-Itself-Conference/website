@@ -22,25 +22,23 @@ export const Layout = (props: LayoutProps) => {
       const params = new URLSearchParams(window.location.search);
       if (params.has('preview')) {
         document.body.classList.add('preview');
-        setPreviewEvent(await getEvent(true));
+        setPreviewEvent(
+          await getEvent({ isPreview: true, year: props.event.fields.year }),
+        );
         document.body.classList.remove('preview');
       }
     })();
-  }, []);
+  }, [props.event]);
 
   return (
     <>
       <Header event={event} />
       <main>
         <HeroSection event={event} />
-        <SpeakersSection
-          moreSpeakersComing={event.fields.moreSpeakersComing}
-          speakers={event.fields.speakers}
-          subtitle={event.fields.speakersSubtitle}
-        />
+        <SpeakersSection event={props.event} />
         <LocationSection event={event} />
-        <PartnersSection partners={event.fields.partners} />
-        <AboutUsSection aboutUs={event.fields.aboutUs} />
+        <PartnersSection event={event} />
+        <AboutUsSection event={event} />
       </main>
       <Footer event={event} />
       <HealthAndSafetyModal event={event} />
