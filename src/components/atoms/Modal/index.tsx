@@ -1,6 +1,6 @@
 import type { Document } from '@contentful/rich-text-types';
 import type { Asset } from 'contentful';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa/index.js';
 import { RichText } from '../RichText';
 import * as styles from './Modal.css';
 
