@@ -2,6 +2,7 @@ import type { Document } from '@contentful/rich-text-types';
 import type { Asset } from 'contentful';
 import { useEffect, useRef } from 'react';
 import { FaTimes } from 'react-icons/fa/index.js';
+import { Image } from '../Image';
 import { RichText } from '../RichText';
 import * as styles from './Modal.css';
 
@@ -42,7 +43,7 @@ export const Modal = ({ description, image, onClose, title }: ModalProps) => {
             <FaTimes />
           </button>
         </header>
-        <img alt="" className={styles.image} src={image.fields.file.url} />
+        <Image alt="" className={styles.image} src={image.fields.file.url} />
         <div className={styles.content}>
           <h2>{title}</h2>
           <RichText field={description} />

@@ -1,11 +1,11 @@
 import type { Entry } from 'contentful';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { BsChevronDown } from 'react-icons/bs/index.js';
 // import { isNewsletterModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
 import { ButtonLink } from '../../atoms/Button';
 import { Container } from '../../atoms/Container';
-import { Modal } from '../../atoms/Modal';
+// import { Modal } from '../../atoms/Modal';
 import { PartnerLogo } from '../../atoms/PartnerLogo';
 // import { RichText } from '../../atoms/RichText';
 import { EventMetadata } from '../../molecules/EventMetadata';
@@ -13,7 +13,7 @@ import { RegistrationButton } from '../../molecules/RegistrationButton';
 import * as styles from './HeroSection.css';
 
 export const HeroSection = (props: HeroSectionProps) => {
-  const [isAnnouncementModalOpen, setIsAnnouncementModalOpen] = useState(true);
+  // const [isAnnouncementModalOpen, setIsAnnouncementModalOpen] = useState(true);
 
   return (
     <section className={styles.container}>
@@ -21,7 +21,7 @@ export const HeroSection = (props: HeroSectionProps) => {
         {/* Columns */}
         <div className={styles.grid}>
           <div className={styles.content}>
-            {props.event.fields.announcementModal && (
+            {/* {props.event.fields.announcementModal && (
               <>
                 <strong
                   className={styles.announcement}
@@ -36,7 +36,7 @@ export const HeroSection = (props: HeroSectionProps) => {
                   />
                 )}
               </>
-            )}
+            )} */}
             <EventMetadata className={styles.meta} event={props.event} />
             <h1 className={styles.title}>
               <span>LIFE ITSELF</span>

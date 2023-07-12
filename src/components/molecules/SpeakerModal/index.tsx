@@ -2,6 +2,7 @@ import type { Entry } from 'contentful';
 import { Fragment } from 'react';
 import type { Speaker } from '../../../types';
 import { GenericModal, GenericModalProps } from '../../atoms/GenericModal';
+import { Image } from '../../atoms/Image';
 import { RichText } from '../../atoms/RichText';
 import * as styles from './SpeakerModal.css';
 
@@ -33,7 +34,7 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
         </section>
 
         <div className={styles.image}>
-          <img
+          <Image
             alt={`${props.speaker?.fields.name} headshot`}
             src={
               props.speaker?.fields.headshot?.find(

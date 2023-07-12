@@ -2,6 +2,7 @@ import type { Entry } from 'contentful';
 import { useEffect, useState } from 'react';
 import { getEvent } from '../../../services/contentful';
 import type { Event } from '../../../types';
+import { AnnouncementBanner } from '../../atoms/AnnouncementBanner';
 import { HealthAndSafetyModal } from '../../molecules/HealthAndSafetyModal';
 import { NewsletterModal } from '../../molecules/NewsletterModal';
 import { RegistrationModal } from '../../molecules/RegistrationModal';
@@ -32,6 +33,7 @@ export const Layout = (props: LayoutProps) => {
 
   return (
     <>
+      <AnnouncementBanner event={event} />
       <Header event={event} />
       <main>
         <HeroSection event={event} />
