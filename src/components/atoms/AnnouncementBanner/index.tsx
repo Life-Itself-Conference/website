@@ -1,7 +1,7 @@
 import type { Entry } from 'contentful';
 import { useState } from 'react';
 import { BsMegaphoneFill } from 'react-icons/bs/index.js';
-import { FaCaretRight } from 'react-icons/fa';
+import { FaCaretRight } from 'react-icons/fa/index.js';
 import type { Event } from '../../../types';
 import { Container } from '../Container';
 import { Modal } from '../Modal';
