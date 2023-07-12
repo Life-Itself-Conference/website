@@ -9,7 +9,9 @@ export const PartnersSection = (props: PartnersSectionProps) => (
   <ContentSection
     contentClassName={styles.container}
     id="partners"
-    title="Partners"
+    title={
+      props.isPastEvent ? `${props.event.fields.year} Partners` : 'Partners'
+    }
     size="medium"
   >
     <ul className={styles.list}>
@@ -45,4 +47,5 @@ export const PartnersSection = (props: PartnersSectionProps) => (
 
 export interface PartnersSectionProps {
   event: Entry<Event>;
+  isPastEvent?: boolean;
 }

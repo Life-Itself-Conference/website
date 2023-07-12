@@ -35,9 +35,9 @@ export const Layout = (props: LayoutProps) => {
       <Header event={event} />
       <main>
         <HeroSection event={event} />
-        <SpeakersSection event={props.event} />
-        <LocationSection event={event} />
-        <PartnersSection event={event} />
+        <SpeakersSection event={props.event} isPastEvent={props.isPastEvent} />
+        <LocationSection event={event} isPastEvent={props.isPastEvent} />
+        <PartnersSection event={event} isPastEvent={props.isPastEvent} />
         <AboutUsSection event={event} />
       </main>
       <Footer event={event} />
@@ -50,4 +50,5 @@ export const Layout = (props: LayoutProps) => {
 
 export interface LayoutProps {
   event: Entry<Event>;
+  isPastEvent?: boolean;
 }

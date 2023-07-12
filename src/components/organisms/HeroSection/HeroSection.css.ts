@@ -47,6 +47,9 @@ export const grid = style({
 });
 
 export const content = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing.small,
   order: 3,
   marginBottom: theme.spacing.medium,
 
@@ -57,6 +60,13 @@ export const content = style({
       order: 'unset',
     },
   },
+});
+
+export const announcement = style({
+  color: theme.colors.red,
+  cursor: 'pointer',
+  fontSize: theme.fontSizes.small,
+  fontWeight: 'bold',
 });
 
 export const image = style({

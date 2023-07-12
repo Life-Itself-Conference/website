@@ -13,5 +13,5 @@ const event = await getEvent({ isPreview: false, year: year as string });
 ---
 
 <Document>
-  <Layout client:load event={event} />
+  <Layout client:load event={event} isPastEvent />
 </Document>

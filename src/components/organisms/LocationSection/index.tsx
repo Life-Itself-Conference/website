@@ -15,7 +15,9 @@ export const LocationSection = (props: LocationSectionProps) => {
       className={styles.container}
       contentClassName={styles.content}
       id="location"
-      title="Location"
+      title={
+        props.isPastEvent ? `${props.event.fields.year} Location` : 'Location'
+      }
     >
       <header className={styles.header}>
         {props.event.fields.hotel.fields.video && (
@@ -106,4 +108,5 @@ export const LocationSection = (props: LocationSectionProps) => {
 
 export interface LocationSectionProps {
   event: Entry<Event>;
+  isPastEvent?: boolean;
 }

@@ -23,9 +23,12 @@ export const HeroSection = (props: HeroSectionProps) => {
           <div className={styles.content}>
             {props.event.fields.announcementModal && (
               <>
-                <p onClick={() => setIsAnnouncementModalOpen(true)}>
+                <strong
+                  className={styles.announcement}
+                  onClick={() => setIsAnnouncementModalOpen(true)}
+                >
                   {props.event.fields.announcementModal.fields.title}
-                </p>
+                </strong>
                 {isAnnouncementModalOpen && (
                   <Modal
                     onClose={() => setIsAnnouncementModalOpen(false)}

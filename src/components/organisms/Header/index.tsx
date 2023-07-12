@@ -23,7 +23,7 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className={styles.header}>
-      <a className={styles.logo} onClick={handleLinkClick} href="#">
+      <a className={styles.logo} onClick={handleLinkClick} href="/">
         <span>Life Itself</span>
       </a>
       <button

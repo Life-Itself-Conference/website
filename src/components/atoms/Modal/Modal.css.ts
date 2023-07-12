@@ -12,11 +12,12 @@ export const wrapper = style({
 });
 
 export const dialog = style({
+  alignItems: 'center',
   backgroundColor: theme.colors.black,
   border: 0,
   color: theme.colors.white,
   display: 'grid',
-  gridTemplateRows: 'auto 1fr',
+  gridTemplateColumns: '1fr 1fr',
   height: '100%',
   margin: 0,
   maxHeight: '100%',
@@ -73,9 +74,12 @@ globalStyle(`${dialog}::backdrop`, {
 export const header = style({
   alignItems: 'center',
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
   paddingBlock: theme.spacing.small,
   paddingInline: theme.spacing.medium,
+  position: 'absolute',
+  top: 0,
+  width: '100%',
 
   '@media': {
     [queries.large]: {
@@ -105,14 +109,10 @@ export const close = style({
   justifyContent: 'center',
   width: theme.spacing.large,
   zIndex: 1,
+});
 
-  '@media': {
-    [queries.large]: {
-      position: 'absolute',
-      right: theme.spacing.small,
-      top: theme.spacing.small,
-    },
-  },
+export const image = style({
+  width: '100%',
 });
 
 export const content = style({
@@ -120,6 +120,7 @@ export const content = style({
   flexDirection: 'column',
   overflow: 'auto',
   padding: `${theme.spacing.large} ${theme.spacing.large}`,
+  textAlign: 'center',
 });
 
 globalStyle(`${variant.condensed} ${content}`, {
