@@ -1,4 +1,5 @@
 import * as contentful from 'contentful';
+import type { Entry } from 'contentful';
 import type { CreateClientParams, ContentfulClientApi } from 'contentful';
 import type { App, Event } from '../types';
 
@@ -41,13 +42,16 @@ export const getContentfulClient = (isPreview = false) => {
 };
 
 export const getEvent = async ({
+  includePastEvents,
   isPreview,
   year,
 }: {
+  includePastEvents?: boolean;
   isPreview?: boolean;
   year?: string;
-} = {}) => {
+} = {}): Promise<[Entry<Event>, Entry<Event>[]]> => {
   const client = getContentfulClient(isPreview);
+  let event: Entry<Event>;
 
   if (year) {
     const data = await client.getEntries<Event>({
@@ -56,18 +60,20 @@ export const getEvent = async ({
       'fields.year': year,
     });
 
-    return data.items[0];
+    event = data.items[0];
+  } else {
+    const data = await client.getEntries<App>({
+      content_type: 'app',
+      include: 3,
+    });
+
+    event = data.items[0].fields.currentEvent;
   }
 
-  const data = await client.getEntries<App>({
-    content_type: 'app',
-    include: 3,
-  });
-
-  return data.items[0].fields.currentEvent;
+  return [event, includePastEvents ? await getPastEvents({ isPreview }) : []];
 };
 
-export const getEvents = async ({
+export const getAllEvents = async ({
   isPreview,
 }: { isPreview?: boolean } = {}) => {
   const data = await getContentfulClient(isPreview).getEntries<Event>({
@@ -76,4 +82,38 @@ export const getEvents = async ({
   });
 
   return data.items;
+};
+
+export const getCurrentEvent = async ({
+  isPreview,
+}: {
+  isPreview?: boolean;
+} = {}) => {
+  const client = getContentfulClient(isPreview);
+  const data = await client.getEntries<App>({
+    content_type: 'app',
+    include: 3,
+  });
+
+  return data.items[0].fields.currentEvent;
+};
+
+export const getPastEvents = async ({
+  event,
+  isPreview,
+}: {
+  event?: Entry<Event>;
+  isPreview?: boolean;
+} = {}) => {
+  let currentEvent = event || (await getCurrentEvent({ isPreview }));
+  const events = await getAllEvents({ isPreview });
+
+  return events
+    .filter(
+      (instance) =>
+        Number(instance.fields.year) < Number(currentEvent.fields.year),
+    )
+    .sort((eventA, eventB) =>
+      Number(eventA.fields.year) > Number(eventB.fields.year) ? -1 : 1,
+    );
 };

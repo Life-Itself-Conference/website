@@ -10,6 +10,7 @@ export const header = style({
   justifyContent: 'space-between',
   padding: theme.spacing.small,
   position: 'sticky',
+  textTransform: 'uppercase',
   top: 0,
   zIndex: 998,
 
@@ -96,16 +97,41 @@ export const list = style({
   },
 });
 
+globalStyle(`${list} > li`, {
+  position: 'relative',
+});
+
+globalStyle(`${list} > li > button:not(${button})`, {
+  background: 'none',
+  border: 'none',
+  color: 'inherit',
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  fontSize: 'inherit',
+  fontWeight: 'inherit',
+  padding: 0,
+  textTransform: 'inherit',
+  whiteSpace: 'nowrap',
+});
+
+globalStyle(`${list} > li > ul`, {
+  display: 'none',
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
+  position: 'absolute',
+  top: '100%',
+});
+
+globalStyle(`${list} > li:hover > ul`, {
+  display: 'block',
+});
+
 export const healthAndSafety = style({});
 
 globalStyle(`${list} a:where(:not(${button}, ${healthAndSafety}))`, {
   color: 'inherit',
-});
-
-globalStyle(`${list} a:where(:not(${button}))`, {
   fontWeight: 'normal',
-  textDecoration: 'none',
-  textTransform: 'uppercase',
   whiteSpace: 'nowrap',
 });
 

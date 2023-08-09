@@ -1,11 +1,11 @@
 ---
 import Document from '../Document.astro';
-import { Layout } from '../components/organisms/Layout';
+import { EventLayout } from '../components/layouts/EventLayout';
 import { getEvent } from '../services/contentful';
 
-const event = await getEvent();
+const [event, pastEvents] = await getEvent({ includePastEvents: true });
 ---
 
 <Document>
-  <Layout client:load event={event} />
+  <EventLayout client:load event={event} pastEvents={pastEvents} />
 </Document>

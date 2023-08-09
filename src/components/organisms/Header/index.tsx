@@ -1,11 +1,11 @@
-import { FaBars } from 'react-icons/fa/index.js';
 import type { Entry } from 'contentful';
+import { MouseEvent, useId, useState } from 'react';
+import { FaBars } from 'react-icons/fa/index.js';
+import { isHealthAndSafetyModalOpen } from '../../../stores';
 import type { Event } from '../../../types';
-import * as styles from './Header.css';
 import { RegistrationButton } from '../../molecules/RegistrationButton';
 import { ScheduleButton } from '../../molecules/ScheduleButton';
-import { MouseEvent, useId, useState } from 'react';
-import { isHealthAndSafetyModalOpen } from '../../../stores';
+import * as styles from './Header.css';
 
 export const Header = (props: HeaderProps) => {
   const navId = useId();
@@ -49,11 +49,18 @@ export const Header = (props: HeaderProps) => {
               </a>
             </li>
           )}
-          {/* <li>
-            <a href="https://cnn.com/lifeitself" target="videos">
-              Videos
-            </a>
-          </li> */}
+          {props.pastEvents.length > 0 && (
+            <li>
+              <button type="button">Past Events</button>
+              <ul>
+                {props.pastEvents.map((event) => (
+                  <li key={event.fields.id}>
+                    <a href={`/${event.fields.year}`}>{event.fields.year}</a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )}
           <li>
             <a onClick={handleLinkClick} href="#speakers">
               Speakers
@@ -100,4 +107,5 @@ export const Header = (props: HeaderProps) => {
 
 export interface HeaderProps {
   event: Entry<Event>;
+  pastEvents: Entry<Event>[];
 }

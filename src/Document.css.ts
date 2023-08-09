@@ -22,7 +22,22 @@ globalStyle(`${body}.modal-open`, {
   overflow: 'hidden',
 });
 
-globalStyle(`${body}.preview:after`, {
+globalStyle(`${body}.preview:before`, {
+  backgroundColor: 'yellow',
+  borderRadius: theme.spacing.xsmall,
+  bottom: theme.spacing.medium,
+  color: 'black',
+  content: 'Preview Mode',
+  fontSize: theme.fontSizes.xsmall,
+  fontWeight: 'bold',
+  padding: theme.spacing.small,
+  pointerEvents: 'none',
+  position: 'fixed',
+  right: theme.spacing.medium,
+  zIndex: 999,
+});
+
+globalStyle(`${body}.preview--loading:after`, {
   alignItems: 'center',
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
   backdropFilter: 'blur(4px)',
