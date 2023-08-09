@@ -19,7 +19,7 @@ export const EventLayout = (props: LayoutProps) => {
     <RootLayout event={event} pastEvents={pastEvents}>
       <main>
         <HeroSection event={event} />
-        <SpeakersSection event={props.event} isPastEvent={props.isPastEvent} />
+        <SpeakersSection event={event} isPastEvent={props.isPastEvent} />
         <LocationSection event={event} isPastEvent={props.isPastEvent} />
         <PartnersSection event={event} isPastEvent={props.isPastEvent} />
         <AboutUsSection event={event} />
