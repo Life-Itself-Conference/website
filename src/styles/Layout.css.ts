@@ -1,12 +1,12 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { theme } from "../theme.css";
+import { theme } from "./theme.css";
 
 globalStyle("*, *:before, *:after", {
   boxSizing: "border-box",
 });
 
 export const html = style({
-  scrollBehavior: "smooth",
+  scrollBehavior: "smooth !important" as "smooth",
   scrollPaddingTop: theme.headerHeight,
 });
 

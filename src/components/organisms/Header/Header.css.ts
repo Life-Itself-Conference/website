@@ -1,5 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { queries, theme } from "@/src/theme.css";
+import { queries, theme } from "@/src/styles/theme.css";
 import { button } from "../../atoms/Button/Button.css";
 
 export const container = style({

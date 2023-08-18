@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { Jost, Noto_Sans } from "next/font/google";
 import { PropsWithChildren, Suspense } from "react";
-import "../styles/globals.css";
 import * as styles from "../styles/Layout.css";
 
 const jost = Jost({

@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { queries, theme } from "@/src/theme.css";
+import { queries, theme } from "@/src/styles/theme.css";
 
 export const list = style({
   display: "grid",

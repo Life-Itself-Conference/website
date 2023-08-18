@@ -1,5 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { theme } from "@/src/theme.css";
+import { theme } from "@/src/styles/theme.css";
 
 const baseTitle = style({
   position: "relative",

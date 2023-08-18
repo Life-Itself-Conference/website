@@ -1,5 +1,5 @@
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../theme.css";
+import { queries, theme } from "../../../styles/theme.css";
 import { button } from "../../atoms/Button/Button.css";
 // import { button } from '../../atoms/Button/Button.css';
 

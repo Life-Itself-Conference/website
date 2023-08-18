@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../theme.css";
+import { queries, theme } from "../../../styles/theme.css";
 
 const transitionDuration = "300ms";
 const transitionTimingFunction = "ease-in-out";

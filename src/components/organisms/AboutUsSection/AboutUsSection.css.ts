@@ -1,30 +1,30 @@
-import { globalStyle, style } from '@vanilla-extract/css';
-import { queries, theme } from '../../../theme.css';
+import { globalStyle, style } from "@vanilla-extract/css";
+import { queries, theme } from "../../../styles/theme.css";
 
 export const content = style({
   fontSize: theme.fontSizes.medium,
-  textAlign: 'left',
+  textAlign: "left",
 });
 
 export const image = style({
-  display: 'block',
+  display: "block",
   marginBlock: theme.spacing.large,
-  marginInline: 'auto',
-  maxWidth: '100%',
+  marginInline: "auto",
+  maxWidth: "100%",
 });
 
 export const bios = style({
-  display: 'grid',
+  display: "grid",
   gap: theme.spacing.large,
-  '@media': {
+  "@media": {
     [queries.large]: {
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: "1fr 1fr",
     },
   },
 });
 
 globalStyle(`${bios} > div:first-child`, {
-  textAlign: 'right',
+  textAlign: "right",
 });
 
 globalStyle(`${bios} h3`, {
@@ -32,15 +32,15 @@ globalStyle(`${bios} h3`, {
 });
 
 export const title = style({
-  alignItems: 'center',
-  display: 'inline-flex',
+  alignItems: "center",
+  display: "inline-flex",
   gap: theme.spacing.small,
 });
 globalStyle(`${title} img`, {
-  display: 'inline-flex',
-  height: '1em',
+  display: "inline-flex",
+  height: "1em",
 });
 
 export const bio = style({
-  textAlign: 'justify',
+  textAlign: "justify",
 });

@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../theme.css";
+import { queries, theme } from "../../../styles/theme.css";
 
 export const container = style({
   padding: 0,
