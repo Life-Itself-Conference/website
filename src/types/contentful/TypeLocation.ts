@@ -4,6 +4,7 @@ export interface TypeLocationFields {
     label?: EntryFieldTypes.Symbol;
     name: EntryFieldTypes.Symbol;
     address?: EntryFieldTypes.Symbol;
+    location?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.RichText;
     url?: EntryFieldTypes.Symbol;
     video?: EntryFieldTypes.AssetLink;

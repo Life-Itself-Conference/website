@@ -24,7 +24,7 @@ export const EventMetadata = ({ className, event }: EventMetadataProps) => {
   const separatorText = " / ";
 
   const locationText = useMemo(
-    () => event.fields.location?.fields.name,
+    () => event.fields.location?.fields.location,
     [event]
   );
 
