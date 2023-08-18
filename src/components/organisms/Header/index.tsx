@@ -9,10 +9,10 @@ import { ButtonLink } from "../../atoms/Button";
 import * as styles from "./Header.css";
 
 export interface HeaderProps {
-  events: Event[];
+  pastEvents: Event[];
 }
 
-export const Header = ({ events }: HeaderProps) => {
+export const Header = ({ pastEvents }: HeaderProps) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const handleLinkClick = () => setIsMobileNavOpen(false);
 
@@ -31,25 +31,27 @@ export const Header = ({ events }: HeaderProps) => {
 
       <nav className={clsx(styles.nav, isMobileNavOpen && styles.open)}>
         <ul className={styles.links}>
-          <li className={styles.dropdown}>
-            <button className={styles.toggle} type="button">
-              Past Events
-            </button>
-            <div className={styles.popover}>
-              <ul>
-                {events?.map((event, index) => (
-                  <li key={index}>
-                    <Link
-                      href={`/${event.fields.year}`}
-                      onClick={handleLinkClick}
-                    >
-                      {event.fields.year}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
+          {pastEvents.length > 0 && (
+            <li className={styles.dropdown}>
+              <button className={styles.toggle} type="button">
+                Past Events
+              </button>
+              <div className={styles.popover}>
+                <ul>
+                  {pastEvents?.map((event, index) => (
+                    <li key={index}>
+                      <Link
+                        href={`/${event.fields.year}`}
+                        onClick={handleLinkClick}
+                      >
+                        {event.fields.year}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          )}
           <li>
             <Link href="#speakers" onClick={handleLinkClick}>
               Speakers

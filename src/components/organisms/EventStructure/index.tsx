@@ -1,8 +1,8 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getEvent, getEvents } from "@/src/services/contentful";
+import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
 import { Event } from "@/src/types";
 import { AboutUsSection } from "../AboutUsSection";
 import { Footer } from "../Footer";
@@ -14,12 +14,13 @@ import { SpeakersSection } from "../SpeakersSection";
 
 export interface EventStructureProps {
   event?: Event;
-  events: Event[];
+  pastEvents: Event[];
 }
 
 export const EventStructure = (props: EventStructureProps) => {
   const [event, setEvent] = useState(props.event);
-  const [events, setEvents] = useState(props.events);
+  const [pastEvents, setPastEvents] = useState(props.pastEvents);
+  const params = useParams();
   const searchParams = useSearchParams();
   const param = searchParams.get("preview");
 
@@ -33,26 +34,37 @@ export const EventStructure = (props: EventStructureProps) => {
 
     const isPreview = sessionStorage.getItem("preview") === "true";
 
-    if (props.event && isPreview) {
+    if (isPreview) {
       document.body.classList.add("preview");
       document.body.classList.add("preview--loading");
 
-      Promise.all([
-        getEvent(props.event.fields.year as string, { isPreview: true }),
-        getEvents({ isPreview: true }),
-      ]).then(([previewEvent, previewEvents]) => {
-        document.body.classList.remove("preview--loading");
-        setEvent(previewEvent);
-        setEvents(previewEvents);
-      });
+      if (params.year) {
+        Promise.all([
+          getEvent(params.year as string, { isPreview: true }),
+          getPastEvents({ isPreview: true }),
+        ]).then(([previewEvent, previewPastEvents]) => {
+          document.body.classList.remove("preview--loading");
+          setEvent(previewEvent);
+          setPastEvents(previewPastEvents);
+        });
+      } else {
+        Promise.all([
+          getApp({ isPreview: true }),
+          getPastEvents({ isPreview: true }),
+        ]).then(([previewApp, previewPastEvents]) => {
+          document.body.classList.remove("preview--loading");
+          setEvent(previewApp.fields.currentEvent);
+          setPastEvents(previewPastEvents);
+        });
+      }
     }
-  }, [param, props.event]);
+  }, [param, params.year, props.event]);
 
   if (!event) return <p>Oops...</p>;
 
   return (
     <>
-      <Header events={events} />
+      <Header pastEvents={pastEvents} />
       <main>
         <HeroSection event={event} />
         <SpeakersSection event={event} />

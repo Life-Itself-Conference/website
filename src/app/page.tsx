@@ -1,5 +1,5 @@
 import { EventStructure } from "../components/organisms/EventStructure";
-import { getApp, getEvents } from "../services/contentful";
+import { getApp, getPastEvents } from "../services/contentful";
 
 export const metadata = {
   title: "Home",
@@ -7,7 +7,9 @@ export const metadata = {
 
 export default async function CurrentEventPage() {
   const app = await getApp();
-  const events = await getEvents();
+  const pastEvents = await getPastEvents();
 
-  return <EventStructure event={app.fields.currentEvent} events={events} />;
+  return (
+    <EventStructure event={app.fields.currentEvent} pastEvents={pastEvents} />
+  );
 }

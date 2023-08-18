@@ -32,8 +32,8 @@ export const getContentfulClient = (isPreview = false) => {
   }).withoutUnresolvableLinks;
 };
 
-export const getApp = async () => {
-  const client = getContentfulClient();
+export const getApp = async ({ isPreview }: { isPreview?: boolean } = {}) => {
+  const client = getContentfulClient(isPreview);
   const data = await client.getEntries<TypeAppSkeleton>({
     content_type: "app",
     include: 3,
@@ -41,15 +41,29 @@ export const getApp = async () => {
   return data.items[0];
 };
 
-export const getEvents = async ({
+export const getPastEvents = async ({
   isPreview,
 }: { isPreview?: boolean } = {}) => {
   const client = getContentfulClient(isPreview);
-  const data = await client.getEntries<TypeEventSkeleton>({
-    content_type: "event",
-    include: 3,
-  });
-  return data.items;
+  const [data, app] = await Promise.all([
+    client.getEntries<TypeEventSkeleton>({
+      content_type: "event",
+      include: 3,
+    }),
+    getApp({ isPreview }),
+  ]);
+
+  const currentEvent = app.fields.currentEvent;
+  let pastEvents = data.items;
+
+  if (currentEvent) {
+    pastEvents = pastEvents.filter((event) => {
+      if (!event.fields.year || !currentEvent.fields.year) return false;
+      return Number(event.fields.year) < Number(currentEvent.fields.year);
+    });
+  }
+
+  return pastEvents;
 };
 
 export const getEvent = async (
