@@ -41,20 +41,29 @@ export const getApp = async ({ isPreview }: { isPreview?: boolean } = {}) => {
   return data.items[0];
 };
 
+export const getEvents = async ({
+  isPreview,
+}: { isPreview?: boolean } = {}) => {
+  const client = getContentfulClient(isPreview);
+  const data = await client.getEntries<TypeEventSkeleton>({
+    content_type: "event",
+    include: 3,
+  });
+
+  return data.items;
+};
+
 export const getPastEvents = async ({
   isPreview,
 }: { isPreview?: boolean } = {}) => {
   const client = getContentfulClient(isPreview);
-  const [data, app] = await Promise.all([
-    client.getEntries<TypeEventSkeleton>({
-      content_type: "event",
-      include: 3,
-    }),
+  const [app, events] = await Promise.all([
     getApp({ isPreview }),
+    getEvents({ isPreview }),
   ]);
 
   const currentEvent = app.fields.currentEvent;
-  let pastEvents = data.items;
+  let pastEvents = events;
 
   if (currentEvent) {
     pastEvents = pastEvents.filter((event) => {

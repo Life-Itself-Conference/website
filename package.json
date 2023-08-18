@@ -29,6 +29,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@contentful/rich-text-types": "^16.2.1",
     "@vanilla-extract/next-plugin": "^2.2.2",
     "cf-content-types-generator": "^2.12.2",
     "contentful-cli": "^2.6.40",
