@@ -52,13 +52,17 @@ export const content = style({
   flexDirection: "column",
   gap: theme.spacing.small,
   order: 3,
-  marginBottom: theme.spacing.medium,
+  marginBottom: theme.spacing.large,
+  marginInline: "auto",
+  maxWidth: 496,
 
   "@media": {
     [queries.large]: {
       gridColumn: 1,
       gridRow: 1,
       order: "unset",
+      marginInline: "unset",
+      maxWidth: "unset",
     },
   },
 });
@@ -181,7 +185,6 @@ export const tagline = style({
 });
 
 export const buttons = style({
-  alignItems: "center",
   display: "flex",
   flexDirection: "column",
   gap: theme.spacing.small,
@@ -192,6 +195,7 @@ export const buttons = style({
 
   "@media": {
     [queries.large]: {
+      alignItems: "center",
       flexDirection: "row",
       justifyContent: "flex-start",
     },

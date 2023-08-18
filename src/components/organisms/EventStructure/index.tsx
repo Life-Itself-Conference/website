@@ -21,11 +21,10 @@ export const EventStructure = (props: EventStructureProps) => {
   const [event, setEvent] = useState(props.event);
   const [events, setEvents] = useState(props.events);
   const searchParams = useSearchParams();
+  const param = searchParams.get("preview");
 
   // If preview mode is enabled, fetch preview content.
   useEffect(() => {
-    const param = searchParams.get("preview");
-
     if (param === "true") {
       sessionStorage.setItem("preview", "true");
     } else if (param === "false") {
@@ -47,7 +46,7 @@ export const EventStructure = (props: EventStructureProps) => {
         setEvents(previewEvents);
       });
     }
-  }, [searchParams, props.event]);
+  }, [param, props.event]);
 
   if (!event) return <p>Oops...</p>;
 
