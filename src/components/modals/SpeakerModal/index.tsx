@@ -19,7 +19,9 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
     <Modal ariaLabel="Speaker" trigger={props.trigger}>
       <section className={styles.container}>
         <header className={styles.header}>
-          <h2 className={styles.name}>{props.speaker.fields.name}</h2>
+          <h2 className={styles.name}>
+            {props.speaker.fields.alternateName || props.speaker.fields.name}
+          </h2>
           {props.speaker.fields.titles &&
             props.speaker.fields.titles.length > 0 && (
               <ul className={styles.details}>

@@ -2,6 +2,7 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 
 export interface TypeSpeakerFields {
     name: EntryFieldTypes.Symbol;
+    alternateName?: EntryFieldTypes.Symbol;
     titles?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     topic?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.RichText;

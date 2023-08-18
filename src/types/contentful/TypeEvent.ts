@@ -1,6 +1,5 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeAboutUsSkeleton } from "./TypeAboutUs";
-import type { TypeConferenceSkeleton } from "./TypeConference";
 import type { TypeLocationSkeleton } from "./TypeLocation";
 import type { TypeModalSkeleton } from "./TypeModal";
 import type { TypePartnerSkeleton } from "./TypePartner";
@@ -25,7 +24,6 @@ export interface TypeEventFields {
     speakersSubtitle?: EntryFieldTypes.RichText;
     speakers?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeSpeakerSkeleton>>;
     moreSpeakersComing?: EntryFieldTypes.Boolean;
-    hotel?: EntryFieldTypes.EntryLink<TypeConferenceSkeleton>;
     location?: EntryFieldTypes.EntryLink<TypeLocationSkeleton>;
     partners?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePartnerSkeleton>>;
     aboutUs?: EntryFieldTypes.EntryLink<TypeAboutUsSkeleton>;

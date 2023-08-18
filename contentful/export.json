@@ -9,202 +9,6 @@
             "id": "9v3l6i0oib55"
           }
         },
-        "id": "conference",
-        "type": "ContentType",
-        "createdAt": "2023-03-04T16:15:22.017Z",
-        "updatedAt": "2023-08-14T21:51:40.744Z",
-        "environment": {
-          "sys": {
-            "id": "master",
-            "type": "Link",
-            "linkType": "Environment"
-          }
-        },
-        "publishedVersion": 27,
-        "publishedAt": "2023-08-14T21:51:40.744Z",
-        "firstPublishedAt": "2023-03-04T16:15:22.399Z",
-        "createdBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "1GtZVnWNdmkjSJTpMjvBhb"
-          }
-        },
-        "updatedBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "4anSnW0ZH6blNIo3LDZrb1"
-          }
-        },
-        "publishedCounter": 14,
-        "version": 28,
-        "publishedBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "4anSnW0ZH6blNIo3LDZrb1"
-          }
-        }
-      },
-      "displayField": "hotel",
-      "name": "location",
-      "description": "details for the conference, including dates, location and schedule",
-      "fields": [
-        {
-          "id": "id",
-          "name": "id",
-          "type": "Integer",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "hotel",
-          "name": "hotel",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "hotelLabel",
-          "name": "hotel label",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "hotelOverview",
-          "name": "hotel overview",
-          "type": "RichText",
-          "localized": false,
-          "required": false,
-          "validations": [
-            {
-              "enabledNodeTypes": [
-                "heading-1",
-                "heading-2",
-                "heading-3",
-                "heading-4",
-                "heading-5",
-                "heading-6",
-                "ordered-list",
-                "unordered-list",
-                "hr",
-                "blockquote",
-                "embedded-entry-block",
-                "embedded-asset-block",
-                "table",
-                "hyperlink",
-                "entry-hyperlink",
-                "asset-hyperlink",
-                "embedded-entry-inline"
-              ]
-            },
-            {
-              "enabledMarks": [
-                "bold",
-                "italic",
-                "underline",
-                "code",
-                "superscript",
-                "subscript"
-              ]
-            }
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "hotelUrl",
-          "name": "hotel URL",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "videoPoster",
-          "name": "video poster",
-          "type": "Link",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false,
-          "linkType": "Asset"
-        },
-        {
-          "id": "video",
-          "name": "video",
-          "type": "Link",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false,
-          "linkType": "Asset"
-        },
-        {
-          "id": "location",
-          "name": "location",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "address",
-          "name": "address",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "altLocation",
-          "name": "alt location",
-          "type": "Location",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        }
-      ]
-    },
-    {
-      "sys": {
-        "space": {
-          "sys": {
-            "type": "Link",
-            "linkType": "Space",
-            "id": "9v3l6i0oib55"
-          }
-        },
         "id": "aboutUs",
         "type": "ContentType",
         "createdAt": "2023-03-04T16:44:55.459Z",
@@ -483,7 +287,7 @@
         "id": "event",
         "type": "ContentType",
         "createdAt": "2023-03-07T22:31:01.719Z",
-        "updatedAt": "2023-08-17T21:33:26.943Z",
+        "updatedAt": "2023-08-18T07:16:43.386Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -491,8 +295,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 113,
-        "publishedAt": "2023-08-17T21:33:26.943Z",
+        "publishedVersion": 117,
+        "publishedAt": "2023-08-18T07:16:43.386Z",
         "firstPublishedAt": "2023-03-07T22:31:01.964Z",
         "createdBy": {
           "sys": {
@@ -508,8 +312,8 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "publishedCounter": 57,
-        "version": 114,
+        "publishedCounter": 59,
+        "version": 118,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -954,23 +758,6 @@
           "omitted": false
         },
         {
-          "id": "hotel",
-          "name": "hotel",
-          "type": "Link",
-          "localized": false,
-          "required": false,
-          "validations": [
-            {
-              "linkContentType": [
-                "conference"
-              ]
-            }
-          ],
-          "disabled": false,
-          "omitted": false,
-          "linkType": "Entry"
-        },
-        {
           "id": "location",
           "name": "location",
           "type": "Link",
@@ -1089,120 +876,6 @@
                 "subscript"
               ]
             }
-          ],
-          "disabled": false,
-          "omitted": false
-        }
-      ]
-    },
-    {
-      "sys": {
-        "space": {
-          "sys": {
-            "type": "Link",
-            "linkType": "Space",
-            "id": "9v3l6i0oib55"
-          }
-        },
-        "id": "partners",
-        "type": "ContentType",
-        "createdAt": "2023-03-07T22:52:19.218Z",
-        "updatedAt": "2023-03-07T22:55:25.945Z",
-        "environment": {
-          "sys": {
-            "id": "master",
-            "type": "Link",
-            "linkType": "Environment"
-          }
-        },
-        "publishedVersion": 5,
-        "publishedAt": "2023-03-07T22:55:25.945Z",
-        "firstPublishedAt": "2023-03-07T22:52:19.496Z",
-        "createdBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "1GtZVnWNdmkjSJTpMjvBhb"
-          }
-        },
-        "updatedBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "1GtZVnWNdmkjSJTpMjvBhb"
-          }
-        },
-        "publishedCounter": 3,
-        "version": 6,
-        "publishedBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "1GtZVnWNdmkjSJTpMjvBhb"
-          }
-        }
-      },
-      "displayField": "partner",
-      "name": "partners",
-      "description": "list of partners for the event and links",
-      "fields": [
-        {
-          "id": "id",
-          "name": "id",
-          "type": "Integer",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "year",
-          "name": "year",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "partner",
-          "name": "partner",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false
-        },
-        {
-          "id": "logo",
-          "name": "logo",
-          "type": "Array",
-          "localized": false,
-          "required": false,
-          "validations": [
-          ],
-          "disabled": false,
-          "omitted": false,
-          "items": {
-            "type": "Link",
-            "validations": [
-            ],
-            "linkType": "Asset"
-          }
-        },
-        {
-          "id": "url",
-          "name": "URL",
-          "type": "Symbol",
-          "localized": false,
-          "required": false,
-          "validations": [
           ],
           "disabled": false,
           "omitted": false
@@ -1768,7 +1441,7 @@
         "id": "speaker",
         "type": "ContentType",
         "createdAt": "2023-08-14T22:05:04.267Z",
-        "updatedAt": "2023-08-15T17:47:15.461Z",
+        "updatedAt": "2023-08-18T07:11:17.896Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -1776,8 +1449,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 25,
-        "publishedAt": "2023-08-15T17:47:15.461Z",
+        "publishedVersion": 27,
+        "publishedAt": "2023-08-18T07:11:17.896Z",
         "firstPublishedAt": "2023-08-14T22:05:04.647Z",
         "createdBy": {
           "sys": {
@@ -1793,8 +1466,8 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "publishedCounter": 13,
-        "version": 26,
+        "publishedCounter": 14,
+        "version": 28,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -1813,6 +1486,17 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "alternateName",
+          "name": "Alternate Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
           "validations": [
           ],
           "disabled": false,
@@ -1932,102 +1616,6 @@
             "linkType": "Space"
           }
         },
-        "version": 28,
-        "createdAt": "2023-03-04T16:15:22.556Z",
-        "createdBy": {
-          "sys": {
-            "id": "1GtZVnWNdmkjSJTpMjvBhb",
-            "type": "Link",
-            "linkType": "User"
-          }
-        },
-        "updatedAt": "2023-08-14T21:51:41.434Z",
-        "updatedBy": {
-          "sys": {
-            "id": "4anSnW0ZH6blNIo3LDZrb1",
-            "type": "Link",
-            "linkType": "User"
-          }
-        },
-        "contentType": {
-          "sys": {
-            "id": "conference",
-            "type": "Link",
-            "linkType": "ContentType"
-          }
-        },
-        "environment": {
-          "sys": {
-            "id": "master",
-            "type": "Link",
-            "linkType": "Environment"
-          }
-        }
-      },
-      "controls": [
-        {
-          "fieldId": "id",
-          "widgetId": "numberEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "hotel",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "hotelLabel",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "hotelOverview",
-          "widgetId": "richTextEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "hotelUrl",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "videoPoster",
-          "widgetId": "assetLinkEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "video",
-          "widgetId": "assetLinkEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "location",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "address",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "altLocation",
-          "widgetId": "locationEditor",
-          "widgetNamespace": "builtin"
-        }
-      ]
-    },
-    {
-      "sys": {
-        "id": "default",
-        "type": "EditorInterface",
-        "space": {
-          "sys": {
-            "id": "9v3l6i0oib55",
-            "type": "Link",
-            "linkType": "Space"
-          }
-        },
         "version": 20,
         "createdAt": "2023-03-04T16:44:55.988Z",
         "createdBy": {
@@ -2124,7 +1712,7 @@
             "linkType": "Space"
           }
         },
-        "version": 114,
+        "version": 118,
         "createdAt": "2023-03-07T22:31:02.119Z",
         "createdBy": {
           "sys": {
@@ -2133,7 +1721,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2023-08-17T21:33:27.582Z",
+        "updatedAt": "2023-08-18T07:16:44.081Z",
         "updatedBy": {
           "sys": {
             "id": "4anSnW0ZH6blNIo3LDZrb1",
@@ -2248,11 +1836,6 @@
           "widgetNamespace": "builtin"
         },
         {
-          "fieldId": "hotel",
-          "widgetId": "entryLinkEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
           "fieldId": "location",
           "widgetId": "entryLinkEditor",
           "widgetNamespace": "builtin"
@@ -2280,77 +1863,6 @@
         {
           "fieldId": "healthAndSafetyDescription",
           "widgetId": "richTextEditor",
-          "widgetNamespace": "builtin"
-        }
-      ]
-    },
-    {
-      "sys": {
-        "id": "default",
-        "type": "EditorInterface",
-        "space": {
-          "sys": {
-            "id": "9v3l6i0oib55",
-            "type": "Link",
-            "linkType": "Space"
-          }
-        },
-        "version": 6,
-        "createdAt": "2023-03-07T22:52:19.626Z",
-        "createdBy": {
-          "sys": {
-            "id": "1GtZVnWNdmkjSJTpMjvBhb",
-            "type": "Link",
-            "linkType": "User"
-          }
-        },
-        "updatedAt": "2023-03-07T22:55:26.807Z",
-        "updatedBy": {
-          "sys": {
-            "id": "1GtZVnWNdmkjSJTpMjvBhb",
-            "type": "Link",
-            "linkType": "User"
-          }
-        },
-        "contentType": {
-          "sys": {
-            "id": "partners",
-            "type": "Link",
-            "linkType": "ContentType"
-          }
-        },
-        "environment": {
-          "sys": {
-            "id": "master",
-            "type": "Link",
-            "linkType": "Environment"
-          }
-        }
-      },
-      "controls": [
-        {
-          "fieldId": "id",
-          "widgetId": "numberEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "year",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "partner",
-          "widgetId": "singleLine",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "logo",
-          "widgetId": "assetLinksEditor",
-          "widgetNamespace": "builtin"
-        },
-        {
-          "fieldId": "url",
-          "widgetId": "singleLine",
           "widgetNamespace": "builtin"
         }
       ]
@@ -2655,7 +2167,7 @@
             "linkType": "Space"
           }
         },
-        "version": 26,
+        "version": 28,
         "createdAt": "2023-08-14T22:05:04.795Z",
         "createdBy": {
           "sys": {
@@ -2664,7 +2176,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2023-08-15T17:47:16.158Z",
+        "updatedAt": "2023-08-18T07:11:18.971Z",
         "updatedBy": {
           "sys": {
             "id": "4anSnW0ZH6blNIo3LDZrb1",
@@ -2690,6 +2202,11 @@
       "controls": [
         {
           "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "alternateName",
           "widgetId": "singleLine",
           "widgetNamespace": "builtin"
         },
