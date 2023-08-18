@@ -1,32 +1,38 @@
-import type { Entry } from 'contentful';
-import { useMemo } from 'react';
-import type { Event } from '../../../types';
-import { formatDate } from '../../../utils/format';
-import { GlowingCharacters } from '../../atoms/GlowingCharacters';
-import * as styles from './EventMetadata.css';
+import { useMemo } from "react";
+import { Event } from "@/src/types";
+import { formatDate } from "../../../utils/format";
+import { GlowingCharacters } from "../../atoms/GlowingCharacters";
+import * as styles from "./EventMetadata.css";
 
-export const EventMetadata = (props: EventMetadataProps) => {
+export interface EventMetadataProps {
+  className?: string;
+  event: Event;
+}
+
+export const EventMetadata = ({ className, event }: EventMetadataProps) => {
   const dateText = useMemo(
     () =>
       [
-        formatDate(props.event.fields.startDate),
-        formatDate(props.event.fields.endDate),
-      ].join(' - '),
-    [props.event],
+        formatDate(event.fields.startDate, false),
+        formatDate(event.fields.endDate),
+      ]
+        .filter(Boolean)
+        .join(" - "),
+    [event]
   );
 
-  const separatorText = ' / ';
+  const separatorText = " / ";
 
   const locationText = useMemo(
-    () => props.event.fields.hotel.fields.location,
-    [props.event],
+    () => event.fields.location?.fields.name,
+    [event]
   );
 
   return (
     <time
-      className={props.className}
+      className={className}
       key={`${dateText}${separatorText}${locationText}`}
-      dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
+      dateTime={`${event.fields.startDate}/${event.fields.endDate}`}
     >
       <GlowingCharacters text={dateText} />
       <span className={styles.separator}>{separatorText}</span>
@@ -37,8 +43,3 @@ export const EventMetadata = (props: EventMetadataProps) => {
     </time>
   );
 };
-
-export interface EventMetadataProps {
-  className?: string;
-  event: Entry<Event>;
-}

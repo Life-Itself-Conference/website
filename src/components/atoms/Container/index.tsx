@@ -1,16 +1,14 @@
-import classNames from 'classnames';
-import type { PropsWithChildren } from 'react';
-import * as styles from './Container.css';
+import clsx from "clsx";
+import type { PropsWithChildren } from "react";
+import * as styles from "./Container.css";
 
-export const Container = (props: PropsWithChildren<ContainerProps>) => (
-  <div
-    className={classNames(
-      styles.container,
-      props.size && styles.size[props.size],
-      props.className,
-    )}
-  >
-    {props.children}
+export const Container = ({
+  children,
+  className,
+  size,
+}: PropsWithChildren<ContainerProps>) => (
+  <div className={clsx(styles.container, size && styles.size[size], className)}>
+    {children}
   </div>
 );
 

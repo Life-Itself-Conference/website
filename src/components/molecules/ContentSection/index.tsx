@@ -1,42 +1,33 @@
-import type { Document } from '@contentful/rich-text-types';
-import classNames from 'classnames';
-import type { PropsWithChildren } from 'react';
-import { Container } from '../../atoms/Container';
-import type { ContainerProps } from '../../atoms/Container';
-import { RichText } from '../../atoms/RichText';
-import { Title } from '../../atoms/Title';
-import * as styles from './ContentSection.css';
+import clsx from "clsx";
+import { HTMLAttributes, PropsWithChildren } from "react";
+import { Container, ContainerProps } from "../../atoms/Container";
+import * as styles from "./ContentSection.css";
 
-export const ContentSection = (
-  props: PropsWithChildren<ContentSectionProps>,
-) => (
-  <section
-    className={classNames(styles.section, props.className)}
-    id={props.id}
-  >
-    <header>
-      <Title tag={props.isHero ? 'h1' : 'h2'}>{props.title}</Title>
-      <Container size={props.size}>
-        {props.subtitle &&
-          (typeof props.subtitle === 'string' ? (
-            <p>{props.subtitle}</p>
-          ) : (
-            <RichText field={props.subtitle} />
-          ))}
-      </Container>
-    </header>
-    <Container className={props.contentClassName} size={props.size}>
-      {props.children}
-    </Container>
-  </section>
-);
-
-export interface ContentSectionProps {
-  className?: string;
+export interface ContentSectionProps extends HTMLAttributes<HTMLElement> {
   contentClassName?: string;
-  id?: string;
-  isHero?: boolean;
-  size?: ContainerProps['size'];
-  subtitle?: Document | string;
-  title: string;
+  size?: ContainerProps["size"];
+  title?: string;
+  titleLarge?: boolean;
 }
+
+export const ContentSection = ({
+  children,
+  contentClassName,
+  size,
+  title,
+  titleLarge = false,
+  ...rest
+}: PropsWithChildren<ContentSectionProps>) => {
+  return (
+    <section {...rest}>
+      {title && (
+        <h2 className={clsx(styles.title[titleLarge ? "large" : "medium"])}>
+          <span>{title}</span>
+        </h2>
+      )}
+      <Container className={clsx(styles.content, contentClassName)} size={size}>
+        {children}
+      </Container>
+    </section>
+  );
+};

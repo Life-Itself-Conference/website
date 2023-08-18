@@ -1,70 +1,78 @@
-import type { Entry } from 'contentful';
-import type { Event } from '../../../types';
-import { createAndDownloadICalendarEvent } from '../../../utils/calendar';
-import { formatDate } from '../../../utils/format';
-import { Button, ButtonLink } from '../../atoms/Button';
-import { RichText } from '../../atoms/RichText';
-import { ContentSection } from '../../molecules/ContentSection';
-import * as styles from './LocationSection.css';
+import { MouseEvent } from "react";
+import { Event } from "@/src/types";
+import { createAndDownloadICalendarEvent } from "@/src/utils/calendar";
+import { formatDate } from "@/src/utils/format";
+import { Button, ButtonLink } from "../../atoms/Button";
+import { RichText } from "../../atoms/RichText";
+import { ContentSection } from "../../molecules/ContentSection";
+import * as styles from "./LocationSection.css";
 
-export const LocationSection = (props: LocationSectionProps) => {
-  const handleDownload = () => createAndDownloadICalendarEvent(props.event);
+export interface LocationSectionProps {
+  event: Event;
+  isPastEvent?: boolean;
+}
+
+export const LocationSection = ({
+  event,
+  isPastEvent,
+}: LocationSectionProps) => {
+  const handleDownload = (e: MouseEvent) => {
+    e.preventDefault();
+    createAndDownloadICalendarEvent(event);
+  };
 
   return (
     <ContentSection
       className={styles.container}
       contentClassName={styles.content}
       id="location"
-      title={
-        props.isPastEvent ? `${props.event.fields.year} Location` : 'Location'
-      }
+      title={isPastEvent ? `${event.fields.year} Location` : "Location"}
     >
       <header className={styles.header}>
-        {props.event.fields.hotel.fields.video && (
+        {event.fields.location?.fields.video && (
           <video
             autoPlay
             className={styles.video}
             loop
-            poster={
-              props.event.fields.hotel.fields.videoPoster?.fields?.file?.url
-            }
+            muted
+            poster={event.fields.location.fields.videoPoster?.fields?.file?.url}
             playsInline
           >
             <source
-              src={props.event.fields.hotel.fields.video.fields.file.url}
-              type={
-                props.event.fields.hotel.fields.video.fields.file.contentType
-              }
+              src={event.fields.location.fields.video.fields.file?.url}
+              type={event.fields.location.fields.video.fields.file?.contentType}
             />
           </video>
         )}
         <h2>
-          <sub>{props.event.fields.hotel.fields.hotelLabel}</sub>
-          {props.event.fields.hotel.fields.hotel}
+          <sub>{event.fields.location?.fields.label}</sub>
+          {event.fields.location?.fields.name}
         </h2>
-        <p>{props.event.fields.hotel.fields.location}</p>
+        {/* <p>{event.fields.location?.fields.location}</p> */}
         <p className={styles.address}>
-          {props.event.fields.hotel.fields.hotel}
+          {event.fields.location?.fields.name}
           <br />
-          {props.event.fields.hotel.fields.address}
+          {event.fields.location?.fields.address}
         </p>
       </header>
       <aside className={styles.aside}>
         <div className={styles.overview}>
-          <RichText field={props.event.fields.hotel.fields.hotelOverview} />
+          {event.fields.location?.fields.description && (
+            <RichText field={event.fields.location?.fields.description} />
+          )}
         </div>
         <footer className={styles.footer}>
           <p>
-            <b>{props.event.fields.hotel.fields.hotel}</b>
+            <b>{event.fields.location?.fields.name}</b>
             <br />
-            {props.event.fields.hotel.fields.address}
+            {event.fields.location?.fields.address}
             <br />
-            <a href="#">
+            <a className={styles.dates} onClick={handleDownload} href="#">
               <time
-                dateTime={`${props.event.fields.startDate}/${props.event.fields.endDate}`}
+                dateTime={`${event.fields.startDate}/${event.fields.endDate}`}
               >
-                {formatDate(props.event.fields.startDate)} -{' '}
-                {formatDate(props.event.fields.endDate)}
+                {formatDate(event.fields.startDate, false)} -{" "}
+                {formatDate(event.fields.endDate)}
               </time>
             </a>
           </p>
@@ -80,7 +88,7 @@ export const LocationSection = (props: LocationSectionProps) => {
             </li>
             <li>
               <ButtonLink
-                href={props.event.fields.hotel.fields.hotelUrl}
+                href={event.fields.location?.fields.url as string}
                 rel="nofollow noreferrer noopener"
                 size="xsmall"
                 target="_blank"
@@ -105,8 +113,3 @@ export const LocationSection = (props: LocationSectionProps) => {
     </ContentSection>
   );
 };
-
-export interface LocationSectionProps {
-  event: Entry<Event>;
-  isPastEvent?: boolean;
-}

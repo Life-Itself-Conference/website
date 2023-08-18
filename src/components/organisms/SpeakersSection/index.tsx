@@ -1,27 +1,28 @@
-import type { Entry } from 'contentful';
-import type { Event } from '../../../types';
-import { ContentSection } from '../../molecules/ContentSection';
-import { SpeakerList } from '../../molecules/SpeakerList';
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Event } from "@/src/types";
+import { ContentSection } from "../../molecules/ContentSection";
+import { SpeakerThumbnail } from "../../molecules/SpeakerThumbnail";
+import * as styles from "./SpeakersSection.css";
 
-export const SpeakersSection = (props: SpeakersSectionProps) => {
+export interface SpeakersSectionProps {
+  event: Event;
+}
+
+export const SpeakersSection = ({ event }: SpeakersSectionProps) => {
   return (
-    <ContentSection
-      id="speakers"
-      subtitle={props.event.fields.speakersSubtitle}
-      size="medium"
-      title={
-        props.isPastEvent ? `${props.event.fields.year} Speakers` : 'Speakers'
-      }
-    >
-      <SpeakerList
-        moreSpeakersComing={props.event.fields.moreSpeakersComing}
-        speakers={props.event.fields.speakers}
-      />
+    <ContentSection id="speakers" size="small" title="Speakers" titleLarge>
+      {event.fields.speakersSubtitle &&
+        documentToReactComponents(event.fields.speakersSubtitle)}
+      <ul className={styles.list}>
+        {event.fields.speakers?.map(
+          (speaker, index) =>
+            speaker && (
+              <li key={index}>
+                <SpeakerThumbnail speaker={speaker} />
+              </li>
+            )
+        )}
+      </ul>
     </ContentSection>
   );
 };
-
-export interface SpeakersSectionProps {
-  event: Entry<Event>;
-  isPastEvent?: boolean;
-}

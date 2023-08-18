@@ -1,50 +1,47 @@
-import { style, styleVariants } from '@vanilla-extract/css';
-import { theme } from '../../../theme.css';
+import { style, styleVariants } from "@vanilla-extract/css";
+import { theme } from "@/src/theme.css";
 
 export const button = style({
-  alignItems: 'center',
-  backgroundColor: 'transparent',
-  border: 0,
-  color: theme.colors.white,
-  cursor: 'pointer',
-  display: 'inline-flex',
-  height: theme.inputHeight,
-  fontFamily: 'inherit',
-  fontSize: theme.fontSizes.medium,
-  fontWeight: 'bold',
-  justifyContent: 'center',
-  textAlign: 'center',
-  textDecoration: 'none',
-  textTransform: 'uppercase',
+  alignItems: "center",
+  background: "none",
+  border: "1px solid transparent",
+  color: "inherit",
+  cursor: "pointer",
+  display: "inline-flex",
+  fontWeight: "bold",
+  justifyContent: "center",
+  lineHeight: "1.5em",
+  textAlign: "center",
+  textTransform: "uppercase",
+  whiteSpace: "nowrap",
 });
 
 export const size = styleVariants({
   xsmall: {
-    fontSize: theme.fontSizes.xxsmall,
-    height: 'unset',
-    paddingBlock: theme.spacing.xsmall,
-    paddingInline: theme.spacing.medium,
+    fontSize: theme.fontSizes.xsmall,
+    paddingBlock: 0,
+    paddingInline: theme.spacing.xsmall,
   },
   small: {
     fontSize: theme.fontSizes.small,
-    height: 'unset',
     paddingBlock: theme.spacing.xsmall,
     paddingInline: theme.spacing.medium,
   },
   medium: {
     fontSize: theme.fontSizes.medium,
-    height: 'unset',
-    paddingBlock: theme.spacing.small,
-    paddingInline: theme.spacing.large,
+    paddingBlock: theme.spacing.xsmall,
+    paddingInline: theme.spacing.medium,
   },
 });
 
 export const variant = styleVariants({
   primary: {
     backgroundColor: theme.colors.red,
+    color: theme.colors.white,
   },
   secondary: {
     backgroundColor: theme.colors.black,
-    border: `1px solid ${theme.colors.white}`,
+    borderColor: theme.colors.white,
+    color: theme.colors.white,
   },
 });

@@ -1,37 +1,37 @@
-import { globalStyle, style } from '@vanilla-extract/css';
-import { queries, theme } from '../../../theme.css';
+import { globalStyle, style } from "@vanilla-extract/css";
+import { queries, theme } from "../../../theme.css";
 
 export const footer = style({
   fontSize: theme.fontSizes.small,
   paddingBlock: theme.spacing.xlarge,
-  textAlign: 'center',
+  textAlign: "center",
 });
 
 export const buttons = style({
-  display: 'grid',
+  display: "grid",
   gap: theme.spacing.small,
-  gridTemplateColumns: '1fr 1fr',
+  gridTemplateColumns: "1fr 1fr",
 });
 
 export const ticketButton = style({
-  gridColumn: 'span 2',
+  gridColumn: "span 2",
 });
 
 export const meta = style({
-  fontWeight: 'bold',
+  fontWeight: "bold",
 });
 
 export const happy = style({
-  alignItems: 'center',
-  display: 'flex',
-  flexDirection: 'column',
+  alignItems: "center",
+  display: "flex",
+  flexDirection: "column",
   gap: theme.spacing.large,
-  justifyContent: 'center',
+  justifyContent: "center",
   marginBottom: theme.spacing.large,
 
-  '@media': {
+  "@media": {
     [queries.large]: {
-      flexDirection: 'row',
+      flexDirection: "row",
       transform: `translateX(-70px)`,
     },
   },
@@ -39,19 +39,20 @@ export const happy = style({
 
 export const logo = style({
   height: 100,
+  width: "auto",
 });
 
 export const content = style({
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
 });
 
 globalStyle(`${content} strong`, {
   color: theme.colors.red,
   fontSize: theme.fontSizes.xlarge,
-  textTransform: 'uppercase',
+  textTransform: "uppercase",
 
-  '@media': {
+  "@media": {
     [queries.large]: {
       fontSize: theme.fontSizes.xxlarge,
     },

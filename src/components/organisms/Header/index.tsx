@@ -1,111 +1,75 @@
-import type { Entry } from 'contentful';
-import { MouseEvent, useId, useState } from 'react';
-import { FaBars } from 'react-icons/fa/index.js';
-import { isHealthAndSafetyModalOpen } from '../../../stores';
-import type { Event } from '../../../types';
-import { RegistrationButton } from '../../molecules/RegistrationButton';
-import { ScheduleButton } from '../../molecules/ScheduleButton';
-import * as styles from './Header.css';
+"use client";
 
-export const Header = (props: HeaderProps) => {
-  const navId = useId();
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import clsx from "clsx";
+import Link from "next/link";
+import { useState } from "react";
+import { FaBars } from "react-icons/fa";
+import { Event } from "@/src/types";
+import { ButtonLink } from "../../atoms/Button";
+import * as styles from "./Header.css";
 
-  const handleLinkClick = () => {
-    setIsMobileNavOpen(false);
-  };
+export interface HeaderProps {
+  events: Event[];
+}
 
-  const handleHealthAndSafetyLinkClick = (e: MouseEvent) => {
-    e.preventDefault();
-    handleLinkClick();
-    isHealthAndSafetyModalOpen.set(true);
-  };
+export const Header = ({ events }: HeaderProps) => {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
 
   return (
-    <header className={styles.header}>
-      <a className={styles.logo} onClick={handleLinkClick} href="/">
-        <span>Life Itself</span>
-      </a>
+    <header className={styles.container}>
+      <Link className={styles.logo} href="/">
+        <span>Home</span>
+      </Link>
       <button
-        aria-controls={navId}
-        aria-expanded={isMobileNavOpen}
-        aria-label="Toggle Mobile Navigation"
-        className={styles.trigger}
+        className={styles.hamburger}
         onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
         type="button"
       >
         <FaBars />
       </button>
-      <nav className={styles.nav} data-open={isMobileNavOpen} id={navId}>
-        <ul className={styles.list}>
-          {props.event.fields.healthAndSafetyStatus && (
-            <li>
-              <a
-                className={styles.healthAndSafety}
-                onClick={handleHealthAndSafetyLinkClick}
-                href="#"
-              >
-                {props.event.fields.healthAndSafetyLabel}
-              </a>
-            </li>
-          )}
-          {props.pastEvents.length > 0 && (
-            <li>
-              <button type="button">Past Events</button>
+      <NavigationMenu.Root
+        className={clsx(styles.nav, isMobileNavOpen && styles.open)}
+      >
+        <NavigationMenu.List className={styles.links}>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className={styles.toggle} type="button">
+              Past Events
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className={styles.popover}>
               <ul>
-                {props.pastEvents.map((event) => (
-                  <li key={event.fields.id}>
-                    <a href={`/${event.fields.year}`}>{event.fields.year}</a>
+                {events?.map((event, index) => (
+                  <li key={index}>
+                    <Link href={`/${event.fields.year}`}>
+                      {event.fields.year}
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </li>
-          )}
-          <li>
-            <a onClick={handleLinkClick} href="#speakers">
-              Speakers
-            </a>
-          </li>
-          <li>
-            <a onClick={handleLinkClick} href="#location">
-              Location
-            </a>
-          </li>
-          <li>
-            <a onClick={handleLinkClick} href="#partners">
-              Partners
-            </a>
-          </li>
-          <li>
-            <a onClick={handleLinkClick} href="#about-us">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:info@lifeitself.health?subject=Contact Us"
-              onClick={handleLinkClick}
-              rel="nofollow noreferrer noopener"
-              target="_blank"
-            >
-              Contact Us
-            </a>
-          </li>
-          <li className={styles.buttons}>
-            <ScheduleButton
-              event={props.event}
-              size="small"
-              variant="secondary"
-            />
-            <RegistrationButton event={props.event} size="small" />
-          </li>
-        </ul>
-      </nav>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <Link href="#speakers">Speakers</Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <Link href="#location">Location</Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <Link href="#partners">Partners</Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <Link href="#about-us">About Us</Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item className={styles.buttons}>
+            <ButtonLink href="/" size="small" variant="secondary">
+              Schedule
+            </ButtonLink>
+            <ButtonLink href="/" size="small">
+              Sold Out
+            </ButtonLink>
+          </NavigationMenu.Item>
+        </NavigationMenu.List>
+      </NavigationMenu.Root>
     </header>
   );
 };
-
-export interface HeaderProps {
-  event: Entry<Event>;
-  pastEvents: Entry<Event>[];
-}

@@ -1,57 +1,62 @@
-import classNames from 'classnames';
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  PropsWithChildren,
-} from 'react';
-import * as styles from './Button.css';
+import clsx from "clsx";
+import Link from "next/link";
+import { ComponentProps, forwardRef } from "react";
+import * as styles from "./Button.css";
 
-export const Button = (props: PropsWithChildren<ButtonProps>) => {
-  const { size = 'medium', variant = 'primary', ...buttonProps } = props;
-
-  return (
-    <button
-      {...buttonProps}
-      className={classNames(
-        styles.button,
-        size && styles.size[size],
-        variant && styles.variant[variant],
-        props.className,
-      )}
-      type={buttonProps.type || 'button'}
-    />
-  );
-};
-
-export const ButtonLink = (props: PropsWithChildren<ButtonLinkProps>) => {
-  const { size = 'medium', variant = 'primary', ...linkProps } = props;
-
-  return (
-    <a
-      {...linkProps}
-      className={classNames(
-        styles.button,
-        size && styles.size[size],
-        variant && styles.variant[variant],
-        props.className,
-      )}
-    />
-  );
-};
-
-export interface ButtonCommonProps {
-  size: keyof typeof styles.size;
-  variant: keyof typeof styles.variant;
+interface CommonButtonProps {
+  size?: keyof typeof styles.size;
+  variant?: keyof typeof styles.variant;
 }
 
-export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    Partial<ButtonCommonProps> {
-  className?: string;
-}
+export type ButtonProps = ComponentProps<"button"> & CommonButtonProps;
+export type ButtonLinkProps = ComponentProps<typeof Link> & CommonButtonProps;
 
-export interface ButtonLinkProps
-  extends AnchorHTMLAttributes<HTMLAnchorElement>,
-    Partial<ButtonCommonProps> {
-  className?: string;
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const {
+      className,
+      size = "medium",
+      variant = "primary",
+      ...buttonProps
+    } = props;
+
+    return (
+      <button
+        {...buttonProps}
+        className={clsx(
+          className,
+          styles.button,
+          styles.size[size],
+          styles.variant[variant]
+        )}
+        ref={ref}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
+
+export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
+  (props, ref) => {
+    const {
+      className,
+      size = "medium",
+      variant = "primary",
+      ...linkProps
+    } = props;
+
+    return (
+      <Link
+        {...linkProps}
+        className={clsx(
+          className,
+          styles.button,
+          styles.size[size],
+          styles.variant[variant]
+        )}
+        ref={ref}
+      />
+    );
+  }
+);
+ButtonLink.displayName = "ButtonLink";

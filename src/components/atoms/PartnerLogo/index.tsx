@@ -1,34 +1,39 @@
-import type { Entry } from 'contentful';
-import type { Partner } from '../../../types';
+import Image from "next/image";
+import { Partner } from "@/src/types";
 
-export const PartnerLogo = (props: PartnerLogoProps) => {
-  const { variant = 'dark' } = props;
+export interface PartnerLogoProps {
+  className?: string;
+  partner: Partner;
+  variant?: "dark" | "light";
+}
 
-  const darkVersion = props.partner.fields.logo.find(
-    (item) => item.fields.title === 'dark',
+export const PartnerLogo = ({
+  className,
+  partner,
+  variant = "dark",
+}: PartnerLogoProps) => {
+  const darkVersion = partner.fields.logos?.find(
+    (logo) => logo?.fields.title === "dark"
   );
-  const lightVersion = props.partner.fields.logo.find(
-    (item) => item.fields.title === 'light',
+
+  const lightVersion = partner.fields.logos?.find(
+    (logo) => logo?.fields.title === "light"
   );
 
   const logo =
-    variant === 'dark'
+    variant === "dark"
       ? darkVersion || lightVersion
       : lightVersion || darkVersion;
 
   if (!logo) return null;
 
   return (
-    <img
-      alt={`${props.partner.fields.partner} logo`}
-      className={props.className}
-      src={logo?.fields?.file?.url}
+    <Image
+      alt={`${partner.fields.name} logo`}
+      className={className}
+      height={logo.fields.file?.details.image?.height}
+      src={logo.fields.file?.url as string}
+      width={logo.fields.file?.details.image?.width}
     />
   );
 };
-
-export interface PartnerLogoProps {
-  className?: string;
-  partner: Entry<Partner>;
-  variant?: 'dark' | 'light';
-}

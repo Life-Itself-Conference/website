@@ -1,12 +1,12 @@
-import { style, styleVariants } from '@vanilla-extract/css';
-import { queries, theme } from '../../../theme.css';
+import { style, styleVariants } from "@vanilla-extract/css";
+import { queries, theme } from "../../../theme.css";
 
 export const container = style({
-  marginInline: 'auto',
+  marginInline: "auto",
   paddingInline: theme.spacing.medium,
-  width: '100%',
+  width: "100%",
 
-  '@media': {
+  "@media": {
     [queries.large]: {
       paddingInline: theme.spacing.large,
     },
@@ -18,12 +18,12 @@ export const size = styleVariants({
     maxWidth: 456,
   },
   small: {
-    maxWidth: 768,
+    maxWidth: 960,
   },
   medium: {
     maxWidth: 1024,
   },
   large: {
-    maxWidth: 1300,
+    maxWidth: 1200,
   },
 });

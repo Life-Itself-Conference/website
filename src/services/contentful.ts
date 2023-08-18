@@ -1,119 +1,66 @@
-import * as contentful from 'contentful';
-import type { Entry } from 'contentful';
-import type { CreateClientParams, ContentfulClientApi } from 'contentful';
-import type { App, Event } from '../types';
+import * as contentful from "contentful";
+import { TypeAppSkeleton, TypeEventSkeleton } from "../types";
 
-const CONTENTFUL_ACCESS_TOKEN = import.meta.env.PUBLIC_CONTENTFUL_ACCESS_TOKEN;
-const CONTENTFUL_PREVIEW_ACCESS_TOKEN = import.meta.env
-  .PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN;
-const CONTENTFUL_SPACE = import.meta.env.PUBLIC_CONTENTFUL_SPACE;
+const CONTENTFUL_ACCESS_TOKEN = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
+const CONTENTFUL_PREVIEW_ACCESS_TOKEN =
+  process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+const CONTENTFUL_SPACE = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE;
 
 if (!CONTENTFUL_ACCESS_TOKEN)
   throw new Error(
-    'The CONTENTFUL_ACCESS_TOKEN variable must be set in a .env file.',
+    "The CONTENTFUL_ACCESS_TOKEN variable must be set in a .env file."
   );
 
 if (!CONTENTFUL_PREVIEW_ACCESS_TOKEN)
   throw new Error(
-    'The CONTENTFUL_PREVIEW_ACCESS_TOKEN variable must be set in a .env file.',
+    "The CONTENTFUL_PREVIEW_ACCESS_TOKEN variable must be set in a .env file."
   );
 
 if (!CONTENTFUL_SPACE)
-  throw new Error('The CONTENTFUL_SPACE variable must be set in a .env file.');
-
-// https://github.com/contentful/contentful.js/issues/1233#issuecomment-1456369601
-// eslint-disable-next-line no-unused-vars
-const createClientFunc: (params: CreateClientParams) => ContentfulClientApi =
-  contentful.createClient
-    ? contentful.createClient
-    : // @ts-ignore
-      contentful.default.createClient;
+  throw new Error("The CONTENTFUL_SPACE variable must be set in a .env file.");
 
 export const getContentfulClient = (isPreview = false) => {
-  return createClientFunc({
+  return contentful.createClient({
     ...(isPreview
       ? {
           accessToken: CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-          host: 'preview.contentful.com',
+          host: "preview.contentful.com",
         }
       : { accessToken: CONTENTFUL_ACCESS_TOKEN }),
     space: CONTENTFUL_SPACE,
+    retryOnError: false,
+  }).withoutUnresolvableLinks;
+};
+
+export const getApp = async () => {
+  const client = getContentfulClient();
+  const data = await client.getEntries<TypeAppSkeleton>({
+    content_type: "app",
+    include: 3,
   });
+  return data.items[0];
 };
 
-export const getEvent = async ({
-  includePastEvents,
-  isPreview,
-  year,
-}: {
-  includePastEvents?: boolean;
-  isPreview?: boolean;
-  year?: string;
-} = {}): Promise<[Entry<Event>, Entry<Event>[]]> => {
-  const client = getContentfulClient(isPreview);
-  let event: Entry<Event>;
-
-  if (year) {
-    const data = await client.getEntries<Event>({
-      content_type: 'event',
-      include: 2,
-      'fields.year': year,
-    });
-
-    event = data.items[0];
-  } else {
-    const data = await client.getEntries<App>({
-      content_type: 'app',
-      include: 3,
-    });
-
-    event = data.items[0].fields.currentEvent;
-  }
-
-  return [event, includePastEvents ? await getPastEvents({ isPreview }) : []];
-};
-
-export const getAllEvents = async ({
+export const getEvents = async ({
   isPreview,
 }: { isPreview?: boolean } = {}) => {
-  const data = await getContentfulClient(isPreview).getEntries<Event>({
-    content_type: 'event',
-    include: 2,
+  const client = getContentfulClient(isPreview);
+  const data = await client.getEntries<TypeEventSkeleton>({
+    content_type: "event",
+    include: 3,
   });
-
   return data.items;
 };
 
-export const getCurrentEvent = async ({
-  isPreview,
-}: {
-  isPreview?: boolean;
-} = {}) => {
+export const getEvent = async (
+  year: string,
+  { isPreview }: { isPreview?: boolean } = {}
+) => {
   const client = getContentfulClient(isPreview);
-  const data = await client.getEntries<App>({
-    content_type: 'app',
+  const data = await client.getEntries<TypeEventSkeleton>({
+    content_type: "event",
     include: 3,
+    "fields.year": year,
   });
-
-  return data.items[0].fields.currentEvent;
-};
-
-export const getPastEvents = async ({
-  event,
-  isPreview,
-}: {
-  event?: Entry<Event>;
-  isPreview?: boolean;
-} = {}) => {
-  let currentEvent = event || (await getCurrentEvent({ isPreview }));
-  const events = await getAllEvents({ isPreview });
-
-  return events
-    .filter(
-      (instance) =>
-        Number(instance.fields.year) < Number(currentEvent.fields.year),
-    )
-    .sort((eventA, eventB) =>
-      Number(eventA.fields.year) > Number(eventB.fields.year) ? -1 : 1,
-    );
+  return data.items[0];
 };

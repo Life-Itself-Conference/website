@@ -1,141 +1,132 @@
-import { globalStyle, style } from '@vanilla-extract/css';
-import { queries, theme } from '../../../theme.css';
-import { button } from '../../atoms/Button/Button.css';
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { queries, theme } from "@/src/theme.css";
+import { button } from "../../atoms/Button/Button.css";
 
-export const header = style({
-  alignItems: 'center',
+export const container = style({
+  alignItems: "center",
   backgroundColor: theme.colors.black,
-  display: 'flex',
+  display: "flex",
+  fontSize: theme.fontSizes.small,
   height: theme.headerHeight,
-  justifyContent: 'space-between',
-  padding: theme.spacing.small,
-  position: 'sticky',
-  textTransform: 'uppercase',
+  justifyContent: "space-between",
+  paddingLeft: theme.spacing.medium,
+  position: "sticky",
   top: 0,
-  zIndex: 998,
+  textTransform: "uppercase",
+  whiteSpace: "nowrap",
+  zIndex: 999,
 
-  '@media': {
+  "@media": {
     [queries.large]: {
       paddingInline: theme.spacing.large,
     },
   },
 });
 
+globalStyle(`${container} a:not(${button})`, {
+  color: theme.colors.white,
+});
+
 export const logo = style({
-  backgroundImage: 'url(/logo.png)',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain',
-  display: 'block',
-  flexShrink: 0.5,
+  backgroundImage: "url(/logo.png)",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "contain",
+  overflow: "hidden",
   height: 22,
-  overflow: 'hidden',
-  textDecoration: 'none',
   width: 160,
 });
 
 globalStyle(`${logo} > span`, {
-  fontSize: 0,
+  marginLeft: 1000,
 });
 
-export const trigger = style({
-  backgroundColor: 'transparent',
-  border: 'none',
-  color: 'inherit',
-  cursor: 'pointer',
-  fontSize: theme.fontSizes.xlarge,
+export const hamburger = style({
+  alignItems: "center",
+  background: "none",
+  border: "none",
+  color: "inherit",
+  cursor: "pointer",
+  display: "flex",
+  fontSize: 24,
+  justifyContent: "center",
+  padding: theme.spacing.small,
 
-  '@media': {
+  "@media": {
     [queries.large]: {
-      display: 'none',
+      display: "none",
     },
   },
 });
 
 export const nav = style({
-  alignItems: 'flex-start',
   backgroundColor: theme.colors.black,
-  display: 'flex',
+  color: theme.colors.white,
   fontSize: theme.fontSizes.large,
-  inset: `${theme.headerHeight} 0 0`,
-  justifyContent: 'center',
-  padding: theme.spacing.xlarge,
-  position: 'fixed',
-  translate: '100%',
+  inset: 0,
+  padding: theme.spacing.large,
+  position: "fixed",
+  top: theme.headerHeight,
+  display: "none",
 
-  '@media': {
+  "@media": {
     [queries.large]: {
-      backgroundColor: 'transparent',
-      display: 'block',
+      display: "block",
       fontSize: theme.fontSizes.small,
-      inset: 'unset',
-      padding: 'unset',
-      position: 'unset',
-      transition: 'unset',
-      translate: 'unset',
+      inset: "unset",
+      padding: 0,
+      position: "initial",
     },
   },
 });
 
-globalStyle(`${nav}[data-open="true"]`, {
-  translate: 0,
+export const open = style({
+  display: "block",
 });
 
-export const list = style({
-  alignItems: 'center',
-  display: 'flex',
-  flexDirection: 'column',
+export const links = style({
+  alignItems: "center",
+  display: "flex",
+  flexDirection: "column",
   gap: theme.spacing.large,
-  listStyle: 'none',
+  listStyle: "none",
   margin: 0,
   padding: 0,
 
-  '@media': {
+  "@media": {
     [queries.large]: {
-      flexDirection: 'row',
+      flexDirection: "row",
     },
   },
 });
 
-globalStyle(`${list} > li`, {
-  position: 'relative',
-});
-
-globalStyle(`${list} > li > button:not(${button})`, {
-  background: 'none',
-  border: 'none',
-  color: 'inherit',
-  cursor: 'pointer',
-  fontFamily: 'inherit',
-  fontSize: 'inherit',
-  fontWeight: 'inherit',
+export const toggle = style({
+  background: "none",
+  border: "none",
+  color: "inherit",
+  cursor: "pointer",
+  fontFamily: "inherit",
+  fontSize: "inherit",
+  fontWeight: "inherit",
+  lineHeight: "inherit",
   padding: 0,
-  textTransform: 'inherit',
-  whiteSpace: 'nowrap',
+  textTransform: "inherit",
 });
 
-globalStyle(`${list} > li > ul`, {
-  display: 'none',
-  listStyle: 'none',
+export const popover = style({
+  left: 0,
+  position: "absolute",
+  textAlign: "left",
+  top: "100%",
+  width: "100%",
+});
+
+globalStyle(`${popover} ul`, {
+  listStyle: "none",
   margin: 0,
   padding: 0,
-  position: 'absolute',
-  top: '100%',
-});
-
-globalStyle(`${list} > li:hover > ul`, {
-  display: 'block',
-});
-
-export const healthAndSafety = style({});
-
-globalStyle(`${list} a:where(:not(${button}, ${healthAndSafety}))`, {
-  color: 'inherit',
-  fontWeight: 'normal',
-  whiteSpace: 'nowrap',
 });
 
 export const buttons = style({
-  display: 'flex',
-  gap: theme.spacing.xsmall,
+  display: "flex",
+  gap: theme.spacing.small,
 });
