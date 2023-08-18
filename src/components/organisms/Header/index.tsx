@@ -1,6 +1,5 @@
 "use client";
 
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,10 +14,11 @@ export interface HeaderProps {
 
 export const Header = ({ events }: HeaderProps) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
+  const handleLinkClick = () => setIsMobileNavOpen(false);
 
   return (
     <header className={styles.container}>
-      <Link className={styles.logo} href="/">
+      <Link className={styles.logo} onClick={handleLinkClick} href="/">
         <span>Home</span>
       </Link>
       <button
@@ -28,48 +28,69 @@ export const Header = ({ events }: HeaderProps) => {
       >
         <FaBars />
       </button>
-      <NavigationMenu.Root
-        className={clsx(styles.nav, isMobileNavOpen && styles.open)}
-      >
-        <NavigationMenu.List className={styles.links}>
-          <NavigationMenu.Item>
-            <NavigationMenu.Trigger className={styles.toggle} type="button">
+
+      <nav className={clsx(styles.nav, isMobileNavOpen && styles.open)}>
+        <ul className={styles.links}>
+          <li className={styles.dropdown}>
+            <button className={styles.toggle} type="button">
               Past Events
-            </NavigationMenu.Trigger>
-            <NavigationMenu.Content className={styles.popover}>
+            </button>
+            <div className={styles.popover}>
               <ul>
                 {events?.map((event, index) => (
                   <li key={index}>
-                    <Link href={`/${event.fields.year}`}>
+                    <Link
+                      href={`/${event.fields.year}`}
+                      onClick={handleLinkClick}
+                    >
                       {event.fields.year}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </NavigationMenu.Content>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <Link href="#speakers">Speakers</Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <Link href="#location">Location</Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <Link href="#partners">Partners</Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <Link href="#about-us">About Us</Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item className={styles.buttons}>
-            <ButtonLink href="/" size="small" variant="secondary">
+            </div>
+          </li>
+          <li>
+            <Link href="#speakers" onClick={handleLinkClick}>
+              Speakers
+            </Link>
+          </li>
+          <li>
+            <Link href="#location" onClick={handleLinkClick}>
+              Location
+            </Link>
+          </li>
+          <li>
+            <Link href="#partners" onClick={handleLinkClick}>
+              Partners
+            </Link>
+          </li>
+          <li>
+            <Link href="#about-us" onClick={handleLinkClick}>
+              About Us
+            </Link>
+          </li>
+          <li className={styles.buttons}>
+            <ButtonLink
+              className={styles.buttonLink}
+              href="/"
+              onClick={handleLinkClick}
+              size="small"
+              variant="secondary"
+            >
               Schedule
             </ButtonLink>
-            <ButtonLink href="/" size="small">
+            <ButtonLink
+              className={styles.buttonLink}
+              href="/"
+              onClick={handleLinkClick}
+              size="small"
+            >
               Sold Out
             </ButtonLink>
-          </NavigationMenu.Item>
-        </NavigationMenu.List>
-      </NavigationMenu.Root>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

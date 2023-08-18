@@ -84,19 +84,27 @@ export const open = style({
 });
 
 export const links = style({
-  alignItems: "center",
   display: "flex",
   flexDirection: "column",
   gap: theme.spacing.large,
   listStyle: "none",
   margin: 0,
+  marginInline: "auto",
+  maxWidth: 300,
   padding: 0,
 
   "@media": {
     [queries.large]: {
+      alignItems: "center",
       flexDirection: "row",
+      marginInline: "0",
+      maxWidth: "unset",
     },
   },
+});
+
+export const dropdown = style({
+  position: "relative",
 });
 
 export const toggle = style({
@@ -113,20 +121,66 @@ export const toggle = style({
 });
 
 export const popover = style({
-  left: 0,
-  position: "absolute",
-  textAlign: "left",
-  top: "100%",
-  width: "100%",
+  fontSize: theme.fontSizes.small,
+
+  "@media": {
+    [queries.large]: {
+      display: "none",
+      left: "50%",
+      minWidth: 150,
+      position: "absolute",
+      top: "100%",
+      translate: "-50% 0",
+    },
+  },
 });
 
 globalStyle(`${popover} ul`, {
+  display: "flex",
+  flexDirection: "column",
+  gap: theme.spacing.small,
   listStyle: "none",
   margin: 0,
+  marginTop: 10,
   padding: 0,
+
+  "@media": {
+    [queries.large]: {
+      backgroundColor: theme.colors.black,
+      gap: 0,
+      border: `1px solid ${theme.colors.white}`,
+    },
+  },
 });
+
+globalStyle(`${popover} ul a`, {
+  "@media": {
+    [queries.large]: {
+      display: "block",
+      padding: theme.spacing.small,
+    },
+  },
+});
+
+globalStyle(
+  `${dropdown}:hover ${popover}, ${dropdown}:focus-within ${popover}`,
+  {
+    display: "block",
+  }
+);
 
 export const buttons = style({
   display: "flex",
+  flexDirection: "column",
   gap: theme.spacing.small,
+
+  "@media": {
+    [queries.large]: {
+      flexDirection: "row",
+    },
+  },
+});
+
+export const buttonLink = style({
+  width: "100%",
 });
