@@ -1,25 +1,46 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { theme } from "@/src/theme.css";
+import { queries, theme } from "@/src/theme.css";
 
 export const container = style({
   display: "grid",
   gridTemplateAreas: `
     'header image'
-    'content image'
+    'content content'
   `,
-  gridTemplateColumns: "2fr 1fr",
+  gridTemplateColumns: "4fr 1fr",
   gridTemplateRows: "auto 1fr",
-  height: 420,
+  height: "100vh",
+  width: "100vw",
   textAlign: "left",
-  width: 780,
+
+  "@media": {
+    [queries.medium]: {
+      gridTemplateAreas: `
+      'header image'
+      'content image'
+      `,
+      gridTemplateColumns: "2fr 1fr",
+      height: 420,
+      maxWidth: "100vw",
+      width: 780,
+    },
+  },
 });
 
 export const header = style({
   backgroundColor: theme.colors.red,
-  borderRight: `${theme.spacing.xlarge} solid ${theme.colors.black}`,
-  borderTop: `${theme.spacing.xlarge} solid ${theme.colors.black}`,
+  display: "flex",
+  flexDirection: "column",
   gridArea: "header",
+  justifyContent: "center",
   padding: theme.spacing.large,
+
+  "@media": {
+    [queries.medium]: {
+      borderRight: `${theme.spacing.xlarge} solid ${theme.colors.black}`,
+      borderTop: `${theme.spacing.xlarge} solid ${theme.colors.black}`,
+    },
+  },
 });
 
 export const name = style({
@@ -59,6 +80,7 @@ export const content = style({
 });
 
 export const image = style({
+  aspectRatio: "1 / 1.25",
   gridArea: "image",
   height: "100%",
   objectFit: "cover",
