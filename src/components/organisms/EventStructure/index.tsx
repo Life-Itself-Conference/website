@@ -34,8 +34,6 @@ export const EventStructure = (props: EventStructureProps) => {
 
     const isPreview = sessionStorage.getItem("preview") === "true";
 
-    console.log("isPreview", searchParams.get("preview"), isPreview);
-
     if (props.event && isPreview) {
       document.body.classList.add("preview");
       document.body.classList.add("preview--loading");
