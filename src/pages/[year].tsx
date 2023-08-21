@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps<{
   const app = await getApp();
   const event = await getEvent(params?.year as string);
   const pastEvents = await getPastEvents(app);
-  return { props: { app, event, pastEvents } };
+  return { props: { app, event, pastEvents }, revalidate: 60 };
 };
 
 export default function HomePage(

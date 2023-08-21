@@ -9,7 +9,7 @@ export const getStaticProps: GetStaticProps<{
 }> = async () => {
   const app = await getApp();
   const pastEvents = await getPastEvents(app);
-  return { props: { app, pastEvents } };
+  return { props: { app, pastEvents }, revalidate: 60 };
 };
 
 export default function HomePage(
