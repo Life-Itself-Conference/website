@@ -5,12 +5,12 @@ globalStyle("*, *:before, *:after", {
   boxSizing: "border-box",
 });
 
-export const html = style({
+globalStyle("html", {
   scrollBehavior: "smooth",
   scrollPaddingTop: theme.headerHeight,
 });
 
-export const body = style({
+globalStyle("body", {
   backgroundColor: theme.colors.black,
   color: theme.colors.white,
   fontFamily: theme.fontFamilies.base,
@@ -19,11 +19,11 @@ export const body = style({
   textAlign: "center",
 });
 
-globalStyle(`${body}.modal-open`, {
+globalStyle("body.modal-open", {
   overflow: "hidden",
 });
 
-globalStyle(`${body}.preview:before`, {
+globalStyle("body.preview:before", {
   backgroundColor: "yellow",
   borderRadius: theme.spacing.xsmall,
   bottom: theme.spacing.medium,
@@ -38,7 +38,7 @@ globalStyle(`${body}.preview:before`, {
   zIndex: 999,
 });
 
-globalStyle(`${body}.preview--loading:after`, {
+globalStyle("body.preview--loading:after", {
   alignItems: "center",
   backgroundColor: "rgba(0, 0, 0, 0.8)",
   backdropFilter: "blur(4px)",

@@ -11,5 +11,5 @@ export function POST(request: NextRequest) {
   revalidatePath("/");
   revalidatePath("/[year]");
 
-  return NextResponse.json({ revalidated: true, now: Date.now() });
+  return NextResponse.json({ revalidated: true, now: Date.now(), from: "app" });
 }

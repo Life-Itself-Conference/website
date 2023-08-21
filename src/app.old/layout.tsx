@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Jost, Noto_Sans } from "next/font/google";
 import { PropsWithChildren, Suspense } from "react";
-import * as styles from "../styles/Layout.css";
+import "../styles/Layout.css";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -21,10 +21,12 @@ export const metadata = {
   },
 };
 
+export const revalidate = 60;
+
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <html className={clsx(jost.variable, notoSans.variable, styles.html)}>
-      <body className={styles.body}>
+    <html className={clsx(jost.variable, notoSans.variable)}>
+      <body>
         <Suspense>{children}</Suspense>
       </body>
     </html>
