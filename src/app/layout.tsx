@@ -21,8 +21,6 @@ export const metadata = {
   },
 };
 
-export const revalidate = 60;
-
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <html className={clsx(jost.variable, notoSans.variable)}>
