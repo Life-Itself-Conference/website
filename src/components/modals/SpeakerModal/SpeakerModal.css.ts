@@ -9,20 +9,21 @@ export const container = style({
   `,
   gridTemplateColumns: "4fr 1fr",
   gridTemplateRows: "auto 1fr",
-  height: "100vh",
-  width: "100vw",
+  height: "100%",
+  // height: "100vh",
+  // width: "100vw",
   textAlign: "left",
 
   "@media": {
     [queries.medium]: {
       gridTemplateAreas: `
-      'header image'
-      'content image'
+        'header image'
+        'content image'
       `,
       gridTemplateColumns: "2fr 1fr",
-      height: 420,
-      maxWidth: "100vw",
-      width: 780,
+      // height: 420,
+      // maxWidth: "100vw",
+      // width: 780,
     },
   },
 });

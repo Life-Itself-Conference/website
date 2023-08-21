@@ -5,8 +5,8 @@ import { Button, ButtonLink } from "../../atoms/Button";
 import { Container } from "../../atoms/Container";
 import { PartnerLogo } from "../../atoms/PartnerLogo";
 import { NewsletterModal } from "../../modals/NewsletterModal";
-import { RegistrationModal } from "../../modals/RegistrationModal";
 import { EventMetadata } from "../../molecules/EventMetadata";
+import { RegistrationButton } from "../../molecules/RegistrationButton";
 import * as styles from "./HeroSection.css";
 
 export interface HeroSectionProps {
@@ -26,9 +26,7 @@ export const HeroSection = ({ event }: HeroSectionProps) => (
           <p className={styles.tagline}>{event.fields.tagline}</p>
           <ul className={styles.buttons}>
             <li>
-              <RegistrationModal
-                trigger={<Button variant="primary">Sold Out</Button>}
-              />
+              <RegistrationButton event={event} />
             </li>
             <li>
               <ButtonLink href="#speakers" variant="secondary">

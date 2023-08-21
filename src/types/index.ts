@@ -16,5 +16,6 @@ export type Partner = Contentful.TypePartner<
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >;
+export type Modal = Contentful.TypeModal<"WITHOUT_UNRESOLVABLE_LINKS", string>;
 
 export * from "./contentful";

@@ -287,7 +287,7 @@
         "id": "event",
         "type": "ContentType",
         "createdAt": "2023-03-07T22:31:01.719Z",
-        "updatedAt": "2023-08-18T07:16:43.386Z",
+        "updatedAt": "2023-08-21T17:54:27.994Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -295,8 +295,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 117,
-        "publishedAt": "2023-08-18T07:16:43.386Z",
+        "publishedVersion": 123,
+        "publishedAt": "2023-08-21T17:54:27.994Z",
         "firstPublishedAt": "2023-03-07T22:31:01.964Z",
         "createdBy": {
           "sys": {
@@ -312,8 +312,8 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "publishedCounter": 59,
-        "version": 118,
+        "publishedCounter": 62,
+        "version": 124,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -328,7 +328,7 @@
       "fields": [
         {
           "id": "year",
-          "name": "year",
+          "name": "Year",
           "type": "Symbol",
           "localized": false,
           "required": false,
@@ -339,7 +339,7 @@
         },
         {
           "id": "startDate",
-          "name": "start date",
+          "name": "Start Date",
           "type": "Date",
           "localized": false,
           "required": false,
@@ -350,7 +350,7 @@
         },
         {
           "id": "endDate",
-          "name": "end date",
+          "name": "End Date",
           "type": "Date",
           "localized": false,
           "required": false,
@@ -360,25 +360,8 @@
           "omitted": false
         },
         {
-          "id": "announcementModal",
-          "name": "announcementModal",
-          "type": "Link",
-          "localized": false,
-          "required": false,
-          "validations": [
-            {
-              "linkContentType": [
-                "modal"
-              ]
-            }
-          ],
-          "disabled": false,
-          "omitted": false,
-          "linkType": "Entry"
-        },
-        {
           "id": "hero",
-          "name": "hero",
+          "name": "Hero",
           "type": "Link",
           "localized": false,
           "required": false,
@@ -394,8 +377,19 @@
           "linkType": "Asset"
         },
         {
+          "id": "adornment",
+          "name": "Adornment",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
           "id": "tagline",
-          "name": "tagline",
+          "name": "Tagline",
           "type": "Text",
           "localized": false,
           "required": false,
@@ -406,7 +400,7 @@
         },
         {
           "id": "partnershipLogo",
-          "name": "partnership logo",
+          "name": "Partnership Logo",
           "type": "Link",
           "localized": false,
           "required": false,
@@ -418,7 +412,7 @@
         },
         {
           "id": "ticketStatus",
-          "name": "ticket status",
+          "name": "Ticket Status",
           "type": "Symbol",
           "localized": false,
           "required": false,
@@ -1084,7 +1078,7 @@
         "id": "app",
         "type": "ContentType",
         "createdAt": "2023-07-10T21:23:39.689Z",
-        "updatedAt": "2023-08-14T22:03:18.741Z",
+        "updatedAt": "2023-08-21T16:31:40.814Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -1092,8 +1086,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 11,
-        "publishedAt": "2023-08-14T22:03:18.741Z",
+        "publishedVersion": 13,
+        "publishedAt": "2023-08-21T16:31:40.814Z",
         "firstPublishedAt": "2023-07-10T21:23:40.132Z",
         "createdBy": {
           "sys": {
@@ -1109,8 +1103,8 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "publishedCounter": 6,
-        "version": 12,
+        "publishedCounter": 7,
+        "version": 14,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -1133,6 +1127,23 @@
             {
               "linkContentType": [
                 "event"
+              ]
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Entry"
+        },
+        {
+          "id": "announcementModal",
+          "name": "Announcement Modal",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+            {
+              "linkContentType": [
+                "modal"
               ]
             }
           ],
@@ -1712,7 +1723,7 @@
             "linkType": "Space"
           }
         },
-        "version": 118,
+        "version": 124,
         "createdAt": "2023-03-07T22:31:02.119Z",
         "createdBy": {
           "sys": {
@@ -1721,7 +1732,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2023-08-18T07:16:44.081Z",
+        "updatedAt": "2023-08-21T17:54:28.613Z",
         "updatedBy": {
           "sys": {
             "id": "4anSnW0ZH6blNIo3LDZrb1",
@@ -1761,13 +1772,13 @@
           "widgetNamespace": "builtin"
         },
         {
-          "fieldId": "announcementModal",
-          "widgetId": "entryLinkEditor",
+          "fieldId": "hero",
+          "widgetId": "assetLinkEditor",
           "widgetNamespace": "builtin"
         },
         {
-          "fieldId": "hero",
-          "widgetId": "assetLinkEditor",
+          "fieldId": "adornment",
+          "widgetId": "singleLine",
           "widgetNamespace": "builtin"
         },
         {
@@ -1969,7 +1980,7 @@
             "linkType": "Space"
           }
         },
-        "version": 12,
+        "version": 14,
         "createdAt": "2023-07-10T21:23:40.262Z",
         "createdBy": {
           "sys": {
@@ -1978,7 +1989,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2023-08-14T22:03:19.309Z",
+        "updatedAt": "2023-08-21T16:31:41.944Z",
         "updatedBy": {
           "sys": {
             "id": "4anSnW0ZH6blNIo3LDZrb1",
@@ -2004,6 +2015,11 @@
       "controls": [
         {
           "fieldId": "currentEvent",
+          "widgetId": "entryLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "announcementModal",
           "widgetId": "entryLinkEditor",
           "widgetNamespace": "builtin"
         }
@@ -2299,11 +2315,11 @@
           "event_type": "contentful.deploy"
         }
       },
-      "active": false,
+      "active": true,
       "sys": {
         "type": "WebhookDefinition",
         "id": "415DNNjRAvhV6OA1ufTfEy",
-        "version": 4,
+        "version": 5,
         "space": {
           "sys": {
             "type": "Link",
@@ -2326,7 +2342,7 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "updatedAt": "2023-08-15T17:51:03Z"
+        "updatedAt": "2023-08-18T22:58:53Z"
       },
       "headers": [
         {

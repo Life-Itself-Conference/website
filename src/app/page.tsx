@@ -9,7 +9,5 @@ export default async function CurrentEventPage() {
   const app = await getApp();
   const pastEvents = await getPastEvents();
 
-  return (
-    <EventStructure event={app.fields.currentEvent} pastEvents={pastEvents} />
-  );
+  return <EventStructure app={app} pastEvents={pastEvents} />;
 }

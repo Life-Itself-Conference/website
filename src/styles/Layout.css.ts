@@ -6,7 +6,7 @@ globalStyle("*, *:before, *:after", {
 });
 
 export const html = style({
-  scrollBehavior: "smooth !important" as "smooth",
+  scrollBehavior: "smooth",
   scrollPaddingTop: theme.headerHeight,
 });
 

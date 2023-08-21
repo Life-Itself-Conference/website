@@ -3,7 +3,8 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
-import { Event } from "@/src/types";
+import { App, Event } from "@/src/types";
+import { Banner } from "../../atoms/Banner";
 import { AboutUsSection } from "../AboutUsSection";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
@@ -13,13 +14,16 @@ import { PartnersSection } from "../PartnersSection";
 import { SpeakersSection } from "../SpeakersSection";
 
 export interface EventStructureProps {
+  app: App;
   event?: Event;
   pastEvents: Event[];
 }
 
 export const EventStructure = (props: EventStructureProps) => {
+  const [app, setApp] = useState(props.app);
   const [event, setEvent] = useState(props.event);
   const [pastEvents, setPastEvents] = useState(props.pastEvents);
+  const currentEvent = event || app?.fields.currentEvent;
   const params = useParams();
   const searchParams = useSearchParams();
   const param = searchParams.get("preview");
@@ -40,10 +44,12 @@ export const EventStructure = (props: EventStructureProps) => {
 
       if (params.year) {
         Promise.all([
+          getApp({ isPreview: true }),
           getEvent(params.year as string, { isPreview: true }),
           getPastEvents({ isPreview: true }),
-        ]).then(([previewEvent, previewPastEvents]) => {
+        ]).then(([previewApp, previewEvent, previewPastEvents]) => {
           document.body.classList.remove("preview--loading");
+          setApp(previewApp);
           setEvent(previewEvent);
           setPastEvents(previewPastEvents);
         });
@@ -53,26 +59,29 @@ export const EventStructure = (props: EventStructureProps) => {
           getPastEvents({ isPreview: true }),
         ]).then(([previewApp, previewPastEvents]) => {
           document.body.classList.remove("preview--loading");
-          setEvent(previewApp.fields.currentEvent);
+          setApp(previewApp);
           setPastEvents(previewPastEvents);
         });
       }
     }
   }, [param, params.year, props.event]);
 
-  if (!event) return <p>Oops...</p>;
+  if (!currentEvent) return <p>Oops...</p>;
 
   return (
     <>
-      <Header pastEvents={pastEvents} />
+      {app.fields.announcementModal && (
+        <Banner modal={app.fields.announcementModal} />
+      )}
+      <Header event={currentEvent} pastEvents={pastEvents} />
       <main>
-        <HeroSection event={event} />
-        <SpeakersSection event={event} />
-        <LocationSection event={event} />
-        <PartnersSection event={event} />
-        <AboutUsSection event={event} />
+        <HeroSection event={currentEvent} />
+        <SpeakersSection event={currentEvent} />
+        <LocationSection event={currentEvent} />
+        <PartnersSection event={currentEvent} />
+        <AboutUsSection event={currentEvent} />
       </main>
-      <Footer event={event} />
+      <Footer event={currentEvent} />
     </>
   );
 };

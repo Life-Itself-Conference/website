@@ -1,5 +1,10 @@
 import { EventStructure } from "@/src/components/organisms/EventStructure";
-import { getEvent, getEvents, getPastEvents } from "@/src/services/contentful";
+import {
+  getApp,
+  getEvent,
+  getEvents,
+  getPastEvents,
+} from "@/src/services/contentful";
 
 export const generateMetadata = ({ params }: { params: any }) => ({
   title: `${params["year"]} Event`,
@@ -11,8 +16,9 @@ export const generateStaticParams = async () => {
 };
 
 export default async function YearEventPage({ params }: { params: any }) {
+  const app = await getApp();
   const event = await getEvent(params["year"] as string);
   const pastEvents = await getPastEvents();
 
-  return <EventStructure event={event} pastEvents={pastEvents} />;
+  return <EventStructure app={app} event={event} pastEvents={pastEvents} />;
 }

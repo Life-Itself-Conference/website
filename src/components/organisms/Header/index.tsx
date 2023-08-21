@@ -6,13 +6,15 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { Event } from "@/src/types";
 import { ButtonLink } from "../../atoms/Button";
+import { RegistrationButton } from "../../molecules/RegistrationButton";
 import * as styles from "./Header.css";
 
 export interface HeaderProps {
+  event: Event;
   pastEvents: Event[];
 }
 
-export const Header = ({ pastEvents }: HeaderProps) => {
+export const Header = ({ event, pastEvents }: HeaderProps) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const handleLinkClick = () => setIsMobileNavOpen(false);
 
@@ -82,14 +84,12 @@ export const Header = ({ pastEvents }: HeaderProps) => {
             >
               Schedule
             </ButtonLink>
-            <ButtonLink
+            <RegistrationButton
               className={styles.buttonLink}
-              href="/"
+              event={event}
               onClick={handleLinkClick}
               size="small"
-            >
-              Sold Out
-            </ButtonLink>
+            />
           </li>
         </ul>
       </nav>

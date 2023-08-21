@@ -29,17 +29,22 @@ export const EventMetadata = ({ className, event }: EventMetadataProps) => {
   );
 
   return (
-    <time
-      className={className}
-      key={`${dateText}${separatorText}${locationText}`}
-      dateTime={`${event.fields.startDate}/${event.fields.endDate}`}
-    >
-      <GlowingCharacters text={dateText} />
-      <span className={styles.separator}>{separatorText}</span>
-      <GlowingCharacters
-        characterDelay={dateText.length + separatorText.length}
-        text={locationText}
-      />
-    </time>
+    <div>
+      {event.fields.adornment && (
+        <p className={styles.eyebrow}>{event.fields.adornment}</p>
+      )}
+      <time
+        className={className}
+        key={`${dateText}${separatorText}${locationText}`}
+        dateTime={`${event.fields.startDate}/${event.fields.endDate}`}
+      >
+        <GlowingCharacters text={dateText} />
+        <span className={styles.separator}>{separatorText}</span>
+        <GlowingCharacters
+          characterDelay={dateText.length + separatorText.length}
+          text={locationText}
+        />
+      </time>
+    </div>
   );
 };
