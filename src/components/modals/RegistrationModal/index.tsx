@@ -8,6 +8,8 @@ export interface RegistrationModalProps {
 export const RegistrationModal = (props: RegistrationModalProps) => (
   <Modal ariaLabel="Register" trigger={props.trigger}>
     <h2>Register</h2>
-    <p>Lorem ipsum dolor sit amet</p>
+    <form action="/register" method="POST">
+      <button type="submit">Test</button>
+    </form>
   </Modal>
 );

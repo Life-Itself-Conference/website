@@ -18,7 +18,7 @@ export const generateStaticParams = async () => {
 export default async function YearEventPage({ params }: { params: any }) {
   const app = await getApp();
   const event = await getEvent(params["year"] as string);
-  const pastEvents = await getPastEvents();
+  const pastEvents = await getPastEvents(app);
 
   return <EventStructure app={app} event={event} pastEvents={pastEvents} />;
 }
