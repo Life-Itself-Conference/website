@@ -1,5 +1,5 @@
 import * as contentful from "contentful";
-import { TypeAppSkeleton, TypeEventSkeleton } from "../types";
+import { App, TypeAppSkeleton, TypeEventSkeleton } from "../types";
 
 const CONTENTFUL_ACCESS_TOKEN = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 const CONTENTFUL_PREVIEW_ACCESS_TOKEN =
@@ -53,16 +53,13 @@ export const getEvents = async ({
   return data.items;
 };
 
-export const getPastEvents = async ({
-  isPreview,
-}: { isPreview?: boolean } = {}) => {
-  const client = getContentfulClient(isPreview);
-  const [app, events] = await Promise.all([
-    getApp({ isPreview }),
-    getEvents({ isPreview }),
-  ]);
+export const getPastEvents = async (
+  app: App,
+  { isPreview }: { isPreview?: boolean } = {}
+) => {
+  const events = await getEvents({ isPreview });
+  const currentEvent = app?.fields.currentEvent;
 
-  const currentEvent = app.fields.currentEvent;
   let pastEvents = events;
 
   if (currentEvent) {

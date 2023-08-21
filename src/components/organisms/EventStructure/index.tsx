@@ -46,18 +46,20 @@ export const EventStructure = (props: EventStructureProps) => {
         Promise.all([
           getApp({ isPreview: true }),
           getEvent(params.year as string, { isPreview: true }),
-          getPastEvents({ isPreview: true }),
-        ]).then(([previewApp, previewEvent, previewPastEvents]) => {
+        ]).then(async ([previewApp, previewEvent]) => {
+          const previewPastEvents = await getPastEvents(previewApp, {
+            isPreview: true,
+          });
           document.body.classList.remove("preview--loading");
           setApp(previewApp);
           setEvent(previewEvent);
           setPastEvents(previewPastEvents);
         });
       } else {
-        Promise.all([
-          getApp({ isPreview: true }),
-          getPastEvents({ isPreview: true }),
-        ]).then(([previewApp, previewPastEvents]) => {
+        getApp({ isPreview: true }).then(async (previewApp) => {
+          const previewPastEvents = await getPastEvents(previewApp, {
+            isPreview: true,
+          });
           document.body.classList.remove("preview--loading");
           setApp(previewApp);
           setPastEvents(previewPastEvents);
