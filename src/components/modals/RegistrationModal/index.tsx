@@ -8,7 +8,7 @@ export interface RegistrationModalProps {
 export const RegistrationModal = (props: RegistrationModalProps) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
     });
     const json = await response.json();
