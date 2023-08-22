@@ -16,7 +16,7 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
   );
 
   return (
-    <Modal ariaLabel="Speaker" trigger={props.trigger}>
+    <Modal ariaLabel="Speaker" className={styles.modal} trigger={props.trigger}>
       <div className={styles.grid}>
         <header className={styles.header}>
           <h2 className={styles.name}>

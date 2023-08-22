@@ -2,7 +2,15 @@ import { style } from "@vanilla-extract/css";
 import { queries, theme } from "@/src/styles/theme.css";
 
 export const modal = style({
+  height: "100%",
   overflow: "hidden",
+  padding: 0,
+
+  "@media": {
+    [queries.medium]: {
+      height: 500,
+    },
+  },
 });
 
 export const grid = style({

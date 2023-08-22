@@ -53,10 +53,10 @@ const baseContent = style({
   backgroundColor: theme.colors.black,
   color: theme.colors.white,
   left: "50%",
-  height: "100%",
   maxHeight: "100vh",
   maxWidth: "100vw",
   overflow: "auto",
+  padding: theme.spacing.large,
   position: "fixed",
   top: "50%",
   translate: "-50% -50%",
@@ -65,7 +65,6 @@ const baseContent = style({
 
   "@media": {
     [queries.medium]: {
-      height: 500,
       maxHeight: `calc(100vh - ${theme.spacing.xxlarge})`,
       maxWidth: `calc(100vw - ${theme.spacing.xxlarge})`,
     },
@@ -73,6 +72,16 @@ const baseContent = style({
 });
 
 export const content = styleVariants({
+  small: [
+    baseContent,
+    {
+      "@media": {
+        [queries.medium]: {
+          width: 496,
+        },
+      },
+    },
+  ],
   medium: [
     baseContent,
     {

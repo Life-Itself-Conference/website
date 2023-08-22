@@ -1,6 +1,11 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { queries, theme } from "@/src/styles/theme.css";
 
+export const modal = style({
+  height: 500,
+  padding: 0,
+});
+
 export const grid = style({
   display: "grid",
   gridTemplateAreas: `
