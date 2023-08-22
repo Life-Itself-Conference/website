@@ -1,7 +1,6 @@
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
 import { App, Event } from "@/src/types";
@@ -25,7 +24,7 @@ export const EventStructure = (props: EventStructureProps) => {
   const [event, setEvent] = useState(props.event);
   const [pastEvents, setPastEvents] = useState(props.pastEvents);
   const currentEvent = event || app?.fields.currentEvent;
-  const router = useRouter();
+  const params = useParams();
   const searchParams = useSearchParams();
   const param = searchParams.get("preview");
 
@@ -43,10 +42,10 @@ export const EventStructure = (props: EventStructureProps) => {
       document.body.classList.add("preview");
       document.body.classList.add("preview--loading");
 
-      if (router.query.year) {
+      if (params.year) {
         Promise.all([
           getApp({ isPreview: true }),
-          getEvent(router.query.year as string, { isPreview: true }),
+          getEvent(params.year as string, { isPreview: true }),
         ]).then(async ([previewApp, previewEvent]) => {
           const previewPastEvents = await getPastEvents(previewApp, {
             isPreview: true,
@@ -67,7 +66,7 @@ export const EventStructure = (props: EventStructureProps) => {
         });
       }
     }
-  }, [param, router.query.year, props.event]);
+  }, [param, params.year, props.event]);
 
   if (!currentEvent) return <p>Oops...</p>;
 
