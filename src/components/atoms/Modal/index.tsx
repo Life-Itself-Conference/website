@@ -1,13 +1,16 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { MouseEvent, PropsWithChildren, ReactNode, useState } from "react";
+import clsx from "clsx";
+import { PropsWithChildren, ReactNode } from "react";
 import { FaTimes } from "react-icons/fa";
 import * as styles from "./Modal.css";
 
 export interface ModalProps {
   ariaDescription?: string;
   ariaLabel: string;
+  className?: string;
+  size?: keyof typeof styles.content;
   trigger?: ReactNode;
 }
 
@@ -18,7 +21,10 @@ export const Modal = (props: PropsWithChildren<ModalProps>) => {
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content
-          className={styles.content}
+          className={clsx(
+            styles.content[props.size || "medium"],
+            props.className
+          )}
           aria-description={props.ariaDescription}
           aria-describedby={undefined}
           aria-label={props.ariaLabel}

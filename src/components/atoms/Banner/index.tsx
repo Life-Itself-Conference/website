@@ -1,5 +1,5 @@
 import { Modal } from "@/src/types";
-import { GenericModal } from "../../modals/GenericModal";
+import { GenericModal } from "../../molecules/GenericModal";
 import * as styles from "./Banner.css";
 
 export interface BannerProps {

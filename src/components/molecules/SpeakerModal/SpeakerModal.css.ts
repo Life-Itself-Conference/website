@@ -1,7 +1,7 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { queries, theme } from "@/src/styles/theme.css";
 
-export const container = style({
+export const grid = style({
   display: "grid",
   gridTemplateAreas: `
     'header image'
@@ -10,8 +10,6 @@ export const container = style({
   gridTemplateColumns: "4fr 1fr",
   gridTemplateRows: "auto 1fr",
   height: "100%",
-  // height: "100vh",
-  // width: "100vw",
   textAlign: "left",
 
   "@media": {
@@ -21,9 +19,6 @@ export const container = style({
         'content image'
       `,
       gridTemplateColumns: "2fr 1fr",
-      // height: 420,
-      // maxWidth: "100vw",
-      // width: 780,
     },
   },
 });

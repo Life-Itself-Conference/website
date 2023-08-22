@@ -14,16 +14,23 @@ export const GenericModal = (props: GenericModalProps) => {
   const { image } = props.modal.fields;
 
   return (
-    <Modal ariaLabel="Generic Modal" trigger={props.trigger}>
+    <Modal
+      ariaLabel="Generic Modal"
+      className={styles.modal}
+      trigger={props.trigger}
+    >
       <div className={styles.grid}>
-        {image?.fields.file && (
-          <Image
-            alt=""
-            height={image.fields.file.details.image?.height}
-            src={image.fields.file.url}
-            width={image.fields.file.details.image?.width}
-          />
-        )}
+        <div>
+          {image?.fields.file && (
+            <Image
+              alt=""
+              className={styles.image}
+              height={image.fields.file.details.image?.height}
+              src={image.fields.file.url}
+              width={image.fields.file.details.image?.width}
+            />
+          )}
+        </div>
         <div className={styles.content}>
           <h2>{props.modal.fields.title}</h2>
           <RichText field={props.modal.fields.description} />

@@ -4,8 +4,8 @@ import { Event } from "@/src/types";
 import { Button, ButtonLink } from "../../atoms/Button";
 import { Container } from "../../atoms/Container";
 import { PartnerLogo } from "../../atoms/PartnerLogo";
-import { NewsletterModal } from "../../modals/NewsletterModal";
 import { EventMetadata } from "../../molecules/EventMetadata";
+import { NewsletterModal } from "../../molecules/NewsletterModal";
 import { RegistrationButton } from "../../molecules/RegistrationButton";
 import * as styles from "./HeroSection.css";
 

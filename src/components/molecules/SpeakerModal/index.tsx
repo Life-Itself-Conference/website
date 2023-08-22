@@ -17,7 +17,7 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
 
   return (
     <Modal ariaLabel="Speaker" trigger={props.trigger}>
-      <section className={styles.container}>
+      <div className={styles.grid}>
         <header className={styles.header}>
           <h2 className={styles.name}>
             {props.speaker.fields.alternateName || props.speaker.fields.name}
@@ -51,7 +51,7 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
           src={headshot?.fields.file?.url as string}
           width={headshot?.fields.file?.details?.image?.width}
         />
-      </section>
+      </div>
     </Modal>
   );
 };

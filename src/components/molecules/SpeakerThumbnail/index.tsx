@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useMemo, useRef } from "react";
 import { Speaker } from "@/src/types";
 import { Button } from "../../atoms/Button";
-import { SpeakerModal } from "../../modals/SpeakerModal";
+import { SpeakerModal } from "../../molecules/SpeakerModal";
 import * as styles from "./SpeakerThumbnail.css";
 
 export interface SpeakerThumbnailProps {

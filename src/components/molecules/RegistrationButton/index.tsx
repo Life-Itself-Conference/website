@@ -1,8 +1,8 @@
 import { ComponentProps } from "react";
 import { Event } from "@/src/types";
 import { Button } from "../../atoms/Button";
-import { NewsletterModal } from "../../modals/NewsletterModal";
-import { RegistrationModal } from "../../modals/RegistrationModal";
+import { NewsletterModal } from "../../molecules/NewsletterModal";
+import { RegistrationModal } from "../../molecules/RegistrationModal";
 
 export interface RegistrationButtonProps extends ComponentProps<typeof Button> {
   event: Event;

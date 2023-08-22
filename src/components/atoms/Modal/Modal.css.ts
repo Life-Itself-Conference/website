@@ -1,4 +1,9 @@
-import { globalStyle, keyframes, style } from "@vanilla-extract/css";
+import {
+  globalStyle,
+  keyframes,
+  style,
+  styleVariants,
+} from "@vanilla-extract/css";
 import { queries, theme } from "@/src/styles/theme.css";
 
 const fadeIn = keyframes({
@@ -44,26 +49,40 @@ export const overlay = style({
   zIndex: 10000,
 });
 
-export const content = style({
+const baseContent = style({
   backgroundColor: theme.colors.black,
   color: theme.colors.white,
   left: "50%",
-  height: "100vh",
+  height: "100%",
   maxHeight: "100vh",
   maxWidth: "100vw",
+  overflow: "auto",
   position: "fixed",
   top: "50%",
   translate: "-50% -50%",
-  width: "100vw",
+  width: "100%",
   zIndex: 10001,
 
   "@media": {
     [queries.medium]: {
-      height: 420,
-      maxWidth: "100vw",
-      width: 780,
+      height: 500,
+      maxHeight: `calc(100vh - ${theme.spacing.xxlarge})`,
+      maxWidth: `calc(100vw - ${theme.spacing.xxlarge})`,
     },
   },
+});
+
+export const content = styleVariants({
+  medium: [
+    baseContent,
+    {
+      "@media": {
+        [queries.medium]: {
+          width: 768,
+        },
+      },
+    },
+  ],
 });
 
 globalStyle(`${overlay}[data-state='open']`, {
