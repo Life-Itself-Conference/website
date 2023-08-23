@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
+import { register } from "../../../actions/register";
 import { Button } from "../../atoms/Button";
 import { Modal } from "../../atoms/Modal";
 import { TextField } from "../../atoms/TextField";
 import * as styles from "./RegistrationModal.css";
-import { register } from "./register";
 
 export interface RegistrationModalProps {
   trigger?: ReactNode;

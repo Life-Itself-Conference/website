@@ -16,42 +16,44 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
   );
 
   return (
-    <Modal ariaLabel="Speaker" className={styles.modal} trigger={props.trigger}>
-      <div className={styles.grid}>
-        <header className={styles.header}>
-          <h2 className={styles.name}>
-            {props.speaker.fields.alternateName || props.speaker.fields.name}
-          </h2>
-          {props.speaker.fields.titles &&
-            props.speaker.fields.titles.length > 0 && (
-              <ul className={styles.details}>
-                {props.speaker?.fields.titles?.map((title, index) => {
-                  const [role, organization] = title.split("|");
+    <Modal
+      ariaLabel="Speaker"
+      contentClassName={styles.container}
+      trigger={props.trigger}
+    >
+      <header className={styles.header}>
+        <h2 className={styles.name}>
+          {props.speaker.fields.alternateName || props.speaker.fields.name}
+        </h2>
+        {props.speaker.fields.titles &&
+          props.speaker.fields.titles.length > 0 && (
+            <ul className={styles.details}>
+              {props.speaker?.fields.titles?.map((title, index) => {
+                const [role, organization] = title.split("|");
 
-                  return (
-                    <li className={styles.detail} key={index}>
-                      {organization && <strong>{organization.trim()}</strong>}
-                      <span>{role.trim()}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-        </header>
-        <div className={styles.content}>
-          {props.speaker.fields.topic && (
-            <p className={styles.topic}>{props.speaker.fields.topic}</p>
+                return (
+                  <li className={styles.detail} key={index}>
+                    {organization && <strong>{organization.trim()}</strong>}
+                    <span>{role.trim()}</span>
+                  </li>
+                );
+              })}
+            </ul>
           )}
-          <RichText field={props.speaker.fields.description} />
-        </div>
-        <Image
-          alt=""
-          className={styles.image}
-          height={headshot?.fields.file?.details?.image?.height}
-          src={headshot?.fields.file?.url as string}
-          width={headshot?.fields.file?.details?.image?.width}
-        />
+      </header>
+      <div className={styles.content}>
+        {props.speaker.fields.topic && (
+          <p className={styles.topic}>{props.speaker.fields.topic}</p>
+        )}
+        <RichText field={props.speaker.fields.description} />
       </div>
+      <Image
+        alt=""
+        className={styles.image}
+        height={headshot?.fields.file?.details?.image?.height}
+        src={headshot?.fields.file?.url as string}
+        width={headshot?.fields.file?.details?.image?.width}
+      />
     </Modal>
   );
 };

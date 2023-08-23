@@ -1,4 +1,5 @@
 "use server";
+
 import Stripe from "stripe";
 
 export const register = async (data: FormData) => {

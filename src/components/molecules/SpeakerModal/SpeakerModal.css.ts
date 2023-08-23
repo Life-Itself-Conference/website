@@ -1,29 +1,25 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { breakpoints, theme } from "@/src/styles/theme.css";
 
-export const modal = style({
-  height: 500,
-  padding: 0,
-});
-
-export const grid = style({
+export const container = style({
   display: "grid",
   gridTemplateAreas: `
-    'header image'
-    'content content'
+  'header image'
+  'content content'
   `,
   gridTemplateColumns: "4fr 1fr",
   gridTemplateRows: "auto 1fr",
-  height: "100%",
+  padding: 0,
   textAlign: "left",
 
   "@media": {
     [breakpoints.medium]: {
       gridTemplateAreas: `
-        'header image'
-        'content image'
+      'header image'
+      'content image'
       `,
       gridTemplateColumns: "2fr 1fr",
+      height: 500,
     },
   },
 });

@@ -1,9 +1,9 @@
 import { FormEvent, ReactNode, useRef, useState } from "react";
+import { subscribe } from "../../../actions/subscribe";
 import { Button } from "../../atoms/Button";
 import { Modal } from "../../atoms/Modal";
 import { TextField } from "../../atoms/TextField";
 import * as styles from "./NewsletterModal.css";
-import { subscribe } from "./subscribe";
 
 export interface NewsletterModalProps {
   trigger?: ReactNode;
