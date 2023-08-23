@@ -36,7 +36,7 @@ export const metadata = {
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <html className={clsx(jost.variable, notoSans.variable)}>
+    <html className={clsx(jost.variable, notoSans.variable)} lang="en">
       <body>
         <Suspense>{children}</Suspense>
       </body>
