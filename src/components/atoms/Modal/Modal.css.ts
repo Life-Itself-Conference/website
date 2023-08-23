@@ -63,13 +63,13 @@ const baseDialog = style({
   backgroundColor: theme.colors.black,
   display: "flex",
   left: "50%",
-  height: "100vh",
-  maxHeight: "100vh",
-  maxWidth: "100vw",
+  height: "100dvh",
+  maxHeight: "100dvh",
+  maxWidth: "100dvw",
   position: "fixed",
   top: "50%",
   translate: "-50% -50%",
-  width: "100vw",
+  width: "100dvw",
   zIndex: 10001,
 
   "@media": {
