@@ -1,25 +1,36 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import type { Document } from "@contentful/rich-text-types";
+import {
+  Options,
+  documentToReactComponents,
+} from "@contentful/rich-text-react-renderer";
+import { INLINES, type Document } from "@contentful/rich-text-types";
+import reactStringReplace from "react-string-replace";
+import { Link } from "../../molecules/Link";
 import * as styles from "./RichText.css";
 
-const renderOptions = {
-  renderText: (text: string) => {
-    return text.split(" ").map((word, index) => {
-      if (word === "--") return <span key={index}> &mdash; </span>;
-      if (word === "---") {
-        return (
-          <span className={styles.emDashRed} key={index}>
-            {" "}
-            &mdash;{" "}
-          </span>
-        );
-      }
-      return ` ${word} `;
-    });
-  },
-};
-
 export const RichText = ({ className, field }: RichTextProps) => {
+  const renderOptions: Options = {
+    renderNode: {
+      [INLINES.HYPERLINK]: (node, children) => (
+        <Link className={styles.link} href={node.data.uri}>
+          {children}
+        </Link>
+      ),
+    },
+    renderText: (text: string) => {
+      let replacedText = reactStringReplace(text, "---", (_, i) => (
+        <span className={styles.emDashRed} key={i}>
+          &mdash;
+        </span>
+      ));
+
+      replacedText = reactStringReplace(replacedText, "--", (_, i) => (
+        <span key={i}>&mdash;</span>
+      ));
+
+      return replacedText;
+    },
+  };
+
   if (!field) return <></>;
 
   return (

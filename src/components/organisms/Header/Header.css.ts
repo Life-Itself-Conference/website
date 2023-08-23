@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { breakpoints, theme } from "@/src/styles/theme.css";
 import { button } from "../../atoms/Button/Button.css";
 
@@ -58,20 +58,19 @@ export const hamburger = style({
   },
 });
 
-export const nav = style({
+const baseNav = style({
   backgroundColor: theme.colors.black,
   color: theme.colors.white,
-  display: "none",
   fontSize: theme.fontSizes.large,
   left: 0,
   padding: theme.spacing.large,
   position: "absolute",
   right: 0,
   top: "100%",
+  zIndex: -1,
 
   "@media": {
     [breakpoints.large]: {
-      display: "block",
       fontSize: theme.fontSizes.small,
       inset: "unset",
       padding: 0,
@@ -80,8 +79,25 @@ export const nav = style({
   },
 });
 
-export const open = style({
-  display: "block",
+export const nav = styleVariants({
+  closed: [
+    baseNav,
+    {
+      display: "none",
+
+      "@media": {
+        [breakpoints.large]: {
+          display: "block",
+        },
+      },
+    },
+  ],
+  open: [
+    baseNav,
+    {
+      display: "block",
+    },
+  ],
 });
 
 export const links = style({
@@ -98,8 +114,12 @@ export const links = style({
     [breakpoints.large]: {
       alignItems: "center",
       flexDirection: "row",
+      gap: theme.spacing.medium,
       marginInline: "0",
       maxWidth: "unset",
+    },
+    [breakpoints.xlarge]: {
+      gap: theme.spacing.large,
     },
   },
 });

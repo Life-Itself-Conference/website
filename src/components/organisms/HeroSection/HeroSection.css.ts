@@ -240,7 +240,7 @@ export const arrowContainer = style({
 
 export const arrow = style({
   animation: `${bounceKeyframes} 2s ease infinite`,
-  fontSize: theme.spacing.xlarge,
+  fontSize: theme.spacing.xxlarge,
   marginTop: theme.spacing.large,
   textAlign: "center",
   willChange: "transform",

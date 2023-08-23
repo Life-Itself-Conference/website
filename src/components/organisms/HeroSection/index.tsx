@@ -4,6 +4,7 @@ import { Event } from "@/src/types";
 import { Button, ButtonLink } from "../../atoms/Button";
 import { Container } from "../../atoms/Container";
 import { PartnerLogo } from "../../atoms/PartnerLogo";
+import { RichText } from "../../atoms/RichText";
 import { EventMetadata } from "../../molecules/EventMetadata";
 import { NewsletterModal } from "../../molecules/NewsletterModal";
 import { RegistrationButton } from "../../molecules/RegistrationButton";
@@ -89,6 +90,9 @@ export const HeroSection = ({ event }: HeroSectionProps) => (
             />
           )}
         </div>
+      </div>
+      <div className={styles.videoDetails}>
+        <RichText field={event.fields.videoDetails} />
       </div>
       <div className={styles.arrowContainer}>
         <BsChevronDown className={styles.arrow} />

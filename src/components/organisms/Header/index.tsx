@@ -1,11 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import Link from "next/link";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { Event } from "@/src/types";
 import { ButtonLink } from "../../atoms/Button";
+import { Link } from "../../molecules/Link";
 import { RegistrationButton } from "../../molecules/RegistrationButton";
 import * as styles from "./Header.css";
 
@@ -31,7 +31,7 @@ export const Header = ({ event, pastEvents }: HeaderProps) => {
         <FaBars />
       </button>
 
-      <nav className={clsx(styles.nav, isMobileNavOpen && styles.open)}>
+      <nav className={clsx(styles.nav[isMobileNavOpen ? "open" : "closed"])}>
         <ul className={styles.links}>
           {pastEvents.length > 0 && (
             <li className={styles.dropdown}>
@@ -72,6 +72,15 @@ export const Header = ({ event, pastEvents }: HeaderProps) => {
           <li>
             <Link href="#about-us" onClick={handleLinkClick}>
               About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="mailto:info@lifeitself.health?subject=Contact Us"
+              onClick={handleLinkClick}
+              target="_blank"
+            >
+              Contact Us
             </Link>
           </li>
           <li className={styles.buttons}>

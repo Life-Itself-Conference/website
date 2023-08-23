@@ -1,6 +1,10 @@
 import { style } from "@vanilla-extract/css";
 import { breakpoints, theme } from "@/src/styles/theme.css";
 
+export const content = style({
+  marginBottom: theme.spacing.xlarge,
+});
+
 export const list = style({
   display: "grid",
   gap: theme.spacing.medium,

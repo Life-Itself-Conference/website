@@ -6,6 +6,8 @@ import {
 } from "@vanilla-extract/css";
 import { breakpoints, theme } from "@/src/styles/theme.css";
 
+const animationDuration = "300ms";
+
 const fadeIn = keyframes({
   from: {
     opacity: 0,
@@ -50,11 +52,11 @@ export const overlay = style({
 });
 
 globalStyle(`${overlay}[data-state='open']`, {
-  animation: `${fadeIn} 300ms ease-out`,
+  animation: `${fadeIn} ${animationDuration} ease-out`,
 });
 
 globalStyle(`${overlay}[data-state='closed']`, {
-  animation: `${fadeOut} 300ms ease-out`,
+  animation: `${fadeOut} ${animationDuration} ease-out`,
 });
 
 const baseDialog = style({
@@ -78,6 +80,14 @@ const baseDialog = style({
       width: "auto",
     },
   },
+});
+
+globalStyle(`${baseDialog}[data-state='open']`, {
+  animation: `${fadeIn} ${animationDuration} ease-out, ${scaleUp} ${animationDuration} ease-out`,
+});
+
+globalStyle(`${baseDialog}[data-state='closed']`, {
+  animation: `${fadeOut} ${animationDuration} ease-out, ${scaleDown} ${animationDuration} ease-out`,
 });
 
 export const dialog = styleVariants({
@@ -105,14 +115,6 @@ export const dialog = styleVariants({
       },
     },
   ],
-});
-
-globalStyle(`${dialog}[data-state='open']`, {
-  animation: `${fadeIn} 300ms ease-out, ${scaleUp} 300ms ease-out`,
-});
-
-globalStyle(`${dialog}[data-state='closed']`, {
-  animation: `${fadeOut} 300ms ease-out, ${scaleDown} 300ms ease-out`,
 });
 
 export const content = style({

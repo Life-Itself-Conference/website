@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import Link from "next/link";
 import { ComponentProps, forwardRef } from "react";
+import { Link } from "../../molecules/Link";
 import * as styles from "./Button.css";
 
 interface CommonButtonProps {

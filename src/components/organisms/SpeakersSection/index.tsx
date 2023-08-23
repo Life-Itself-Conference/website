@@ -1,5 +1,5 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Event } from "@/src/types";
+import { RichText } from "../../atoms/RichText";
 import { ContentSection } from "../../molecules/ContentSection";
 import { SpeakerThumbnail } from "../../molecules/SpeakerThumbnail";
 import * as styles from "./SpeakersSection.css";
@@ -11,8 +11,11 @@ export interface SpeakersSectionProps {
 export const SpeakersSection = ({ event }: SpeakersSectionProps) => {
   return (
     <ContentSection id="speakers" size="small" title="Speakers" titleLarge>
-      {event.fields.speakersSubtitle &&
-        documentToReactComponents(event.fields.speakersSubtitle)}
+      <div className={styles.content}>
+        {event.fields.speakersSubtitle && (
+          <RichText field={event.fields.speakersSubtitle} />
+        )}
+      </div>
       <ul className={styles.list}>
         {event.fields.speakers?.map(
           (speaker, index) =>
