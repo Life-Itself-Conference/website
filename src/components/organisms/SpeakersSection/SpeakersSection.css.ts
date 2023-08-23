@@ -6,21 +6,60 @@ export const content = style({
 });
 
 export const list = style({
-  display: "grid",
-  gap: theme.spacing.medium,
-  gridTemplateColumns: "repeat(2, 1fr)",
+  display: "flex",
+  flexWrap: "wrap",
   listStyle: "none",
   margin: 0,
+  marginInline: `calc(${theme.spacing.xsmall} * -1)`,
   padding: 0,
+});
+
+export const item = style({
+  borderStyle: "solid",
+  borderColor: "transparent",
+  borderWidth: theme.spacing.xsmall,
+  width: "50%",
 
   "@media": {
     [breakpoints.medium]: {
-      gridTemplateColumns: "repeat(3, 1fr)",
+      width: "calc(100% / 3)",
     },
     [breakpoints.large]: {
-      gridTemplateColumns: "repeat(5, 1fr)",
+      width: "20%",
     },
   },
 });
 
-export const thumbnail = style({});
+export const last = style({
+  aspectRatio: "2 / 1",
+  flexGrow: 1,
+  minHeight: 150,
+
+  "@media": {
+    [breakpoints.medium]: {
+      aspectRatio: "3 / 1",
+    },
+    [breakpoints.medium]: {
+      aspectRatio: "5 / 1",
+    },
+  },
+});
+
+export const moreSpeakers = style({
+  alignItems: "center",
+  backgroundColor: "#222",
+  backgroundImage: "url(/more-to-come.png)",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: 140,
+  display: "flex",
+  flexDirection: "column",
+  gap: theme.spacing.medium,
+  height: "100%",
+  justifyContent: "center",
+  padding: theme.spacing.small,
+});
+
+export const button = style({
+  whiteSpace: "initial",
+});

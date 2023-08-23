@@ -124,7 +124,7 @@ export const content = style({
 });
 
 export const close = style({
-  background: "none",
+  background: "rgba(0, 0, 0, 0.5)",
   border: "none",
   alignItems: "center",
   display: "flex",

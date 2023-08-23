@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { MouseEvent } from "react";
 import { Event } from "@/src/types";
 import { createAndDownloadICalendarEvent } from "@/src/utils/calendar";
@@ -44,11 +45,15 @@ export const LocationSection = ({
             />
           </video>
         )}
-        <h2>
-          <sub>{event.fields.location?.fields.label}</sub>
+        <h2 className={styles.title}>
+          <sub className={styles.label}>
+            {event.fields.location?.fields.label}
+          </sub>
           {event.fields.location?.fields.name}
         </h2>
-        {/* <p>{event.fields.location?.fields.location}</p> */}
+        <p className={styles.location}>
+          {event.fields.location?.fields.location}
+        </p>
         <p className={styles.address}>
           {event.fields.location?.fields.name}
           <br />
@@ -63,10 +68,12 @@ export const LocationSection = ({
         </div>
         <footer className={styles.footer}>
           <p>
-            <b>{event.fields.location?.fields.name}</b>
-            <br />
-            {event.fields.location?.fields.address}
-            <br />
+            <span className={styles.desktopAddress}>
+              <b>{event.fields.location?.fields.name}</b>
+              <br />
+              {event.fields.location?.fields.address}
+              <br />
+            </span>
             <a className={styles.dates} onClick={handleDownload} href="#">
               <time
                 dateTime={`${event.fields.startDate}/${event.fields.endDate}`}
@@ -76,38 +83,57 @@ export const LocationSection = ({
               </time>
             </a>
           </p>
-          <ul className={styles.buttons}>
-            <li>
-              <Button
-                onClick={handleDownload}
-                size="xsmall"
-                variant="secondary"
-              >
-                Add to Calendar
-              </Button>
-            </li>
-            <li>
-              <ButtonLink
-                href={event.fields.location?.fields.url as string}
-                rel="nofollow noreferrer noopener"
-                size="xsmall"
-                target="_blank"
-                variant="secondary"
-              >
-                Visit Website
-              </ButtonLink>
-            </li>
-            <li>
-              <ButtonLink
-                href="https://g.page/DelCoronado?share"
-                target="hotel_directions"
-                size="xsmall"
-                variant="secondary"
-              >
-                Get Directions
-              </ButtonLink>
-            </li>
-          </ul>
+          <div className={styles.buttons["mobile"]}>
+            <Button
+              className={styles.button}
+              onClick={handleDownload}
+              size="small"
+              variant="secondary"
+            >
+              Add to Calendar
+            </Button>
+            <ButtonLink
+              className={styles.button}
+              href={event.fields.location?.fields.url as string}
+              rel="nofollow noreferrer noopener"
+              size="small"
+              target="_blank"
+              variant="secondary"
+            >
+              Visit Website
+            </ButtonLink>
+            <ButtonLink
+              className={clsx(styles.button, styles.registrationButton)}
+              href="https://g.page/DelCoronado?share"
+              target="hotel_directions"
+              variant="primary"
+            >
+              Get Directions
+            </ButtonLink>
+          </div>
+
+          <div className={styles.buttons["desktop"]}>
+            <Button onClick={handleDownload} size="xsmall" variant="secondary">
+              Add to Calendar
+            </Button>
+            <ButtonLink
+              href={event.fields.location?.fields.url as string}
+              rel="nofollow noreferrer noopener"
+              size="xsmall"
+              target="_blank"
+              variant="secondary"
+            >
+              Visit Website
+            </ButtonLink>
+            <ButtonLink
+              href="https://g.page/DelCoronado?share"
+              target="hotel_directions"
+              size="xsmall"
+              variant="secondary"
+            >
+              Get Directions
+            </ButtonLink>
+          </div>
         </footer>
       </aside>
     </ContentSection>

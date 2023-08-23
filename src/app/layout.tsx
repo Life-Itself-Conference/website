@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import { Jost, Noto_Sans } from "next/font/google";
 import { PropsWithChildren, Suspense } from "react";
-import "../styles/Layout.css";
+import "../styles/globals.css";
 
 const jost = Jost({
   subsets: ["latin"],
   variable: "--font-jost",
-  weight: ["400", "700"],
+  weight: ["400", "700", "800"],
 });
 const notoSans = Noto_Sans({
   subsets: ["latin"],

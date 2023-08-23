@@ -1,7 +1,10 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { theme } from "@/src/styles/theme.css";
+import { breakpoints, theme } from "@/src/styles/theme.css";
 
 const baseTitle = style({
+  fontSize: theme.fontSizes.xlarge,
+  margin: 0,
+  marginBottom: theme.spacing.xxlarge,
   position: "relative",
   textAlign: "center",
   textTransform: "uppercase",
@@ -11,13 +14,21 @@ export const title = styleVariants({
   medium: [
     baseTitle,
     {
-      fontSize: theme.fontSizes.xxlarge,
+      "@media": {
+        [breakpoints.large]: {
+          fontSize: theme.fontSizes.xxlarge,
+        },
+      },
     },
   ],
   large: [
     baseTitle,
     {
-      fontSize: theme.fontSizes.xxxlarge,
+      "@media": {
+        [breakpoints.large]: {
+          fontSize: theme.fontSizes.xxxlarge,
+        },
+      },
     },
   ],
 });
