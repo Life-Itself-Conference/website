@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 
 export const container = style({
   display: "flex",
