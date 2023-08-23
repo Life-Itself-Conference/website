@@ -47,13 +47,14 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
         )}
         <RichText field={props.speaker.fields.description} />
       </div>
-      <Image
-        alt=""
-        className={styles.image}
-        height={headshot?.fields.file?.details?.image?.height}
-        src={headshot?.fields.file?.url as string}
-        width={headshot?.fields.file?.details?.image?.width}
-      />
+      <div className={styles.image}>
+        <Image
+          alt=""
+          height={headshot?.fields.file?.details?.image?.height}
+          src={headshot?.fields.file?.url as string}
+          width={headshot?.fields.file?.details?.image?.width}
+        />
+      </div>
     </Modal>
   );
 };

@@ -77,10 +77,13 @@ export const content = style({
 });
 
 export const image = style({
-  aspectRatio: "1 / 1.25",
   gridArea: "image",
-  height: "100%",
+});
+
+globalStyle(`${image} > img`, {
+  aspectRatio: "1 / 1.25",
   objectFit: "cover",
+  height: "100%",
   width: "100%",
 });
 
