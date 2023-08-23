@@ -149,8 +149,14 @@ export const partnership = style({
 });
 
 export const meta = style({
-  fontSize: theme.fontSizes.medium,
+  fontSize: theme.fontSizes.small,
   fontWeight: "bold",
+
+  "@media": {
+    [breakpoints.large]: {
+      fontSize: theme.fontSizes.medium,
+    },
+  },
 });
 
 export const title = style({
