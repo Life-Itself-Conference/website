@@ -1,10 +1,6 @@
 import { EventStructure } from "../components/organisms/EventStructure";
 import { getApp, getPastEvents } from "../services/contentful";
 
-export const metadata = {
-  title: "Home | LIFE ITSELF with Dr. Sanjay Gupta & Marc Hodosh",
-};
-
 export default async function CurrentEventPage() {
   const app = await getApp();
   const pastEvents = await getPastEvents(app);

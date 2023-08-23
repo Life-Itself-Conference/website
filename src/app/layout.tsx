@@ -15,9 +15,22 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata = {
+  description: "Life Itself Medical Health Conference 2022",
+  openGraph: {
+    description: "Life Itself Medical Health Conference",
+    locale: "en_US",
+    siteName: "Life Itself with Dr. Sanjay Gupta and Marc Hodosh",
+    title: "Life Itself with Dr. Sanjay Gupta and Marc Hodosh",
+    url: "https://lifeitself.health",
+  },
   title: {
     default: "LIFE ITSELF with Dr. Sanjay Gupta & Marc Hodosh",
     template: "%s | LIFE ITSELF with Dr. Sanjay Gupta & Marc Hodosh",
+  },
+  twitter: {
+    card: "summary_large_image",
+    description: "Life Itself Medical Health Conference",
+    title: "Life Itself with Dr. Sanjay Gupta and Marc Hodosh",
   },
 };
 
