@@ -36,7 +36,7 @@ export const LocationSection = ({
             className={styles.video}
             loop
             muted
-            poster={event.fields.location.fields.videoPoster?.fields?.file?.url}
+            poster={`${event.fields.location.fields.videoPoster?.fields?.file?.url}?fm=webp`}
             playsInline
           >
             <source

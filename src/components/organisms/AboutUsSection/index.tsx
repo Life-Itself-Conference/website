@@ -27,7 +27,7 @@ export const AboutUsSection = ({ event }: AboutUsSectionProps) => {
           alt="Sanjay and Marc"
           className={styles.image}
           height={aboutUs.fields.image.fields.file?.details?.image?.height}
-          src={aboutUs.fields.image.fields.file?.url as string}
+          src={`${aboutUs.fields.image.fields.file?.url}?fm=webp`}
           width={aboutUs.fields.image.fields.file?.details?.image?.width}
         />
       )}

@@ -46,7 +46,7 @@ export const HeroSection = ({ event }: HeroSectionProps) => (
           className={styles.image}
           height={event.fields.hero?.fields.file?.details?.image?.height}
           priority
-          src={event.fields.hero?.fields.file?.url as string}
+          src={`${event.fields.hero?.fields.file?.url}?fm=webp`}
           width={event.fields.hero?.fields.file?.details?.image?.width}
         />
         <div className={styles.bottom}>
@@ -83,7 +83,7 @@ export const HeroSection = ({ event }: HeroSectionProps) => (
               height={
                 event.fields.partnershipLogo.fields.file?.details.image?.height
               }
-              src={event.fields.partnershipLogo.fields.file?.url as string}
+              src={`${event.fields.partnershipLogo.fields.file?.url}?fm=webp`}
               width={
                 event.fields.partnershipLogo.fields.file?.details.image?.width
               }

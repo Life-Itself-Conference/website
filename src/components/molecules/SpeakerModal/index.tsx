@@ -51,7 +51,7 @@ export const SpeakerModal = (props: SpeakerModalProps) => {
         <Image
           alt=""
           height={headshot?.fields.file?.details?.image?.height}
-          src={headshot?.fields.file?.url as string}
+          src={`${headshot?.fields.file?.url}?fm=webp`}
           width={headshot?.fields.file?.details?.image?.width}
         />
       </div>

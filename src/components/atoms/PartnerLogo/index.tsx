@@ -32,7 +32,7 @@ export const PartnerLogo = ({
       alt={`${partner.fields.name} logo`}
       className={className}
       height={logo.fields.file?.details.image?.height}
-      src={logo.fields.file?.url as string}
+      src={`${logo.fields.file?.url}?fm=webp`}
       width={logo.fields.file?.details.image?.width}
     />
   );

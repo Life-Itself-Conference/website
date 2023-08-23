@@ -26,7 +26,7 @@ export const GenericModal = (props: GenericModalProps) => {
               alt=""
               className={styles.image}
               height={image.fields.file.details.image?.height}
-              src={image.fields.file.url}
+              src={`${image.fields.file.url}?fm=webp`}
               width={image.fields.file.details.image?.width}
             />
           )}

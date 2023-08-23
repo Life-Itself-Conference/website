@@ -25,7 +25,7 @@ export const SpeakerThumbnail = ({ speaker }: SpeakerThumbnailProps) => {
           alt={`${speaker?.fields.name} Headshot`}
           className={styles.image}
           fill
-          src={image.fields.file?.url as string}
+          src={`${image.fields.file?.url}?fm=webp`}
         />
       ) : (
         <Image
