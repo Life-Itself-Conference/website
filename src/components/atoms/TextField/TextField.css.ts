@@ -21,6 +21,7 @@ export const label = style({
 });
 
 export const input = style({
+  borderRadius: 0,
   fontFamily: "inherit",
   fontSize: inputFontSize,
   height: inputHeight,
