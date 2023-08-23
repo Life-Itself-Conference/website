@@ -13,7 +13,7 @@ export const buttons = style({
   gridTemplateColumns: "1fr 1fr",
 });
 
-export const ticketButton = style({
+export const registrationButton = style({
   gridColumn: "span 2",
 });
 

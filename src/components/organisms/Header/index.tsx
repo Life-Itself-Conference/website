@@ -84,15 +84,18 @@ export const Header = ({ event, pastEvents }: HeaderProps) => {
             </Link>
           </li>
           <li className={styles.buttons}>
-            <ButtonLink
-              className={styles.buttonLink}
-              href="/"
-              onClick={handleLinkClick}
-              size="small"
-              variant="secondary"
-            >
-              Schedule
-            </ButtonLink>
+            {event.fields.schedule?.fields.file && (
+              <ButtonLink
+                className={styles.buttonLink}
+                href={event.fields.schedule.fields.file?.url}
+                onClick={handleLinkClick}
+                size="small"
+                target="_blank"
+                variant="secondary"
+              >
+                Schedule
+              </ButtonLink>
+            )}
             <RegistrationButton
               className={styles.buttonLink}
               event={event}
