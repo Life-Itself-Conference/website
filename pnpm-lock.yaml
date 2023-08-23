@@ -50,6 +50,9 @@ dependencies:
   react-icons:
     specifier: ^4.10.1
     version: 4.10.1(react@18.2.0)
+  stripe:
+    specifier: ^13.2.0
+    version: 13.2.0
   typescript:
     specifier: 5.1.6
     version: 5.1.6
@@ -5283,7 +5286,6 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
-    dev: true
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -5824,6 +5826,14 @@ packages:
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  /stripe@13.2.0:
+    resolution: {integrity: sha512-4a2UHpe/tyxP3sxSGhuKMgbW8hQnqSQIPMigXC8kW3P0+BpsITpKDP+xxriTMDkRAP0xTQwzxcqhfqB+/404Mg==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@types/node': 20.4.9
+      qs: 6.11.2
+    dev: false
 
   /styled-jsx@5.1.1(@babel/core@7.22.10)(react@18.2.0):
     resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}

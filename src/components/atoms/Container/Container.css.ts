@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 
 export const container = style({
   marginInline: "auto",
@@ -7,7 +7,7 @@ export const container = style({
   width: "100%",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       paddingInline: theme.spacing.large,
     },
   },

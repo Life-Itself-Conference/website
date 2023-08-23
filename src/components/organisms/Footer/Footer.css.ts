@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 
 export const footer = style({
   fontSize: theme.fontSizes.small,
@@ -30,7 +30,7 @@ export const happy = style({
   marginBottom: theme.spacing.large,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       flexDirection: "row",
       transform: `translateX(-70px)`,
     },
@@ -53,7 +53,7 @@ globalStyle(`${content} strong`, {
   textTransform: "uppercase",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       fontSize: theme.fontSizes.xxlarge,
     },
   },

@@ -23,7 +23,7 @@ export const EventStructure = (props: EventStructureProps) => {
   const [app, setApp] = useState(props.app);
   const [event, setEvent] = useState(props.event);
   const [pastEvents, setPastEvents] = useState(props.pastEvents);
-  const currentEvent = event || app?.fields.currentEvent;
+  const currentEvent = event || (app.fields.currentEvent as Event);
   const params = useParams();
   const searchParams = useSearchParams();
   const param = searchParams.get("preview");
@@ -75,7 +75,10 @@ export const EventStructure = (props: EventStructureProps) => {
       {app.fields.announcementModal && (
         <Banner modal={app.fields.announcementModal} />
       )}
-      <Header event={currentEvent} pastEvents={pastEvents} />
+      <Header
+        event={app.fields.currentEvent as Event}
+        pastEvents={pastEvents}
+      />
       <main>
         <HeroSection event={currentEvent} />
         <SpeakersSection event={currentEvent} />

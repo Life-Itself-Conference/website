@@ -1,16 +1,9 @@
 import { style } from "@vanilla-extract/css";
-import { queries, theme } from "@/src/styles/theme.css";
+import { breakpoints, theme } from "@/src/styles/theme.css";
 
-export const modal = style({
-  height: "100%",
+export const container = style({
   overflow: "hidden",
   padding: 0,
-
-  "@media": {
-    [queries.medium]: {
-      height: 500,
-    },
-  },
 });
 
 export const grid = style({
@@ -19,7 +12,7 @@ export const grid = style({
   height: "100%",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
       gridTemplateRows: "minmax(0, 1fr)",
     },
@@ -27,6 +20,7 @@ export const grid = style({
 });
 
 export const image = style({
+  display: "block",
   height: "100%",
   objectFit: "cover",
   width: "100%",

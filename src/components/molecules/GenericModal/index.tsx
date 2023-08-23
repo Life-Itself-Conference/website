@@ -16,7 +16,7 @@ export const GenericModal = (props: GenericModalProps) => {
   return (
     <Modal
       ariaLabel="Generic Modal"
-      className={styles.modal}
+      contentClassName={styles.container}
       trigger={props.trigger}
     >
       <div className={styles.grid}>

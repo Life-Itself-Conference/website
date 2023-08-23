@@ -1,5 +1,5 @@
-import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { queries, theme } from "@/src/styles/theme.css";
+import { globalStyle, style } from "@vanilla-extract/css";
+import { breakpoints, theme } from "@/src/styles/theme.css";
 import { button } from "../../atoms/Button/Button.css";
 
 export const container = style({
@@ -17,7 +17,7 @@ export const container = style({
   zIndex: 999,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       paddingInline: theme.spacing.large,
     },
   },
@@ -52,7 +52,7 @@ export const hamburger = style({
   padding: theme.spacing.small,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       display: "none",
     },
   },
@@ -61,15 +61,16 @@ export const hamburger = style({
 export const nav = style({
   backgroundColor: theme.colors.black,
   color: theme.colors.white,
-  fontSize: theme.fontSizes.large,
-  inset: 0,
-  padding: theme.spacing.large,
-  position: "fixed",
-  top: theme.headerHeight,
   display: "none",
+  fontSize: theme.fontSizes.large,
+  left: 0,
+  padding: theme.spacing.large,
+  position: "absolute",
+  right: 0,
+  top: "100%",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       display: "block",
       fontSize: theme.fontSizes.small,
       inset: "unset",
@@ -94,7 +95,7 @@ export const links = style({
   padding: 0,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       alignItems: "center",
       flexDirection: "row",
       marginInline: "0",
@@ -124,7 +125,7 @@ export const popover = style({
   fontSize: theme.fontSizes.small,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       display: "none",
       left: "50%",
       minWidth: 150,
@@ -145,7 +146,7 @@ globalStyle(`${popover} ul`, {
   padding: 0,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       backgroundColor: theme.colors.black,
       gap: 0,
       border: `1px solid ${theme.colors.white}`,
@@ -155,7 +156,7 @@ globalStyle(`${popover} ul`, {
 
 globalStyle(`${popover} ul a`, {
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       display: "block",
       padding: theme.spacing.small,
     },
@@ -175,7 +176,7 @@ export const buttons = style({
   gap: theme.spacing.small,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       flexDirection: "row",
     },
   },

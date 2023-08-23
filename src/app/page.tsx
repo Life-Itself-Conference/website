@@ -2,7 +2,7 @@ import { EventStructure } from "../components/organisms/EventStructure";
 import { getApp, getPastEvents } from "../services/contentful";
 
 export const metadata = {
-  title: "Home",
+  title: "Home | LIFE ITSELF with Dr. Sanjay Gupta & Marc Hodosh",
 };
 
 export default async function CurrentEventPage() {

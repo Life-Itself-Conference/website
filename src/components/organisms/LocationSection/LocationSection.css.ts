@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 
 export const container = style({
   padding: 0,
@@ -13,7 +13,7 @@ export const content = style({
   textAlign: "left",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       flexDirection: "row",
       height: 600,
       justifyContent: "space-between",
@@ -43,7 +43,7 @@ export const header = style({
   width: "100%",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       padding: 0,
       position: "static",
     },
@@ -76,7 +76,7 @@ export const aside = style({
   padding: theme.spacing.large,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       maxWidth: 700,
     },
   },
@@ -111,7 +111,7 @@ export const address = style({
   textTransform: "initial",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       display: "none",
     },
   },

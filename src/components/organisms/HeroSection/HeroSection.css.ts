@@ -1,7 +1,6 @@
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 import { button } from "../../atoms/Button/Button.css";
-// import { button } from '../../atoms/Button/Button.css';
 
 const bounceKeyframes = keyframes({
   "50%": {
@@ -24,7 +23,7 @@ export const container = style({
   textAlign: "center",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       paddingTop: "18vh",
       textAlign: "left",
     },
@@ -37,7 +36,7 @@ export const grid = style({
   columnGap: theme.spacing.xlarge,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       alignItems: "flex-end",
       display: "grid",
       flexDirection: "unset",
@@ -57,7 +56,7 @@ export const content = style({
   maxWidth: 496,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       gridColumn: 1,
       gridRow: 1,
       order: "unset",
@@ -82,7 +81,7 @@ export const image = style({
   width: "100%",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       order: "unset",
       gridColumn: 2,
       gridRow: 1,
@@ -93,7 +92,7 @@ export const image = style({
 export const bottom = style({
   alignItems: "flex-end",
   display: "flex",
-  height: theme.spacing.xlarge,
+  height: theme.spacing.xxlarge,
   gap: theme.spacing.xsmall,
   gridColumn: "span 2",
   marginBottom: theme.spacing.large,
@@ -110,7 +109,7 @@ export const marquee = style({
   whiteSpace: "nowrap",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       order: "unset",
       gridRow: 2,
     },
@@ -142,7 +141,7 @@ export const partnership = style({
   width: "auto",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       height: "200%",
       width: "auto",
     },
@@ -163,7 +162,7 @@ export const title = style({
   marginBlock: theme.spacing.medium,
   marginInline: "auto",
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       height: 60,
       marginInline: "initial",
     },
@@ -178,7 +177,7 @@ export const tagline = style({
   fontSize: theme.fontSizes.small,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       fontSize: theme.fontSizes.xlarge,
     },
   },
@@ -194,7 +193,7 @@ export const buttons = style({
   padding: 0,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       alignItems: "center",
       flexDirection: "row",
       justifyContent: "flex-start",
@@ -221,7 +220,7 @@ export const videoDetails = style({
   textTransform: "uppercase",
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       maxWidth: "50%",
     },
   },

@@ -1,8 +1,20 @@
 import { createGlobalTheme } from "@vanilla-extract/css";
 
-export const queries = {
-  medium: "screen and (min-width: 768px)",
-  large: "screen and (min-width: 1080px)",
+export const breakpoints = {
+  // Small devices (landscape phones, 576px and up)
+  small: "(min-width: 576px)",
+
+  // Medium devices (tablets, 768px and up)
+  medium: "(min-width: 768px)",
+
+  // Large devices (desktops, 992px and up)
+  large: "(min-width: 992px)",
+
+  // X-Large devices (large desktops, 1200px and up)
+  xlarge: "(min-width: 1200px)",
+
+  // XX-Large devices (larger desktops, 1400px and up)
+  xxlarge: "(min-width: 1400px)",
 };
 
 export const theme = createGlobalTheme(":root", {
@@ -31,8 +43,9 @@ export const theme = createGlobalTheme(":root", {
     small: "8px",
     medium: "12px",
     large: "24px",
-    xlarge: "48px",
-    xxlarge: "96px",
+    xlarge: "32px",
+    xxlarge: "48px",
+    xxxlarge: "96px",
   },
   headerHeight: "72px",
   inputHeight: "36px",

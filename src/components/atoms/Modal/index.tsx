@@ -10,7 +10,8 @@ export interface ModalProps {
   ariaDescription?: string;
   ariaLabel: string;
   className?: string;
-  size?: keyof typeof styles.content;
+  contentClassName?: string;
+  size?: keyof typeof styles.dialog;
   trigger?: ReactNode;
 }
 
@@ -22,7 +23,7 @@ export const Modal = (props: PropsWithChildren<ModalProps>) => {
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content
           className={clsx(
-            styles.content[props.size || "medium"],
+            styles.dialog[props.size || "medium"],
             props.className
           )}
           aria-description={props.ariaDescription}
@@ -30,7 +31,9 @@ export const Modal = (props: PropsWithChildren<ModalProps>) => {
           aria-label={props.ariaLabel}
           aria-labelledby={undefined}
         >
-          {props.children}
+          <div className={clsx(styles.content, props.contentClassName)}>
+            {props.children}
+          </div>
           <Dialog.Close asChild>
             <button aria-label="Close" className={styles.close} type="button">
               <FaTimes />

@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, queries, theme } from "../../../styles/theme.css";
 
 export const container = style({
   display: "flex",
@@ -18,7 +18,7 @@ export const list = style({
   padding: 0,
 
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       flexDirection: "row",
       flexWrap: "wrap",
     },
@@ -33,10 +33,6 @@ export const image = style({
   maxHeight: 60,
   maxWidth: 280,
   objectFit: "contain",
-
-  "@media": {
-    [queries.large]: {},
-  },
 });
 
 export const button = style({

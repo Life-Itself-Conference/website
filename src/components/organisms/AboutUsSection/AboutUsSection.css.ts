@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 
 export const content = style({
   fontSize: theme.fontSizes.medium,
@@ -11,13 +11,14 @@ export const image = style({
   marginBlock: theme.spacing.large,
   marginInline: "auto",
   maxWidth: "100%",
+  height: "auto",
 });
 
 export const bios = style({
   display: "grid",
   gap: theme.spacing.large,
   "@media": {
-    [queries.large]: {
+    [breakpoints.large]: {
       gridTemplateColumns: "1fr 1fr",
     },
   },

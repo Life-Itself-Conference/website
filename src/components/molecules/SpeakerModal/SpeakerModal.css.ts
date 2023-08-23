@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "@/src/styles/theme.css";
+import { breakpoints, theme } from "@/src/styles/theme.css";
 
 export const modal = style({
   height: 500,
@@ -18,7 +18,7 @@ export const grid = style({
   textAlign: "left",
 
   "@media": {
-    [queries.medium]: {
+    [breakpoints.medium]: {
       gridTemplateAreas: `
         'header image'
         'content image'
@@ -37,7 +37,7 @@ export const header = style({
   padding: theme.spacing.large,
 
   "@media": {
-    [queries.medium]: {
+    [breakpoints.medium]: {
       borderRight: `${theme.spacing.xlarge} solid ${theme.colors.black}`,
       borderTop: `${theme.spacing.xlarge} solid ${theme.colors.black}`,
     },

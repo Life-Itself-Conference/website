@@ -4,7 +4,7 @@ import {
   style,
   styleVariants,
 } from "@vanilla-extract/css";
-import { queries, theme } from "@/src/styles/theme.css";
+import { breakpoints, theme } from "@/src/styles/theme.css";
 
 const fadeIn = keyframes({
   from: {
@@ -49,78 +49,91 @@ export const overlay = style({
   zIndex: 10000,
 });
 
-const baseContent = style({
-  backgroundColor: theme.colors.black,
-  color: theme.colors.white,
-  left: "50%",
-  maxHeight: "100vh",
-  maxWidth: "100vw",
-  overflow: "auto",
-  padding: theme.spacing.large,
-  position: "fixed",
-  top: "50%",
-  translate: "-50% -50%",
-  width: "100%",
-  zIndex: 10001,
-
-  "@media": {
-    [queries.medium]: {
-      maxHeight: `calc(100vh - ${theme.spacing.xxlarge})`,
-      maxWidth: `calc(100vw - ${theme.spacing.xxlarge})`,
-    },
-  },
-});
-
-export const content = styleVariants({
-  small: [
-    baseContent,
-    {
-      "@media": {
-        [queries.medium]: {
-          width: 496,
-        },
-      },
-    },
-  ],
-  medium: [
-    baseContent,
-    {
-      "@media": {
-        [queries.medium]: {
-          width: 768,
-        },
-      },
-    },
-  ],
-});
-
 globalStyle(`${overlay}[data-state='open']`, {
   animation: `${fadeIn} 300ms ease-out`,
-});
-
-globalStyle(`${content}[data-state='open']`, {
-  animation: `${fadeIn} 300ms ease-out, ${scaleUp} 300ms ease-out`,
 });
 
 globalStyle(`${overlay}[data-state='closed']`, {
   animation: `${fadeOut} 300ms ease-out`,
 });
 
-globalStyle(`${content}[data-state='closed']`, {
+const baseDialog = style({
+  backgroundColor: theme.colors.black,
+  display: "flex",
+  left: "50%",
+  height: "100vh",
+  maxHeight: "100vh",
+  maxWidth: "100vw",
+  position: "fixed",
+  top: "50%",
+  translate: "-50% -50%",
+  width: "100vw",
+  zIndex: 10001,
+
+  "@media": {
+    [breakpoints.medium]: {
+      height: "auto",
+      maxHeight: "calc(100vh - 4rem)",
+      maxWidth: "calc(100vw - 4rem)",
+      width: "auto",
+    },
+  },
+});
+
+export const dialog = styleVariants({
+  small: [
+    baseDialog,
+    {
+      "@media": {
+        [breakpoints.medium]: { width: 496 },
+      },
+    },
+  ],
+  medium: [
+    baseDialog,
+    {
+      "@media": {
+        [breakpoints.medium]: { width: 768 },
+      },
+    },
+  ],
+  large: [
+    baseDialog,
+    {
+      "@media": {
+        [breakpoints.medium]: { width: 1024 },
+      },
+    },
+  ],
+});
+
+globalStyle(`${dialog}[data-state='open']`, {
+  animation: `${fadeIn} 300ms ease-out, ${scaleUp} 300ms ease-out`,
+});
+
+globalStyle(`${dialog}[data-state='closed']`, {
   animation: `${fadeOut} 300ms ease-out, ${scaleDown} 300ms ease-out`,
 });
 
+export const content = style({
+  overflow: "auto",
+  padding: theme.spacing.xlarge,
+  width: "100%",
+});
+
 export const close = style({
-  alignItems: "center",
-  backgroundColor: theme.colors.black,
+  background: "none",
   border: "none",
+  alignItems: "center",
+  display: "flex",
   color: theme.colors.white,
   cursor: "pointer",
-  display: "flex",
-  height: theme.spacing.large,
+  fontSize: theme.fontSizes.large,
+  height: theme.spacing.xlarge,
   justifyContent: "center",
+  padding: 0,
   position: "absolute",
-  right: theme.spacing.xsmall,
-  top: theme.spacing.xsmall,
-  width: theme.spacing.large,
+  right: 0,
+  top: 0,
+  width: theme.spacing.xlarge,
 });

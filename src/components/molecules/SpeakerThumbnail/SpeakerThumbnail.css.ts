@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { queries, theme } from "../../../styles/theme.css";
+import { breakpoints, theme } from "../../../styles/theme.css";
 
 const transitionDuration = "300ms";
 const transitionTimingFunction = "ease-in-out";
@@ -50,7 +50,7 @@ export const content = style({
   zIndex: 3,
 
   "@media": {
-    [queries.medium]: {
+    [breakpoints.medium]: {
       fontSize: theme.fontSizes.small,
     },
   },
@@ -70,7 +70,7 @@ export const name = style({
   width: "100%",
 
   "@media": {
-    [queries.medium]: {
+    [breakpoints.medium]: {
       padding: theme.spacing.small,
     },
   },
@@ -89,7 +89,7 @@ export const details = style({
   transitionTimingFunction,
 
   "@media": {
-    [queries.medium]: {
+    [breakpoints.medium]: {
       padding: theme.spacing.small,
     },
   },
