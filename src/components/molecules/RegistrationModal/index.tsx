@@ -10,7 +10,7 @@ export interface RegistrationModalProps {
 }
 
 export const RegistrationModal = (props: RegistrationModalProps) => {
-  const handleRegistration = async (data: FormData) => {
+  const handleRegister = async (data: FormData) => {
     const response = await register(data);
     console.log("response", response);
   };
@@ -18,7 +18,7 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
   return (
     <Modal ariaLabel="Register" trigger={props.trigger}>
       <h2>Register</h2>
-      <form action={handleRegistration} className={styles.form}>
+      <form action={handleRegister} className={styles.form}>
         <TextField label="First Name" name="firstName" />
         <TextField label="Last Name" name="lastName" />
         <TextField label="Company" name="company" />

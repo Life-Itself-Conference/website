@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.1",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@radix-ui/react-dialog": "^1.0.4",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@contentful/rich-text-types": "^16.2.1",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.10",
     "@vanilla-extract/next-plugin": "^2.2.2",
     "cf-content-types-generator": "^2.12.2",
     "contentful-cli": "^2.6.40",
