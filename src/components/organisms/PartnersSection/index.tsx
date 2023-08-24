@@ -1,4 +1,5 @@
 import type { Event } from "../../../types";
+import { ButtonLink } from "../../atoms/Button";
 import { PartnerLogo } from "../../atoms/PartnerLogo";
 import { ContentSection } from "../../molecules/ContentSection";
 import * as styles from "./PartnersSection.css";
@@ -41,7 +42,7 @@ export const PartnersSection = ({
         );
       })}
     </ul>
-    {/* <ButtonLink
+    <ButtonLink
       className={styles.button}
       href="mailto:info@lifeitself.health?subject=Become a Partner"
       rel="nofollow noreferrer noopener"
@@ -49,6 +50,6 @@ export const PartnersSection = ({
       variant="secondary"
     >
       Become a Partner
-    </ButtonLink> */}
+    </ButtonLink>
   </ContentSection>
 );
