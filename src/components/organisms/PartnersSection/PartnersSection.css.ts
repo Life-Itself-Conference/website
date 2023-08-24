@@ -11,16 +11,17 @@ export const list = style({
   alignItems: "center",
   display: "flex",
   flexDirection: "column",
-  gap: 60,
+  gap: 40,
   justifyContent: "center",
   listStyle: "none",
   margin: 0,
   padding: 0,
 
   "@media": {
-    [breakpoints.large]: {
+    [breakpoints.medium]: {
       flexDirection: "row",
       flexWrap: "wrap",
+      rowGap: 50,
     },
   },
 });
@@ -30,9 +31,18 @@ export const link = style({
 });
 
 export const image = style({
-  maxHeight: 60,
-  maxWidth: 280,
+  height: 80,
+  maxWidth: 250,
   objectFit: "contain",
+  width: "100%",
+
+  "@media": {
+    [breakpoints.medium]: {
+      height: "100%",
+      maxHeight: 60,
+      maxWidth: 200,
+    },
+  },
 });
 
 export const button = style({
