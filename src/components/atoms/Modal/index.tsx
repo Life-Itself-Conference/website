@@ -11,13 +11,21 @@ export interface ModalProps {
   ariaLabel: string;
   className?: string;
   contentClassName?: string;
+  isOpen?: boolean;
+  onClose?: VoidFunction;
   size?: keyof typeof styles.dialog;
   trigger?: ReactNode;
 }
 
 export const Modal = (props: PropsWithChildren<ModalProps>) => {
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      props.onClose?.();
+    }
+  };
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={props.isOpen} onOpenChange={handleOpenChange}>
       <Dialog.Trigger asChild>{props.trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />

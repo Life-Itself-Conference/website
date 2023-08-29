@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useNewsletterModalStore } from "@/src/store";
 import { Event } from "@/src/types";
 import { createAndDownloadICalendarEvent } from "@/src/utils/calendar";
 import { Button } from "../../atoms/Button";
@@ -13,6 +14,9 @@ export interface FooterProps {
 }
 
 export const Footer = (props: FooterProps) => {
+  const openNewsletterModal = useNewsletterModalStore(
+    (state) => state.openNewsletterModal
+  );
   const handleDownload = () => createAndDownloadICalendarEvent(props.event);
 
   return (
@@ -21,13 +25,13 @@ export const Footer = (props: FooterProps) => {
 
       <Container size="xsmall">
         <div className={styles.buttons}>
-          <NewsletterModal
-            trigger={
-              <Button size="small" variant="secondary">
-                Join Newsletter
-              </Button>
-            }
-          />
+          <Button
+            onClick={openNewsletterModal}
+            size="small"
+            variant="secondary"
+          >
+            Join Newsletter
+          </Button>
           <Button onClick={handleDownload} size="small" variant="secondary">
             Add to Calendar
           </Button>
