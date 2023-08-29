@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { Jost, Noto_Sans } from "next/font/google";
 import { PropsWithChildren, Suspense } from "react";
 import "../styles/globals.css";
+import { NewsletterModal } from "../components/molecules/NewsletterModal";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -38,7 +39,10 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <html className={clsx(jost.variable, notoSans.variable)} lang="en">
       <body>
-        <Suspense>{children}</Suspense>
+        <Suspense>
+          {children}
+          <NewsletterModal />
+        </Suspense>
       </body>
     </html>
   );

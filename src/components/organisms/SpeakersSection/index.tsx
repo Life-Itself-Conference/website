@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useNewsletterModalStore } from "@/src/store";
 import { Event } from "@/src/types";
 import { Button } from "../../atoms/Button";
 import { RichText } from "../../atoms/RichText";
@@ -12,6 +13,9 @@ export interface SpeakersSectionProps {
 }
 
 export const SpeakersSection = ({ event }: SpeakersSectionProps) => {
+  const openNewsletterModal = useNewsletterModalStore(
+    (state) => state.openNewsletterModal
+  );
   return (
     <ContentSection id="speakers" size="small" title="Speakers" titleLarge>
       <div className={styles.content}>
@@ -32,17 +36,14 @@ export const SpeakersSection = ({ event }: SpeakersSectionProps) => {
           <li className={clsx(styles.item, styles.last)}>
             <div className={styles.moreSpeakers}>
               <b>More Speakers to Come!</b>
-              <NewsletterModal
-                trigger={
-                  <Button
-                    className={styles.button}
-                    size="small"
-                    variant="secondary"
-                  >
-                    Join Newsletter to Stay Informed
-                  </Button>
-                }
-              />
+              <Button
+                className={styles.button}
+                onClick={openNewsletterModal}
+                size="small"
+                variant="secondary"
+              >
+                Join Newsletter to Stay Informed
+              </Button>
             </div>
           </li>
         )}
