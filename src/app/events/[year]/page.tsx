@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { EventStructure } from "@/src/components/organisms/EventStructure";
 import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
@@ -23,8 +22,10 @@ export default async function YearEventPage({ params }: { params: any }) {
     getEvent(params["year"] as string, { isPreview }),
   ]);
   const pastEvents = await getPastEvents(app, { isPreview });
+  const isCurrentYear =
+    event?.fields.year === app.fields.currentEvent?.fields.year;
 
-  if (!event || event.fields.year === app.fields.currentEvent?.fields.year) {
+  if (!event || (isCurrentYear && !isPreview)) {
     return redirect("/404");
   }
 
