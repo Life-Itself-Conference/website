@@ -1,25 +1,30 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { breakpoints, theme } from "@/src/styles/theme.css";
+import { content as modalContent } from "../../atoms/Modal/Modal.css";
 
 export const container = style({
-  display: "grid",
-  gridTemplateAreas: `
-  'header image'
-  'content content'
-  `,
-  gridTemplateColumns: "4fr 1fr",
-  gridTemplateRows: "auto 1fr",
-  padding: 0,
-  textAlign: "left",
-
-  "@media": {
-    [breakpoints.medium]: {
+  selectors: {
+    [`${modalContent}.&`]: {
+      display: "grid",
       gridTemplateAreas: `
+        'header image'
+        'content content'
+      `,
+      gridTemplateColumns: "4fr 1fr",
+      gridTemplateRows: "auto 1fr",
+      padding: 0,
+      textAlign: "left",
+
+      "@media": {
+        [breakpoints.medium]: {
+          gridTemplateAreas: `
       'header image'
       'content image'
       `,
-      gridTemplateColumns: "2fr 1fr",
-      height: 500,
+          gridTemplateColumns: "2fr 1fr",
+          height: 500,
+        },
+      },
     },
   },
 });

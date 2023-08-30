@@ -3,6 +3,7 @@ import { Jost, Noto_Sans } from "next/font/google";
 import { PropsWithChildren, Suspense } from "react";
 import "../styles/globals.css";
 import { NewsletterModal } from "../components/molecules/NewsletterModal";
+import { SpeakerModal } from "../components/molecules/SpeakerModal";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function Layout({ children }: PropsWithChildren) {
         <Suspense>
           {children}
           <NewsletterModal />
+          <SpeakerModal />
         </Suspense>
       </body>
     </html>

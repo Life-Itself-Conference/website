@@ -26,7 +26,6 @@ export const Modal = (props: PropsWithChildren<ModalProps>) => {
 
   return (
     <Dialog.Root open={props.isOpen} onOpenChange={handleOpenChange}>
-      <Dialog.Trigger asChild>{props.trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content
