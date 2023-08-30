@@ -1,14 +1,7 @@
-// @ts-nocheck
 "use client";
 
-import {
-  FormEvent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ReactNode, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 import { useNewsletterModalStore } from "@/src/store";
 import { Button } from "../../atoms/Button";
 import { Modal } from "../../atoms/Modal";
@@ -20,60 +13,63 @@ export interface NewsletterModalProps {
 }
 
 export const NewsletterModal = (props: NewsletterModalProps) => {
-  const formRef = useRef<HTMLFormElement>(null);
   const [isOpen, closeNewsletterModal] = useNewsletterModalStore((state) => [
     state.isOpen,
     state.closeNewsletterModal,
   ]);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const {
+    formState: { errors, isSubmitting },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm();
+
   const [message, setMessage] = useState("");
 
-  const handleReset = () => {
-    setName("");
-    setEmail("");
+  const resetForm = () => {
     setMessage("");
+    reset();
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const submitForm = (values: FieldValues) =>
+    new Promise<string>(async (resolve) => {
+      // Create global callback function.
+      // @ts-ignore
+      window.handleNewsletter = (data: {
+        msg: string;
+        result: "error" | "success";
+      }) => {
+        if (data.result === "error") {
+          data.msg = data.msg.split(" <a")[0];
+        }
 
-    const script = document.createElement("script");
-    script.src =
-      "//me.us3.list-manage.com/subscribe/post-json?u=9ffd8880003444e617e7f70cf&id=f619c0fd26&c=foo&FLNAME=" +
-      name +
-      "&EMAIL=" +
-      email +
-      "&b_9ffd8880003444e617e7f70cf_f619c0fd26=&subscribe=Stay+Informed&_=1592081629146";
+        resolve(data.msg);
+      };
 
-    document.getElementsByTagName("head")[0].appendChild(script);
+      // Create submit script.
+      const script = document.createElement("script");
+      script.src =
+        "//me.us3.list-manage.com/subscribe/post-json?u=9ffd8880003444e617e7f70cf&id=f619c0fd26&c=handleNewsletter&FLNAME=" +
+        values.name +
+        "&EMAIL=" +
+        values.email +
+        "&b_9ffd8880003444e617e7f70cf_f619c0fd26=&subscribe=Stay+Informed&_=1592081629146";
+
+      // Inject submit script.
+      document.getElementsByTagName("head")[0].appendChild(script);
+    });
+
+  const onSubmit = async (values: FieldValues) => {
+    // Reset any success messages.
+    setMessage("");
+
+    // Submit form.
+    const response = await submitForm(values);
+
+    // Show error or success.
+    setMessage(response);
   };
-
-  const handleResponse = useCallback((e) => {
-    const { data } = e.detail;
-    console.log("i got here with", data);
-    handleReset();
-
-    if (data.result === "error") {
-      data.msg = data.msg.split(" <a")[0];
-    }
-
-    setMessage(data.msg);
-  }, []);
-
-  useEffect(() => {
-    window.foo = (data) => {
-      dispatchEvent(new CustomEvent("newsletter", { detail: { data } }));
-    };
-
-    window.addEventListener("newsletter", handleResponse);
-
-    return () => {
-      window.removeEventListener("newsletter", handleResponse);
-      window.foo = undefined;
-    };
-  }, [handleResponse]);
 
   return (
     <Modal
@@ -82,7 +78,7 @@ export const NewsletterModal = (props: NewsletterModalProps) => {
       isOpen={isOpen}
       onClose={() => {
         closeNewsletterModal();
-        handleReset();
+        resetForm();
       }}
       size="small"
       trigger={props.trigger}
@@ -92,24 +88,25 @@ export const NewsletterModal = (props: NewsletterModalProps) => {
       <form
         id="newsletter"
         className={styles.form}
-        onSubmit={handleSubmit}
-        ref={formRef}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <TextField
+          {...register("name", { required: "Name is required" })}
+          disabled={isSubmitting}
+          error={errors.name?.message as string}
           label="Name"
-          onChange={(e) => setName(e.target.value)}
-          name="name"
           type="text"
-          value={name}
         />
         <TextField
+          {...register("email", { required: "Email is required" })}
+          disabled={isSubmitting}
+          error={errors.email?.message as string}
           label="Email"
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
           type="email"
-          value={email}
         />
-        <Button>Join Newsletter</Button>
+        <Button disabled={isSubmitting} type="submit">
+          Join Newsletter
+        </Button>
       </form>
     </Modal>
   );
