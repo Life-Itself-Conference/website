@@ -7,7 +7,6 @@ const nextConfig = {
     serverActions: true,
   },
   images: { unoptimized: true },
-  output: "standalone",
 };
 
 module.exports = withVanillaExtract(nextConfig);

@@ -287,7 +287,7 @@
         "id": "event",
         "type": "ContentType",
         "createdAt": "2023-03-07T22:31:01.719Z",
-        "updatedAt": "2023-08-21T17:54:27.994Z",
+        "updatedAt": "2023-08-30T01:46:29.277Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -295,8 +295,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 123,
-        "publishedAt": "2023-08-21T17:54:27.994Z",
+        "publishedVersion": 125,
+        "publishedAt": "2023-08-30T01:46:29.277Z",
         "firstPublishedAt": "2023-03-07T22:31:01.964Z",
         "createdBy": {
           "sys": {
@@ -312,8 +312,8 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "publishedCounter": 62,
-        "version": 124,
+        "publishedCounter": 63,
+        "version": 126,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -331,7 +331,7 @@
           "name": "Year",
           "type": "Symbol",
           "localized": false,
-          "required": false,
+          "required": true,
           "validations": [
           ],
           "disabled": false,
@@ -1723,7 +1723,7 @@
             "linkType": "Space"
           }
         },
-        "version": 124,
+        "version": 126,
         "createdAt": "2023-03-07T22:31:02.119Z",
         "createdBy": {
           "sys": {
@@ -1732,7 +1732,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2023-08-21T17:54:28.613Z",
+        "updatedAt": "2023-08-30T01:46:30.277Z",
         "updatedBy": {
           "sys": {
             "id": "4anSnW0ZH6blNIo3LDZrb1",
@@ -2315,11 +2315,11 @@
           "event_type": "contentful.deploy"
         }
       },
-      "active": true,
+      "active": false,
       "sys": {
         "type": "WebhookDefinition",
         "id": "415DNNjRAvhV6OA1ufTfEy",
-        "version": 5,
+        "version": 10,
         "space": {
           "sys": {
             "type": "Link",
@@ -2342,7 +2342,7 @@
             "id": "4anSnW0ZH6blNIo3LDZrb1"
           }
         },
-        "updatedAt": "2023-08-18T22:58:53Z"
+        "updatedAt": "2023-08-22T16:43:46Z"
       },
       "headers": [
         {
@@ -2357,6 +2357,50 @@
           "key": "Authorization",
           "secret": true
         }
+      ]
+    },
+    {
+      "name": "Revalidate",
+      "url": "https://lifeitself.vercel.app/api/revalidate",
+      "httpBasicUsername": null,
+      "topics": [
+        "Entry.publish",
+        "Entry.unpublish",
+        "Asset.publish",
+        "Asset.unpublish"
+      ],
+      "filters": null,
+      "transformation": null,
+      "active": true,
+      "sys": {
+        "type": "WebhookDefinition",
+        "id": "60zuDcxoTsGyT73FlAz82L",
+        "version": 7,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "9v3l6i0oib55"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "4anSnW0ZH6blNIo3LDZrb1"
+          }
+        },
+        "createdAt": "2023-08-21T21:15:26Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "4anSnW0ZH6blNIo3LDZrb1"
+          }
+        },
+        "updatedAt": "2023-08-30T00:55:31Z"
+      },
+      "headers": [
       ]
     }
   ],

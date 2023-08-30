@@ -1,8 +1,12 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
+// import {
+//   useParams,
+//   // useSearchParams
+// } from "next/navigation";
+// import { useEffect, useState } from "react";
+// import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
+import { redirect } from "next/navigation";
 import { App, Event } from "@/src/types";
 import { Banner } from "../../atoms/Banner";
 import { AboutUsSection } from "../AboutUsSection";
@@ -20,64 +24,64 @@ export interface EventStructureProps {
 }
 
 export const EventStructure = (props: EventStructureProps) => {
-  const [app, setApp] = useState(props.app);
-  const [event, setEvent] = useState(props.event);
-  const [pastEvents, setPastEvents] = useState(props.pastEvents);
-  const currentEvent = event || (app.fields.currentEvent as Event);
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const param = searchParams.get("preview");
+  // const [app, setApp] = useState(props.app);
+  // const [event, setEvent] = useState(props.event);
+  // const [pastEvents, setPastEvents] = useState(props.pastEvents);
+  const currentEvent = props.event || (props.app.fields.currentEvent as Event);
+  // const params = useParams();
+  // const searchParams = useSearchParams();
+  // const param = searchParams.get("preview");
 
   // If preview mode is enabled, fetch preview content.
-  useEffect(() => {
-    if (param === "true") {
-      sessionStorage.setItem("preview", "true");
-    } else if (param === "false") {
-      sessionStorage.removeItem("preview");
-    }
+  // useEffect(() => {
+  //   if (param === "true") {
+  //     sessionStorage.setItem("preview", "true");
+  //   } else if (param === "false") {
+  //     sessionStorage.removeItem("preview");
+  //   }
 
-    const isPreview = sessionStorage.getItem("preview") === "true";
+  //   const isPreview = sessionStorage.getItem("preview") === "true";
 
-    if (isPreview) {
-      document.body.classList.add("preview");
-      document.body.classList.add("preview--loading");
+  //   if (isPreview) {
+  //     document.body.classList.add("preview");
+  //     document.body.classList.add("preview--loading");
 
-      if (params.year) {
-        Promise.all([
-          getApp({ isPreview: true }),
-          getEvent(params.year as string, { isPreview: true }),
-        ]).then(async ([previewApp, previewEvent]) => {
-          const previewPastEvents = await getPastEvents(previewApp, {
-            isPreview: true,
-          });
-          document.body.classList.remove("preview--loading");
-          setApp(previewApp);
-          setEvent(previewEvent);
-          setPastEvents(previewPastEvents);
-        });
-      } else {
-        getApp({ isPreview: true }).then(async (previewApp) => {
-          const previewPastEvents = await getPastEvents(previewApp, {
-            isPreview: true,
-          });
-          document.body.classList.remove("preview--loading");
-          setApp(previewApp);
-          setPastEvents(previewPastEvents);
-        });
-      }
-    }
-  }, [param, params.year, props.event]);
+  //     if (params.year) {
+  //       Promise.all([
+  //         getApp({ isPreview: true }),
+  //         getEvent(params.year as string, { isPreview: true }),
+  //       ]).then(async ([previewApp, previewEvent]) => {
+  //         const previewPastEvents = await getPastEvents(previewApp, {
+  //           isPreview: true,
+  //         });
+  //         document.body.classList.remove("preview--loading");
+  //         setApp(previewApp);
+  //         setEvent(previewEvent);
+  //         setPastEvents(previewPastEvents);
+  //       });
+  //     } else {
+  //       getApp({ isPreview: true }).then(async (previewApp) => {
+  //         const previewPastEvents = await getPastEvents(previewApp, {
+  //           isPreview: true,
+  //         });
+  //         document.body.classList.remove("preview--loading");
+  //         setApp(previewApp);
+  //         setPastEvents(previewPastEvents);
+  //       });
+  //     }
+  //   }
+  // }, [param, params.year, props.event]);
 
-  if (!currentEvent) return <p>Oops...</p>;
+  if (!currentEvent) return redirect("/404");
 
   return (
     <>
-      {app.fields.announcementModal && (
-        <Banner modal={app.fields.announcementModal} />
+      {props.app.fields.announcementModal && (
+        <Banner modal={props.app.fields.announcementModal} />
       )}
       <Header
-        event={app.fields.currentEvent as Event}
-        pastEvents={pastEvents}
+        event={props.app.fields.currentEvent as Event}
+        pastEvents={props.pastEvents}
       />
       <main>
         <HeroSection event={currentEvent} />
