@@ -5,6 +5,8 @@ const CONTENTFUL_ACCESS_TOKEN = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 const CONTENTFUL_PREVIEW_ACCESS_TOKEN =
   process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN;
 const CONTENTFUL_SPACE = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE;
+const CONTENTFUL_ENVIRONMENT =
+  process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || "master";
 
 if (!CONTENTFUL_ACCESS_TOKEN)
   throw new Error(
@@ -27,6 +29,7 @@ export const getContentfulClient = (isPreview = false) => {
           host: "preview.contentful.com",
         }
       : { accessToken: CONTENTFUL_ACCESS_TOKEN }),
+    environment: CONTENTFUL_ENVIRONMENT,
     space: CONTENTFUL_SPACE,
     retryOnError: false,
   }).withoutUnresolvableLinks;
