@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { theme } from "@/src/styles/theme.css";
 
 export const button = style({
@@ -15,6 +15,11 @@ export const button = style({
   textAlign: "center",
   textTransform: "uppercase",
   whiteSpace: "nowrap",
+});
+
+globalStyle(`${button}[disabled]`, {
+  cursor: "default",
+  opacity: 0.5,
 });
 
 export const size = styleVariants({
