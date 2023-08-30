@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useMemo, useRef } from "react";
+import { useSpeakerModalStore } from "@/src/store";
 import { Speaker } from "@/src/types";
 import { Button } from "../../atoms/Button";
 import { SpeakerModal } from "../../molecules/SpeakerModal";
@@ -10,6 +11,9 @@ export interface SpeakerThumbnailProps {
 }
 
 export const SpeakerThumbnail = ({ speaker }: SpeakerThumbnailProps) => {
+  const openSpeakerModal = useSpeakerModalStore(
+    (state) => state.openSpeakerModal
+  );
   const image = useMemo(
     () =>
       speaker.fields.headshot?.find(
@@ -44,7 +48,6 @@ export const SpeakerThumbnail = ({ speaker }: SpeakerThumbnailProps) => {
           <ul className={styles.list}>
             {speaker.fields.titles?.map((title, index) => {
               const [role, organization] = title.split("|");
-
               return (
                 <li className={styles.item} key={index}>
                   {organization && <strong>{organization.trim()}</strong>}
@@ -54,18 +57,14 @@ export const SpeakerThumbnail = ({ speaker }: SpeakerThumbnailProps) => {
             })}
           </ul>
 
-          <SpeakerModal
-            speaker={speaker}
-            trigger={
-              <Button
-                className={styles.button}
-                size="xsmall"
-                variant="secondary"
-              >
-                Topic &amp; Bio
-              </Button>
-            }
-          />
+          <Button
+            className={styles.button}
+            onClick={() => openSpeakerModal(speaker)}
+            size="xsmall"
+            variant="secondary"
+          >
+            Topic &amp; Bio
+          </Button>
         </div>
       </div>
     </div>
