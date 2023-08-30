@@ -5,7 +5,7 @@ import type { TypePartnerSkeleton } from "./TypePartner";
 import type { TypeSpeakerSkeleton } from "./TypeSpeaker";
 
 export interface TypeEventFields {
-    year?: EntryFieldTypes.Symbol;
+    year: EntryFieldTypes.Symbol;
     startDate?: EntryFieldTypes.Date;
     endDate?: EntryFieldTypes.Date;
     hero?: EntryFieldTypes.AssetLink;

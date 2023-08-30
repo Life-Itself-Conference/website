@@ -64,7 +64,6 @@ export const getPastEvents = async (
 
   if (currentEvent) {
     pastEvents = pastEvents.filter((event) => {
-      if (!event.fields.year || !currentEvent.fields.year) return false;
       return Number(event.fields.year) < Number(currentEvent.fields.year);
     });
   }
