@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { Jost, Noto_Sans } from "next/font/google";
 import { PropsWithChildren, Suspense } from "react";
 import "../styles/globals.css";
+import { GoogleAnalytics } from "../components/atoms/GoogleAnalytics";
 import { NewsletterModal } from "../components/molecules/NewsletterModal";
 import { SpeakerModal } from "../components/molecules/SpeakerModal";
 
@@ -36,7 +37,7 @@ export const metadata = {
   },
 };
 
-export default function Layout({ children }: PropsWithChildren) {
+export default async function Layout({ children }: PropsWithChildren) {
   return (
     <html className={clsx(jost.variable, notoSans.variable)} lang="en">
       <body>
@@ -45,6 +46,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <NewsletterModal />
           <SpeakerModal />
         </Suspense>
+        <GoogleAnalytics />
       </body>
     </html>
   );

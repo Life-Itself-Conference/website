@@ -1,5 +1,7 @@
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import clsx from "clsx";
-import { MouseEvent } from "react";
+import { MouseEvent, useMemo } from "react";
+import { VideoObject } from "schema-dts";
 import { Event } from "@/src/types";
 import { createAndDownloadICalendarEvent } from "@/src/utils/calendar";
 import { formatDate } from "@/src/utils/format";
@@ -22,6 +24,30 @@ export const LocationSection = ({
     createAndDownloadICalendarEvent(event);
   };
 
+  const videoSchema: VideoObject = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: [
+        event.fields.location?.fields.label,
+        event.fields.location?.fields.name,
+      ]
+        .filter(Boolean)
+        .join(" "),
+      ...(event.fields.location?.fields.description
+        ? {
+            description: documentToPlainTextString(
+              event.fields.location?.fields.description
+            ),
+          }
+        : {}),
+      contentUrl: event.fields.location?.fields.video?.fields.file?.url,
+      thumbnailUrl: `${event.fields.location?.fields.videoPoster?.fields?.file?.url}?fm=webp`,
+      uploadDate: event.fields.location?.fields.video?.sys.updatedAt,
+    }),
+    [event]
+  );
+
   return (
     <ContentSection
       className={styles.container}
@@ -31,25 +57,35 @@ export const LocationSection = ({
     >
       <header className={styles.header}>
         {event.fields.location?.fields.video && (
-          <video
-            autoPlay
-            className={styles.video}
-            loop
-            muted
-            poster={`${event.fields.location.fields.videoPoster?.fields?.file?.url}?fm=webp`}
-            playsInline
-          >
-            <source
-              src={event.fields.location.fields.video.fields.file?.url}
-              type={event.fields.location.fields.video.fields.file?.contentType}
+          <>
+            <script
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+              type="application/ld+json"
             />
-          </video>
+            <video
+              autoPlay
+              className={styles.video}
+              loop
+              muted
+              poster={`${event.fields.location.fields.videoPoster?.fields?.file?.url}?fm=webp`}
+              playsInline
+            >
+              <source
+                src={event.fields.location.fields.video.fields.file?.url}
+                type={
+                  event.fields.location.fields.video.fields.file?.contentType
+                }
+              />
+            </video>
+          </>
         )}
         <h2 className={styles.title}>
-          <sub className={styles.label}>
-            {event.fields.location?.fields.label}
-          </sub>
-          {event.fields.location?.fields.name}
+          {event.fields.location?.fields.label && (
+            <sub className={styles.label}>
+              {event.fields.location?.fields.label}
+            </sub>
+          )}
+          <span>{event.fields.location?.fields.name}</span>
         </h2>
         <p className={styles.location}>
           {event.fields.location?.fields.location}
