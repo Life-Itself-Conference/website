@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import { EventSchema } from "../components/atoms/EventSchema";
 import { EventStructure } from "../components/organisms/EventStructure";
 import { getApp, getPastEvents } from "../services/contentful";
 
@@ -8,5 +9,11 @@ export default async function CurrentEventPage() {
 
   const app = await getApp({ isPreview });
   const pastEvents = await getPastEvents(app, { isPreview });
-  return <EventStructure app={app} pastEvents={pastEvents} />;
+
+  return (
+    <>
+      <EventSchema event={app.fields.currentEvent} />
+      <EventStructure app={app} pastEvents={pastEvents} />
+    </>
+  );
 }
