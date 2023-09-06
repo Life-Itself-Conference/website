@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { EventSchema } from "@/src/components/atoms/EventSchema";
 import { EventStructure } from "@/src/components/organisms/EventStructure";
 import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
 
@@ -29,5 +30,10 @@ export default async function YearEventPage({ params }: { params: any }) {
     return redirect("/404");
   }
 
-  return <EventStructure app={app} event={event} pastEvents={pastEvents} />;
+  return (
+    <>
+      <EventSchema event={event} />
+      <EventStructure app={app} event={event} pastEvents={pastEvents} />
+    </>
+  );
 }
