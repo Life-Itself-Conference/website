@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
-import { useNewsletterModalStore } from "@/src/store";
-import { Event } from "@/src/types";
+import { useNewsletterModalStore } from "@/store";
+import { Event } from "@/types";
 import { Button } from "../../atoms/Button";
 // import { NewsletterModal } from "../../molecules/NewsletterModal";
 // import { RegistrationModal } from "../../molecules/RegistrationModal";

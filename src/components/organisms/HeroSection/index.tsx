@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { BsChevronDown } from "react-icons/bs";
-import { useNewsletterModalStore } from "@/src/store";
-import { Event } from "@/src/types";
+import { useNewsletterModalStore } from "@/store";
+import { Event } from "@/types";
 import { Button, ButtonLink } from "../../atoms/Button";
 import { Container } from "../../atoms/Container";
 import { PartnerLogo } from "../../atoms/PartnerLogo";

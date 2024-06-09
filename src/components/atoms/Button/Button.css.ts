@@ -1,5 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { theme } from "@/src/styles/theme.css";
+import { theme } from "@/styles/theme.css";
 
 export const button = style({
   alignItems: "center",

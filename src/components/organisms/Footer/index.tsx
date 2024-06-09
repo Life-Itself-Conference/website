@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { useNewsletterModalStore } from "@/src/store";
-import { Event } from "@/src/types";
-import { createAndDownloadICalendarEvent } from "@/src/utils/calendar";
+import { useNewsletterModalStore } from "@/store";
+import { Event } from "@/types";
+import { createAndDownloadICalendarEvent } from "@/utils/calendar";
 import { Button } from "../../atoms/Button";
 import { Container } from "../../atoms/Container";
 import { EventMetadata } from "../../molecules/EventMetadata";

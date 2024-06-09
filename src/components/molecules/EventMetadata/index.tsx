@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Event } from "@/src/types";
+import { Event } from "@/types";
 import { formatDate } from "../../../utils/format";
 import { GlowingCharacters } from "../../atoms/GlowingCharacters";
 import * as styles from "./EventMetadata.css";
