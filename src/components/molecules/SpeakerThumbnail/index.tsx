@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useMemo, useRef } from "react";
-import { useSpeakerModalStore } from "@/store";
-import { Speaker } from "@/types";
+import { useSpeakerModalStore } from "@/src/store";
+import { Speaker } from "@/src/types";
 import { Button } from "../../atoms/Button";
 import { SpeakerModal } from "../../molecules/SpeakerModal";
 import * as styles from "./SpeakerThumbnail.css";

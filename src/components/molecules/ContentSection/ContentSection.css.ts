@@ -1,5 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, theme } from "@/styles/theme.css";
+import { breakpoints, theme } from "@/src/styles/theme.css";
 
 const baseTitle = style({
   fontSize: theme.fontSizes.xlarge,

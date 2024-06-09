@@ -2,9 +2,9 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import clsx from "clsx";
 import { MouseEvent, useMemo } from "react";
 import { VideoObject } from "schema-dts";
-import { Event } from "@/types";
-import { createAndDownloadICalendarEvent } from "@/utils/calendar";
-import { formatDate } from "@/utils/format";
+import { Event } from "@/src/types";
+import { createAndDownloadICalendarEvent } from "@/src/utils/calendar";
+import { formatDate } from "@/src/utils/format";
 import { Button, ButtonLink } from "../../atoms/Button";
 import { RichText } from "../../atoms/RichText";
 import { ContentSection } from "../../molecules/ContentSection";

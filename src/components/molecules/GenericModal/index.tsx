@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ReactNode } from "react";
-import { Modal as ModalType } from "@/types";
+import { Modal as ModalType } from "@/src/types";
 import { Modal } from "../../atoms/Modal";
 import { RichText } from "../../atoms/RichText";
 import * as styles from "./GenericModal.css";
