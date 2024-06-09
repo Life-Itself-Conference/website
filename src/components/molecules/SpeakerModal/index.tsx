@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useSpeakerModalStore } from "@/src/store";
+import { useSpeakerModalStore } from "@/store";
 import { Modal } from "../../atoms/Modal";
 import { RichText } from "../../atoms/RichText";
 import * as styles from "./SpeakerModal.css";

@@ -1,5 +1,5 @@
 import { CreativeWork, Event, Organization } from "schema-dts";
-import { Event as EventType } from "@/src/types";
+import { Event as EventType } from "@/types";
 
 interface EventSchemaProps {
   event?: EventType;

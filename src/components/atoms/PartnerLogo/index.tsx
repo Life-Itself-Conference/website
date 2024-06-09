@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Partner } from "@/src/types";
+import { Partner } from "@/types";
 
 export interface PartnerLogoProps {
   className?: string;

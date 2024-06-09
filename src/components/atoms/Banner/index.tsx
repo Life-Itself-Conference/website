@@ -1,4 +1,4 @@
-import { Modal } from "@/src/types";
+import { Modal } from "@/types";
 import { GenericModal } from "../../molecules/GenericModal";
 import * as styles from "./Banner.css";
 
