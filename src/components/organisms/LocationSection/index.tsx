@@ -79,14 +79,14 @@ export const LocationSection = ({
             </video>
           </>
         )}
-        <h2 className={styles.title}>
+        <h3 className={styles.title}>
           {event.fields.location?.fields.label && (
             <sub className={styles.label}>
               {event.fields.location?.fields.label}
             </sub>
           )}
           <span>{event.fields.location?.fields.name}</span>
-        </h2>
+        </h3>
         <p className={styles.location}>
           {event.fields.location?.fields.location}
         </p>
