@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { useNewsletterModalStore } from "@/store";
-import { Event } from "@/types";
+import { useNewsletterModalStore } from "@/src/store";
+import { Event } from "@/src/types";
 import { Button } from "../../atoms/Button";
 import { RichText } from "../../atoms/RichText";
 import { ContentSection } from "../../molecules/ContentSection";

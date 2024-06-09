@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { register } from "@/server/actions/register";
+import { register } from "../../../actions/register";
 import { Button } from "../../atoms/Button";
 import { Modal } from "../../atoms/Modal";
 import { TextField } from "../../atoms/TextField";

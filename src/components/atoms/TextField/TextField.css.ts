@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { theme } from "@/styles/theme.css";
+import { theme } from "@/src/styles/theme.css";
 
 const inputHeight = 48;
 const inputFontSize = 16;

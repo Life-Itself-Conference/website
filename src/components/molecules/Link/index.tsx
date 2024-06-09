@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import NextLink from "next/link";
 import { ComponentProps } from "react";
-import { useNewsletterModalStore } from "@/store";
+import { useNewsletterModalStore } from "@/src/store";
 import * as styles from "./Link.css";
 
 export const Link = (props: ComponentProps<typeof NextLink>) => {

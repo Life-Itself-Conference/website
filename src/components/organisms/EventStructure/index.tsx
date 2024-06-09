@@ -5,9 +5,9 @@
 //   // useSearchParams
 // } from "next/navigation";
 // import { useEffect, useState } from "react";
-// import { getApp, getEvent, getPastEvents } from "@/services/contentful";
+// import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
 import { redirect } from "next/navigation";
-import { App, Event } from "@/types";
+import { App, Event } from "@/src/types";
 import { Banner } from "../../atoms/Banner";
 import { AboutUsSection } from "../AboutUsSection";
 import { Footer } from "../Footer";
