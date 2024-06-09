@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Event } from "@/src/types";
+import { Event } from "@/types";
 import { RichText } from "../../atoms/RichText";
 import { ContentSection } from "../../molecules/ContentSection";
 import * as styles from "./AboutUsSection.css";

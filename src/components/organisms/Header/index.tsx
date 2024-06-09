@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import { Event } from "@/src/types";
+import { Event } from "@/types";
 import { ButtonLink } from "../../atoms/Button";
 import { Link } from "../../molecules/Link";
 import { RegistrationButton } from "../../molecules/RegistrationButton";

@@ -2,7 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { useNewsletterModalStore } from "@/src/store";
+import { useNewsletterModalStore } from "@/store";
 import { Button } from "../../atoms/Button";
 import { Modal } from "../../atoms/Modal";
 import { TextField } from "../../atoms/TextField";

@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, theme } from "@/src/styles/theme.css";
+import { breakpoints, theme } from "@/styles/theme.css";
 
 export const content = style({
   marginBottom: theme.spacing.xlarge,

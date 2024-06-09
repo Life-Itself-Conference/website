@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import { EventSchema } from "@/src/components/atoms/EventSchema";
-import { EventStructure } from "@/src/components/organisms/EventStructure";
-import { getApp, getEvent, getPastEvents } from "@/src/services/contentful";
+import { EventSchema } from "@/components/atoms/EventSchema";
+import { EventStructure } from "@/components/organisms/EventStructure";
+import { getApp, getEvent, getPastEvents } from "@/services/contentful";
 
 export const generateMetadata = ({ params }: { params: any }) => ({
   title: `${params["year"]} Event`,
