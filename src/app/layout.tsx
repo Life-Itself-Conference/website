@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { Jost, Noto_Sans } from "next/font/google";
-import Script from "next/script";
 import { PropsWithChildren, Suspense } from "react";
 import "../styles/globals.css";
 import { GoogleAnalytics } from "../components/atoms/GoogleAnalytics";
@@ -42,9 +41,8 @@ export default async function Layout({ children }: PropsWithChildren) {
   return (
     <html className={clsx(jost.variable, notoSans.variable)} lang="en">
       <head>
-        <Script
-          id="mcjs"
-          strategy="afterInteractive"
+        <script 
+          id="mcjs" 
           dangerouslySetInnerHTML={{
             __html: `!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/9ffd8880003444e617e7f70cf/686ef3f0e5300f8af9c7a225f.js");`
           }}
