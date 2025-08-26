@@ -50,7 +50,7 @@ export const NewsletterModal = (props: NewsletterModalProps) => {
       // Create submit script.
       const script = document.createElement("script");
       script.src =
-        "//me.us3.list-manage.com/subscribe/post-json?u=9ffd8880003444e617e7f70cf&id=f619c0fd26&c=handleNewsletter&FLNAME=" +
+        "//me.us3.list-manage.com/subscribe/post?u=9ffd8880003444e617e7f70cf&id=f619c0fd26&c=handleNewsletter&FLNAME=" +
         values.name +
         "&EMAIL=" +
         values.email +
